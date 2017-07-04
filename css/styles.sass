@@ -1,0 +1,67 @@
+$spx-blue: #005288
+$column-width: 700px
+$yt-height: 393px
+$gutter: 4px
+
+*
+	padding: 0
+	margin: 0
+
+body
+	display: grid
+	grid-template: "youtube interface" $yt-height "reddit interface" 1fr / #{$column-width} 1fr
+	grid-gap: $gutter
+
+	&.interface-left
+		grid-template: "interface youtube" $yt-height "interface reddit" 1fr / 1fr #{$column-width}
+
+iframe.youtube
+	grid-area: youtube
+	background: #000
+	width: 100%
+	height: 100%
+
+section.reddit
+	grid-area: reddit
+	width: 100%
+	height: calc(100vh - #{$yt-height} - #{$gutter})
+	overflow-y: scroll
+
+	.embedly-card-hug
+		// unset values put in by reddit
+		max-width: unset !important
+		margin: unset !important
+
+	iframe
+		width: 100%
+
+section.interface
+	grid-area: interface
+	height: calc(100vh - #{$gutter})
+	overflow-y: scroll
+
+i#info-button
+	position: fixed
+	top: 15px
+	right: 15px
+	height: 20px
+	width: 20px
+	background: url('../icons/info.svg')
+	opacity: 0.3
+	cursor: pointer
+	transition: opacity 200ms
+
+	&:hover
+		opacity: 1
+
+// custom scrollbar in browsers that support it
+::-webkit-scrollbar-track
+	border-radius: 4px
+	background: transparent
+
+::-webkit-scrollbar
+	width: 8px
+
+::-webkit-scrollbar-thumb
+	border-radius: 4px
+	background-color: $spx-blue

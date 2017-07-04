@@ -38,7 +38,11 @@ i#info-button {
   height: 20px;
   width: 20px;
   background: url("../icons/info.svg");
-  cursor: pointer; }
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 200ms; }
+  i#info-button:hover {
+    opacity: 1; }
 
 ::-webkit-scrollbar-track {
   border-radius: 4px;
