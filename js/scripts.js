@@ -3,5 +3,13 @@ function removeID(id) {
 	elem.parentElement.removeChild(elem);
 }
 
-// this removes what appears to be a tracking iframe embedded by reddit
-window.onload = () => removeID('emb_xcomm');
+function onload() {
+	// remove what appears to be a tracking iframe embedded by reddit
+	removeID('emb_xcomm');
+
+	// register dialog element with polyfill
+	const dialog = document.querySelector('dialog');
+	dialogPolyfill.registerDialog(dialog);
+}
+
+window.onload = () => onload();
