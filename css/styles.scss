@@ -1,3 +1,8 @@
+$spx-blue: #005288;
+$column-width: 700px;
+$yt-height: 393px;
+$gutter: 4px;
+
 * {
 	padding: 0;
 	margin: 0;
@@ -5,10 +10,11 @@
 
 body {
 	display: grid;
-	grid-template: "youtube interface" 393px "reddit interface" 1fr / 700px 1fr;
+	grid-template: "youtube interface" $yt-height "reddit interface" 1fr / #{$column-width} 1fr;
+	grid-gap: $gutter;
 
 	&.interface-left {
-		grid-template: "interface youtube" 393px "interface reddit" 1fr / 1fr 700px;
+		grid-template: "interface youtube" $yt-height "interface reddit" 1fr / 1fr #{$column-width};
 	}
 }
 
@@ -22,7 +28,7 @@ iframe.youtube {
 section.reddit {
 	grid-area: reddit;
 	width: 100%;
-	height: calc(100vh - 393px);
+	height: calc(100vh - #{$yt-height} - #{$gutter});
 	overflow-y: scroll;
 
 	.embedly-card-hug {
@@ -38,6 +44,22 @@ section.reddit {
 
 section.interface {
 	grid-area: interface;
-	height: 100vh;
+	height: calc(100vh - #{$gutter});
 	overflow-y: scroll;
+}
+
+
+// custom scrollbar in browsers that support it
+::-webkit-scrollbar-track {
+	border-radius: 4px;
+	background: transparent;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: $spx-blue;
 }

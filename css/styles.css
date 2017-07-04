@@ -4,9 +4,10 @@
 
 body {
   display: grid;
-  grid-template: "youtube interface" 393px "reddit interface" 1fr / 700px 1fr; }
+  grid-template: "youtube interface" 393px "reddit interface" 1fr / 700px 1fr;
+  grid-gap: 4px; }
   body.interface-left {
-    grid-template: "interface youtube" 393px "interface reddit" 1fr / 1fr 700px; }
+    grid-template: "interface youtube" 393px "interface reddit" 1fr/1fr 700px; }
 
 iframe.youtube {
   grid-area: youtube;
@@ -17,7 +18,7 @@ iframe.youtube {
 section.reddit {
   grid-area: reddit;
   width: 100%;
-  height: calc(100vh - 393px);
+  height: calc(100vh - 393px - 4px);
   overflow-y: scroll; }
   section.reddit .embedly-card-hug {
     max-width: unset !important;
@@ -27,7 +28,18 @@ section.reddit {
 
 section.interface {
   grid-area: interface;
-  height: 100vh;
+  height: calc(100vh - 4px);
   overflow-y: scroll; }
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+  background: transparent; }
+
+::-webkit-scrollbar {
+  width: 8px; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #005288; }
 
 /*# sourceMappingURL=styles.css.map */
