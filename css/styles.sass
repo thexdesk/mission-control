@@ -9,11 +9,11 @@ $gutter: 4px
 
 body
 	display: grid
-	grid-template: "youtube interface" $yt-height "reddit interface" 1fr / #{$column-width} 1fr
+	grid-template: "youtube interface" $yt-height "status interface" 20px "reddit interface" 1fr / #{$column-width} 1fr
 	grid-gap: $gutter
 
 	&.interface-left
-		grid-template: "interface youtube" $yt-height "interface reddit" 1fr / 1fr #{$column-width}
+		grid-template: "interface youtube" $yt-height "interface status" 20px "interface reddit" 1fr / 1fr #{$column-width}
 
 iframe.youtube
 	grid-area: youtube
@@ -25,7 +25,7 @@ iframe.youtube
 section.reddit
 	grid-area: reddit
 	width: 100%
-	height: calc(100vh - #{$yt-height} - #{$gutter})
+	height: calc(100vh - #{$yt-height} - #{$gutter*2} - 20px)
 	overflow-y: scroll
 
 	.embedly-card-hug
@@ -36,9 +36,26 @@ section.reddit
 	iframe
 		width: 100%
 
+section.status
+	grid-area: status
+	text-align: center
+
+	#auth-0
+		display: inline
+
+	#auth-1
+		display: none
+
+	&.authenticated
+		#auth-0
+			display: none
+
+		#auth-1
+			display: inline
+
 section.interface
 	grid-area: interface
-	height: calc(100vh - #{$gutter*2})
+	height: calc(100vh - #{$gutter*3})
 	overflow-y: scroll
 	padding-top: $gutter
 
