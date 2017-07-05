@@ -2,13 +2,11 @@
 <html>
 <head>
 	<title>r/Spacex Mission Control</title>
-	<link rel='stylesheet' href='css/dialog-polyfill.css'>
-	<link rel='stylesheet' href='css/simplemde.css'>
+	<link rel='stylesheet' href='css/packages.css'>
 	<link rel='stylesheet' href='css/styles.css'>
-	<script async src='js/dialog-polyfill.js'></script>
-	<script src='js/simplemde.js'></script>
-	<script src='js/scripts.js'></script>
 	<script async src='https://embed.redditmedia.com/widgets/platform.js'></script>
+	<script src='js/packages.js'></script>
+	<script src='js/scripts.js'></script>
 </head>
 <body>
 
@@ -33,6 +31,13 @@
 	<section class='interface'>
 		<textarea id='intro' data-initial='# Welcome to the r/SpaceX ________ Official Launch Discussion & Updates Thread!'></textarea>
 		<textarea id='viewing' data-initial='## Watching the launch live'></textarea>
+
+		<ul id='events'>
+			<li><i class='sort-icon'></i>foo</li>
+			<li><i class='sort-icon'></i>bar</li>
+			<li><i class='sort-icon'></i>baz</li>
+			<li><i class='sort-icon'></i>qux</li>
+		</ul>
 	</section>
 
 	<i id='info-button' onclick='document.getElementById("info").showModal()'></i>

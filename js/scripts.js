@@ -5,6 +5,9 @@ window.onload = () => {
 	const dialog = document.querySelector('dialog');
 	dialogPolyfill.registerDialog(dialog);
 
+	// register jQuery UI reordering
+	$('#events').sortable({ placeholder: 'ui-state-highlight', handle: ".sort-icon" });
+
 	// register textareas as Markdown editor
 	let id = 0;
 	for(obj of document.querySelectorAll('textarea')) {

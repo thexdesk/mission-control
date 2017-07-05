@@ -12,6 +12,8 @@ body
 	grid-template: "youtube interface" $yt-height "status interface" 20px "reddit interface" 1fr / #{$column-width} 1fr
 	grid-gap: $gutter
 
+	overflow: hidden
+
 	&.interface-left
 		grid-template: "interface youtube" $yt-height "interface status" 20px "interface reddit" 1fr / 1fr #{$column-width}
 
@@ -79,8 +81,36 @@ section.interface
 	overflow-y: scroll
 	padding-top: $gutter
 
+	#events
+		margin-top: 1em
+		list-style-type: none
+
+		li
+			position: relative  // this allows carets to be positioned absolutely
+			background: rgba(#fff, 0.7)
+			border-radius: 4px
+			border: 1px solid #ddd
+			padding: 0.5em
+			margin-bottom: 0.25em
+
+			.sort-icon
+				position: absolute
+				top: 20%
+				right: 1em
+				display: inline-block
+				background: url('../icons/sort.svg') center no-repeat
+				height: 60%
+				width: 1em
+				cursor: pointer
+
+			&.ui-state-highlight
+				height: calc(1em + 2px)
+				background: rgba(#99f, 0.4)
+				border: 1px solid rgba(#99f, 0.4)
+
 i#info-button
 	position: fixed
+	z-index: 1000
 	top: 11px
 	right: 15px
 	height: 20px
