@@ -8,6 +8,14 @@ body {
   grid-gap: 4px; }
   body.interface-left {
     grid-template: "interface youtube" 393px "interface status" 20px "interface reddit" 1fr/1fr 700px; }
+    body.interface-left section.reddit {
+      direction: ltr; }
+    body.interface-left section.status {
+      flex-direction: row-reverse; }
+      body.interface-left section.status #interface-left {
+        display: inline; }
+      body.interface-left section.status #interface-right {
+        display: none; }
 
 iframe.youtube {
   grid-area: youtube;
@@ -20,7 +28,8 @@ section.reddit {
   grid-area: reddit;
   width: 100%;
   height: calc(100vh - 393px - 8px - 20px);
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  direction: rtl; }
   section.reddit .embedly-card-hug {
     max-width: unset !important;
     margin: unset !important; }
@@ -29,10 +38,16 @@ section.reddit {
 
 section.status {
   grid-area: status;
-  text-align: center; }
-  section.status #auth-0 {
+  display: flex;
+  align-content: center;
+  justify-content: center; }
+  section.status > * {
+    margin: 0 3px; }
+  section.status #auth-0,
+  section.status #interface-right {
     display: inline; }
-  section.status #auth-1 {
+  section.status #auth-1,
+  section.status #interface-left {
     display: none; }
   section.status.authenticated #auth-0 {
     display: none; }
@@ -57,6 +72,10 @@ i#info-button {
   transition: opacity 200ms; }
   i#info-button:hover {
     opacity: 1; }
+
+a {
+  color: #22f;
+  text-decoration: none; }
 
 .CodeMirror,
 .CodeMirror-scroll {
