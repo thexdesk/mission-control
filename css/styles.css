@@ -4,11 +4,11 @@
 
 body {
   display: grid;
-  grid-template: "youtube interface twitter" 338px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
+  grid-template: "youtube interface logo" 61px "youtube interface twitter" 277px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
   overflow: hidden; }
   body.interface-left {
-    grid-template: "twitter interface youtube" 338px "twitter interface status" 20px "twitter interface reddit" 1fr/320px 1fr 600px; }
+    grid-template: "logo interface youtube" 61px "twitter interface youtube" 277px "twitter interface status" 20px "twitter interface reddit" 1fr/320px 1fr 600px; }
     body.interface-left section.reddit {
       direction: ltr; }
     body.interface-left section.twitter {
@@ -87,6 +87,10 @@ section.interface {
         height: calc(1em + 2px);
         background: rgba(153, 153, 255, 0.4);
         border: 1px solid rgba(153, 153, 255, 0.4); }
+
+section.logo {
+  grid-area: logo;
+  background: url("../icons/logo.png"); }
 
 section.twitter {
   grid-area: twitter;
