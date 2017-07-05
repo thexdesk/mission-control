@@ -4,11 +4,11 @@
 
 body {
   display: grid;
-  grid-template: "youtube interface twitter" 393px "status interface twitter" 20px "reddit interface twitter" 1fr / 700px 1fr 320px;
+  grid-template: "youtube interface twitter" 338px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
   overflow: hidden; }
   body.interface-left {
-    grid-template: "twitter interface youtube" 393px "twitter interface status" 20px "twitter interface reddit" 1fr/320px 1fr 700px; }
+    grid-template: "twitter interface youtube" 338px "twitter interface status" 20px "twitter interface reddit" 1fr/320px 1fr 600px; }
     body.interface-left section.reddit {
       direction: ltr; }
     body.interface-left section.twitter {
@@ -32,7 +32,7 @@ iframe.youtube {
 section.reddit {
   grid-area: reddit;
   width: 100%;
-  height: calc(100vh - 393px - 8px - 20px);
+  height: calc(100vh - 338px - 8px - 20px);
   overflow-y: scroll;
   direction: rtl; }
   section.reddit .embedly-card-hug {
