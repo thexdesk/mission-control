@@ -9,16 +9,22 @@ $gutter: 4px
 
 body
 	display: grid
-	grid-template: "youtube interface" $yt-height "status interface" 20px "reddit interface" 1fr / #{$column-width} 1fr
+	grid-template: "youtube interface twitter" $yt-height "status interface twitter" 20px "reddit interface twitter" 1fr / #{$column-width} 1fr 320px
 	grid-gap: $gutter
 
 	overflow: hidden
 
 	&.interface-left
-		grid-template: "interface youtube" $yt-height "interface status" 20px "interface reddit" 1fr / 1fr #{$column-width}
+		grid-template: "twitter interface youtube" $yt-height "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr #{$column-width}
 
 		section.reddit
 			direction: ltr
+
+		section.twitter
+			direction: rtl
+
+		i#info-button
+			right: 720px
 
 		section.status
 			flex-direction: row-reverse
@@ -108,11 +114,16 @@ section.interface
 				background: rgba(#99f, 0.4)
 				border: 1px solid rgba(#99f, 0.4)
 
+section.twitter
+	grid-area: twitter
+	height: 100vh
+	overflow-y: scroll
+
 i#info-button
 	position: fixed
 	z-index: 1000
 	top: 11px
-	right: 15px
+	right: 340px
 	height: 20px
 	width: 20px
 	background: url('../icons/info.svg')

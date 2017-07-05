@@ -4,13 +4,17 @@
 
 body {
   display: grid;
-  grid-template: "youtube interface" 393px "status interface" 20px "reddit interface" 1fr / 700px 1fr;
+  grid-template: "youtube interface twitter" 393px "status interface twitter" 20px "reddit interface twitter" 1fr / 700px 1fr 320px;
   grid-gap: 4px;
   overflow: hidden; }
   body.interface-left {
-    grid-template: "interface youtube" 393px "interface status" 20px "interface reddit" 1fr/1fr 700px; }
+    grid-template: "twitter interface youtube" 393px "twitter interface status" 20px "twitter interface reddit" 1fr/320px 1fr 700px; }
     body.interface-left section.reddit {
       direction: ltr; }
+    body.interface-left section.twitter {
+      direction: rtl; }
+    body.interface-left i#info-button {
+      right: 720px; }
     body.interface-left section.status {
       flex-direction: row-reverse; }
       body.interface-left section.status #interface-left {
@@ -84,11 +88,16 @@ section.interface {
         background: rgba(153, 153, 255, 0.4);
         border: 1px solid rgba(153, 153, 255, 0.4); }
 
+section.twitter {
+  grid-area: twitter;
+  height: 100vh;
+  overflow-y: scroll; }
+
 i#info-button {
   position: fixed;
   z-index: 1000;
   top: 11px;
-  right: 15px;
+  right: 340px;
   height: 20px;
   width: 20px;
   background: url("../icons/info.svg");
