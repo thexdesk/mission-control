@@ -1,15 +1,24 @@
-function removeID(id) {
-	const elem = document.getElementById(id);
-	elem.parentElement.removeChild(elem);
-}
+MDEs = {}
 
-function onload() {
-	// remove what appears to be a tracking iframe embedded by reddit
-	removeID('emb_xcomm');
-
+window.onload = () => {
 	// register dialog element with polyfill
 	const dialog = document.querySelector('dialog');
 	dialogPolyfill.registerDialog(dialog);
-}
 
-window.onload = () => onload();
+	// register textareas as Markdown editor
+	let id = 0;
+	for(obj of document.querySelectorAll('textarea')) {
+		MDEs[id++] = new SimpleMDE({
+			element: obj,
+			initialValue: obj.getAttribute('data-initial') || '',
+			toolbar: ['bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|', 'guide'],
+			promptURLs: true,
+			status: false
+		});
+	}
+
+	// leave this last as it may fail, crashing the script
+	// remove what appears to be a tracking iframe embedded by reddit
+	const elem = document.getElementById('emb_xcomm');
+	elem.parentElement.removeChild(elem);
+}

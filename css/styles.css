@@ -12,6 +12,7 @@ body {
 iframe.youtube {
   grid-area: youtube;
   background: #000;
+  border: none;
   width: 100%;
   height: 100%; }
 
@@ -28,12 +29,13 @@ section.reddit {
 
 section.interface {
   grid-area: interface;
-  height: calc(100vh - 4px);
-  overflow-y: scroll; }
+  height: calc(100vh - 8px);
+  overflow-y: scroll;
+  padding-top: 4px; }
 
 i#info-button {
   position: fixed;
-  top: 15px;
+  top: 11px;
   right: 15px;
   height: 20px;
   width: 20px;
@@ -43,6 +45,12 @@ i#info-button {
   transition: opacity 200ms; }
   i#info-button:hover {
     opacity: 1; }
+
+.CodeMirror,
+.CodeMirror-scroll {
+  min-height: 200px;
+  height: 200px;
+  overflow-y: auto; }
 
 ::-webkit-scrollbar-track {
   border-radius: 4px;

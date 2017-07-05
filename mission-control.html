@@ -3,20 +3,25 @@
 <head>
 	<title>r/Spacex Mission Control</title>
 	<link rel='stylesheet' href='css/dialog-polyfill.css'>
+	<link rel='stylesheet' href='css/simplemde.css'>
 	<link rel='stylesheet' href='css/styles.css'>
 	<script async src='js/dialog-polyfill.js'></script>
+	<script src='js/simplemde.js'></script>
 	<script src='js/scripts.js'></script>
 	<script async src='https://embed.redditmedia.com/widgets/platform.js'></script>
 </head>
 <body>
 
-	<iframe class='youtube' src='https://www.youtube.com/embed/ivdKRJzl6y0?autoplay=0' frameborder='0'></iframe>
+	<iframe class='youtube' src='https://youtube.com/embed/ivdKRJzl6y0?autoplay=0'></iframe>
 
 	<section class='reddit'>
 		<blockquote class='reddit-card'><a href='https://www.reddit.com/r/spacex/comments/417weg/'></a></blockquote>
 	</section>
 
-	<section class='interface'></section>
+	<section class='interface'>
+		<textarea id='intro' data-initial='# Welcome to the r/SpaceX ________ Official Launch Discussion & Updates Thread!'></textarea>
+		<textarea id='viewing' data-initial='## Watching the launch live'></textarea>
+	</section>
 
 	<i id='info-button' onclick='document.getElementById("info").showModal()'></i>
 	<dialog id='info'><!-- Info will go here --></dialog>
