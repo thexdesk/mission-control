@@ -29,6 +29,9 @@ body
 		section.status
 			flex-direction: row-reverse
 
+			*  // not direct children, but we still want to reverse
+				flex-direction: row-reverse
+
 			#interface-left
 				display: inline
 
@@ -64,14 +67,17 @@ section.status
 	justify-content: center
 
 	& > *
-		margin: 0 3px
+		display: flex
+
+		& > *
+			margin: 0 3px
 
 	#interface-right
 		display: inline
 
 	#interface-left
 		display: none
-
+	
 section.interface
 	grid-area: interface
 	height: calc(100vh - #{$gutter*3})
