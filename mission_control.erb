@@ -5,8 +5,8 @@
 <head>
 	<title>r/Spacex Mission Control</title>
 	<link rel='stylesheet' href='css/packages.css'>
+	<link rel='stylesheet' href='css/reddit_post.css'>
 	<link rel='stylesheet' href='css/styles.css'>
-	<script async src='https://embed.redditmedia.com/widgets/platform.js'></script>
 	<script async src="https://platform.twitter.com/widgets.js"></script>
 	<script src='js/packages.js'></script>
 	<script src='js/scripts.js'></script>
@@ -27,7 +27,7 @@
 	</section>
 
 	<section class='reddit'>
-		<blockquote class='reddit-card'><a href='https://www.reddit.com/r/spacex/comments/417weg/'></a></blockquote>
+		<%= render_erb 'reddit_post' %>
 	</section>
 
 	<section class='interface'>

@@ -35,3 +35,14 @@ get '/logout' do
   request.env['redd.session'] = nil
   redirect to '/'
 end
+
+
+# for live updates
+
+get '/status' do
+  render_erb 'status'
+end
+
+get '/post' do
+  render_erb 'reddit_post'
+end

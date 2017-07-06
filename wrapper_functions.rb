@@ -10,6 +10,7 @@ def post_info id
   submission = session.from_ids ["t3_#{id}"].to_ary
   {
     'score' => submission[0].score,
-    'num_comments' => submission[0].num_comments
+    'num_comments' => submission[0].num_comments,
+    'html' => submission[0].selftext_html
   }
 end
