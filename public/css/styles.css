@@ -48,22 +48,17 @@ section.status {
   justify-content: center; }
   section.status > * {
     margin: 0 3px; }
-  section.status #auth-0,
   section.status #interface-right {
     display: inline; }
-  section.status #auth-1,
   section.status #interface-left {
     display: none; }
-  section.status.authenticated #auth-0 {
-    display: none; }
-  section.status.authenticated #auth-1 {
-    display: inline; }
 
 section.interface {
   grid-area: interface;
   height: calc(100vh - 12px);
   overflow-y: scroll;
-  padding-top: 4px; }
+  padding-top: 4px;
+  padding-right: 4px; }
   section.interface #events {
     margin-top: 1em;
     list-style-type: none; }

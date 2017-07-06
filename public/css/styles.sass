@@ -66,26 +66,18 @@ section.status
 	& > *
 		margin: 0 3px
 
-	#auth-0,
 	#interface-right
 		display: inline
 
-	#auth-1,
 	#interface-left
 		display: none
-
-	&.authenticated
-		#auth-0
-			display: none
-
-		#auth-1
-			display: inline
 
 section.interface
 	grid-area: interface
 	height: calc(100vh - #{$gutter*3})
 	overflow-y: scroll
 	padding-top: $gutter
+	padding-right: $gutter
 
 	#events
 		margin-top: 1em
