@@ -7,14 +7,21 @@ body {
   grid-template: "youtube interface logo" 61px "youtube interface twitter" 277px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
   overflow: hidden; }
+  @media (max-width: 1500px) {
+    body {
+      grid-template-rows: 52px 207px 20px 1fr;
+      grid-template-columns: 460px 1fr 270px; } }
   body.interface-left {
-    grid-template: "logo interface youtube" 61px "twitter interface youtube" 277px "twitter interface status" 20px "twitter interface reddit" 1fr/320px 1fr 600px; }
+    grid-template: "logo interface youtube" 61px "twitter interface youtube" 277px "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr 600px; }
+    @media (max-width: 1500px) {
+      body.interface-left {
+        grid-template-columns: 270px 1fr 460px; } }
     body.interface-left section.reddit {
       direction: ltr; }
     body.interface-left section.twitter {
       direction: rtl; }
     body.interface-left i#info-button {
-      right: 720px; }
+      right: 622px; }
     body.interface-left section.status {
       flex-direction: row-reverse; }
       body.interface-left section.status * {
@@ -37,11 +44,6 @@ section.reddit {
   height: calc(100vh - 338px - 8px - 20px);
   overflow-y: scroll;
   direction: rtl; }
-  section.reddit .embedly-card-hug {
-    max-width: unset !important;
-    margin: unset !important; }
-  section.reddit iframe {
-    width: 100%; }
 
 section.status {
   grid-area: status;
@@ -71,8 +73,8 @@ section.interface {
       background: rgba(255, 255, 255, 0.7);
       border-radius: 4px;
       border: 1px solid #ddd;
-      padding: 0.5em;
-      margin-bottom: 0.25em; }
+      padding: 0.4em;
+      margin-bottom: 0.6em; }
       section.interface #events li .sort-icon {
         position: absolute;
         top: 20%;
@@ -83,13 +85,26 @@ section.interface {
         width: 1em;
         cursor: pointer; }
       section.interface #events li.ui-state-highlight {
-        height: calc(1em + 2px);
+        height: calc(1em + 5px);
         background: rgba(153, 153, 255, 0.4);
         border: 1px solid rgba(153, 153, 255, 0.4); }
+    section.interface #events input {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background: transparent;
+      padding: 2px;
+      outline-color: #005288; }
+      section.interface #events input:first-of-type, section.interface #events input:nth-of-type(2) {
+        width: 53px; }
+      section.interface #events input:last-of-type {
+        width: calc(100% - 325px); }
+        @media (max-width: 1500px) {
+          section.interface #events input:last-of-type {
+            width: calc(100% - 375px); } }
 
 section.logo {
   grid-area: logo;
-  background: url("../icons/logo.png"); }
+  background: url("../icons/logo.png") top left/100% no-repeat; }
 
 section.twitter {
   grid-area: twitter;
@@ -100,7 +115,7 @@ i#info-button {
   position: fixed;
   z-index: 1000;
   top: 11px;
-  right: 340px;
+  right: 342px;
   height: 20px;
   width: 20px;
   background: url("../icons/info.svg");
@@ -130,5 +145,15 @@ a {
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: #005288; }
+
+.highlight {
+  animation-timing: ease-out;
+  animation: highlight 1s; }
+
+@keyframes highlight {
+  0% {
+    background: #9f9; }
+  100% {
+    background: none; } }
 
 /*# sourceMappingURL=styles.css.map */

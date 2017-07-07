@@ -12,7 +12,6 @@
 	<script src='js/scripts.js'></script>
 </head>
 <body>
-
 	<iframe class='youtube' src='https://youtube.com/embed/ivdKRJzl6y0?autoplay=0'></iframe>
 
 	<section class='status'>
@@ -35,10 +34,11 @@
 		<textarea id='viewing' data-initial='## Watching the launch live'></textarea>
 
 		<ul id='events'>
-			<li><i class='sort-icon'></i>foo</li>
-			<li><i class='sort-icon'></i>bar</li>
-			<li><i class='sort-icon'></i>baz</li>
-			<li><i class='sort-icon'></i>qux</li>
+			<% for _ in 0..9 do %>
+				<li><i class='sort-icon'></i>
+					UTC: <input> &nbsp;&nbsp;&nbsp; T±<input> &nbsp;&nbsp;&nbsp; Message: <input>
+				</li>
+			<% end %>
 		</ul>
 	</section>
 

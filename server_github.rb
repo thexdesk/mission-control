@@ -9,6 +9,7 @@ set :port, 8080
 
 $reddit_post_id = '417weg'  # need to prompt for this along with authentication
 
+enable :sessions  # for session variables
 use Rack::Session::Cookie, :secret => ''
 use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
@@ -17,6 +18,9 @@ use Redd::Middleware,
   redirect_uri: 'http://localhost:8080/auth/callback',
   scope:        ['identity', 'submit', 'edit', 'read'],
   via:          '/auth'
+
+
+# OAuth and main page
 
 get '/' do
   if request.env['redd.session']
@@ -37,7 +41,7 @@ get '/logout' do
 end
 
 
-# for live updates
+# for updating section
 
 get '/status' do
   render_erb 'status'
@@ -45,4 +49,11 @@ end
 
 get '/post' do
   render_erb 'reddit_post'
+end
+
+
+# receive updates
+
+post '/update' do
+  session[params[:id]] = params[:value]
 end

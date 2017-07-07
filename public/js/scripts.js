@@ -1,4 +1,4 @@
-MDEs = {}
+MDEs = []
 
 window.onload = () => {
 	// register dialog element with polyfill
@@ -14,14 +14,42 @@ window.onload = () => {
 		MDEs[id++] = new SimpleMDE({
 			element: obj,
 			initialValue: obj.getAttribute('data-initial') || '',
-			toolbar: ['bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|', 'guide'],
+			toolbar: ['bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|',
+				{ name: 'save',
+				  action: save,
+				  className: 'fa fa-upload',
+				  title: 'Save to reddit'
+				}, 'guide'],
 			promptURLs: true,
-			status: false
+			status: false,
+			forceSync: true
 		});
 	}
 
-	// leave this last as it may fail, crashing the script
+	// MDE animation handler
+	$('.editor-toolbar > a[title="Save to reddit"]').each( function() {
+		$(this).on('animationend', () => $(this).removeClass('highlight'));
+	});
+
 	// remove what appears to be a tracking iframe embedded by reddit
 	const elem = document.getElementById('emb_xcomm');
-	elem.parentElement.removeChild(elem);
+	if(elem) elem.parentElement.removeChild(elem);
 }
+
+function save() {
+	elem = arguments[0].element;
+	
+	if(elem.constructor === HTMLTextAreaElement) {
+		// is a text area (aka not events), send id with value
+		id = elem.id;
+		value = elem.value;
+
+		$.ajax({
+			method: 'POST',
+			url: '/update',
+			data: { id: id, value: value },
+			success: () => $('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight')
+		});
+	}
+}
+

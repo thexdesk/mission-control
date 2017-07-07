@@ -1,7 +1,12 @@
 $spx-blue: #005288
 $yt-width: 600px
 $yt-height: 338px
+$twitter-width: 320px
 $gutter: 4px
+
+$yt-1366-width: 460px
+$yt-1366-height: 259px
+$twitter-1366-width: 270px
 
 *
 	padding: 0
@@ -9,13 +14,20 @@ $gutter: 4px
 
 body
 	display: grid
-	grid-template: "youtube interface logo" 61px "youtube interface twitter" $yt-height - 61px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr 320px
+	grid-template: "youtube interface logo" 61px "youtube interface twitter" $yt-height - 61px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
 	grid-gap: $gutter
+
+	@media (max-width: 1500px)
+		grid-template-rows: 52px ($yt-1366-height - 52px) 20px 1fr
+		grid-template-columns: $yt-1366-width 1fr $twitter-1366-width
 
 	overflow: hidden
 
 	&.interface-left
-		grid-template: "logo interface youtube" 61px "twitter interface youtube" $yt-height - 61px "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr $yt-width
+		grid-template: "logo interface youtube" 61px "twitter interface youtube" $yt-height - 61px "twitter interface status" 20px "twitter interface reddit" 1fr / #{$twitter-width} 1fr $yt-width
+
+		@media (max-width: 1500px)
+			grid-template-columns: $twitter-1366-width 1fr $yt-1366-width
 
 		section.reddit
 			direction: ltr
@@ -24,7 +36,7 @@ body
 			direction: rtl
 
 		i#info-button
-			right: 720px
+			right: $yt-width + 22px
 
 		section.status
 			flex-direction: row-reverse
@@ -51,14 +63,6 @@ section.reddit
 	height: calc(100vh - #{$yt-height} - #{$gutter*2} - 20px)
 	overflow-y: scroll
 	direction: rtl
-
-	.embedly-card-hug
-		// unset values put in by reddit
-		max-width: unset !important
-		margin: unset !important
-
-	iframe
-		width: 100%
 
 section.status
 	grid-area: status
@@ -94,8 +98,8 @@ section.interface
 			background: rgba(#fff, 0.7)
 			border-radius: 4px
 			border: 1px solid #ddd
-			padding: 0.5em
-			margin-bottom: 0.25em
+			padding: 0.4em
+			margin-bottom: 0.6em
 
 			.sort-icon
 				position: absolute
@@ -108,13 +112,31 @@ section.interface
 				cursor: pointer
 
 			&.ui-state-highlight
-				height: calc(1em + 2px)
+				height: calc(1em + 5px)
 				background: rgba(#99f, 0.4)
 				border: 1px solid rgba(#99f, 0.4)
 
+		input
+			border: 1px solid #ddd
+			border-radius: 3px
+			background: transparent
+			padding: 2px
+			outline-color: $spx-blue
+
+			&:first-of-type,
+			&:nth-of-type(2)
+				width: 53px
+			&:last-of-type
+				width: calc(100% - 325px)
+				
+				// for some reason this depends on height too. currently only concerned
+				// about 1920x1080 and 1366x768, so ignore that for now
+				@media (max-width: 1500px)
+					width: calc(100% - 375px)
+
 section.logo
 	grid-area: logo
-	background: url('../icons/logo.png')
+	background: url('../icons/logo.png') top left/100% no-repeat
 
 section.twitter
 	grid-area: twitter
@@ -125,7 +147,7 @@ i#info-button
 	position: fixed
 	z-index: 1000
 	top: 11px
-	right: 340px
+	right: $twitter-width + 22px
 	height: 20px
 	width: 20px
 	background: url('../icons/info.svg')
@@ -157,3 +179,14 @@ a
 ::-webkit-scrollbar-thumb
 	border-radius: 4px
 	background-color: $spx-blue
+
+// highlighting save button on success
+.highlight
+	animation-timing: ease-out
+	animation: highlight 1s
+
+@keyframes highlight
+	0%
+		background: #9f9
+	100%
+		background: none
