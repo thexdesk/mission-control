@@ -7,8 +7,7 @@ window.onload = () => {
 	$('#events').sortable({ placeholder: 'ui-state-highlight', handle: ".sort-icon" });
 
 	// register textareas as Markdown editor
-	let id = 0;
-	for(obj of document.querySelectorAll('textarea')) {
+	for(const obj of document.querySelectorAll('textarea')) {
 		new SimpleMDE({
 			element: obj,
 			initialValue: obj.getAttribute('data-initial') || '',
@@ -40,8 +39,8 @@ function save() {
 	
 	if(elem.constructor === HTMLTextAreaElement) {
 		// is a text area (aka not events), send id with value
-		id = elem.id;
-		value = elem.value;
+		const id = elem.id;
+		const value = elem.value;
 
 		$.ajax({
 			method: 'POST',

@@ -97,13 +97,11 @@ section.interface {
       background: transparent;
       padding: 2px;
       outline-color: #005288; }
-      section.interface #events input:first-of-type, section.interface #events input:nth-of-type(2) {
-        width: 53px; }
+      section.interface #events input:first-of-type {
+        width: 53px;
+        margin-right: 1.5em; }
       section.interface #events input:last-of-type {
-        width: calc(100% - 325px); }
-        @media (max-width: 1500px) {
-          section.interface #events input:last-of-type {
-            width: calc(100% - 375px); } }
+        width: calc(100% - 200px); }
 
 section.logo {
   grid-area: logo;

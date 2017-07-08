@@ -127,16 +127,11 @@ section.interface
 			padding: 2px
 			outline-color: $spx-blue
 
-			&:first-of-type,
-			&:nth-of-type(2)
+			&:first-of-type
 				width: 53px
+				margin-right: 1.5em
 			&:last-of-type
-				width: calc(100% - 325px)
-				
-				// for some reason this depends on height too. currently only concerned
-				// about 1920x1080 and 1366x768, so ignore that for now
-				@media (max-width: 1500px)
-					width: calc(100% - 375px)
+				width: calc(100% - 200px)
 
 section.logo
 	grid-area: logo
