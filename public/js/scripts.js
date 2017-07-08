@@ -1,5 +1,3 @@
-MDEs = []
-
 window.onload = () => {
 	// register dialog element with polyfill
 	const dialog = document.querySelector('dialog');
@@ -11,7 +9,7 @@ window.onload = () => {
 	// register textareas as Markdown editor
 	let id = 0;
 	for(obj of document.querySelectorAll('textarea')) {
-		MDEs[id++] = new SimpleMDE({
+		new SimpleMDE({
 			element: obj,
 			initialValue: obj.getAttribute('data-initial') || '',
 			toolbar: ['bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|',
@@ -22,7 +20,8 @@ window.onload = () => {
 				}, 'guide'],
 			promptURLs: true,
 			status: false,
-			forceSync: true
+			forceSync: true,
+			spellChecker: false
 		});
 	}
 

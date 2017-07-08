@@ -6,7 +6,9 @@ body {
   display: grid;
   grid-template: "youtube interface logo" 61px "youtube interface twitter" 277px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
-  overflow: hidden; }
+  overflow: hidden;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px; }
   @media (max-width: 1500px) {
     body {
       grid-template-rows: 52px 207px 20px 1fr;
@@ -61,12 +63,13 @@ section.status {
 
 section.interface {
   grid-area: interface;
-  height: calc(100vh - 12px);
+  height: calc(100vh - 4px);
   overflow-y: scroll;
   padding-top: 4px;
   padding-right: 4px; }
   section.interface #events {
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
     list-style-type: none; }
     section.interface #events li {
       position: relative;
@@ -85,7 +88,7 @@ section.interface {
         width: 1em;
         cursor: pointer; }
       section.interface #events li.ui-state-highlight {
-        height: calc(1em + 5px);
+        height: calc(1em + 8px);
         background: rgba(153, 153, 255, 0.4);
         border: 1px solid rgba(153, 153, 255, 0.4); }
     section.interface #events input {
@@ -131,9 +134,7 @@ a {
 
 .CodeMirror,
 .CodeMirror-scroll {
-  min-height: 200px;
-  height: 200px;
-  overflow-y: auto; }
+  min-height: 50px; }
 
 ::-webkit-scrollbar-track {
   border-radius: 4px;

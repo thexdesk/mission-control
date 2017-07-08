@@ -1,0 +1,31 @@
+.CodeMirror {
+  margin-bottom: 1em;
+  padding-bottom: 0; }
+  .CodeMirror .CodeMirror-code {
+    font-size: 13px;
+    line-height: 1.4em;
+    font-weight: 400; }
+    .CodeMirror .CodeMirror-code .cm-header-1,
+    .CodeMirror .CodeMirror-code .cm-header-2 {
+      font-size: 1.28571em;
+      line-height: 1.38889em; }
+    .CodeMirror .CodeMirror-code .cm-header-3,
+    .CodeMirror .CodeMirror-code .cm-header-4 {
+      font-size: 1.14286em;
+      font-weight: 600;
+      font-style: inherit;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.25em;
+      margin: 0;
+      padding: 0; }
+    .CodeMirror .CodeMirror-code .CodeMirror-line {
+      margin: 0;
+      padding: 0;
+      font-size: 1em;
+      line-height: 1.42857em; }
+    .CodeMirror .CodeMirror-code .cm-string,
+    .CodeMirror .CodeMirror-code .cm-link,
+    .CodeMirror .CodeMirror-code .cm-url {
+      color: #0079d3; }
+
+/*# sourceMappingURL=mde.css.map */
