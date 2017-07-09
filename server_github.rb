@@ -3,11 +3,10 @@
 require 'sinatra'
 require 'redd/middleware'
 require './helper_functions'
+require './event_class'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 set :port, 8080
-
-$reddit_post_id = '417weg'  # need to prompt for this along with authentication
 
 enable :sessions  # for session variables
 use Redd::Middleware,
@@ -17,7 +16,6 @@ use Redd::Middleware,
   redirect_uri: 'http://localhost:8080/auth/callback',
   scope:        ['identity', 'submit', 'edit', 'read'],
   via:          '/auth'
-
 
 # OAuth and main page
 
@@ -55,4 +53,5 @@ end
 
 post '/update' do
   session[params[:id]] = params[:value]
+  update_post
 end

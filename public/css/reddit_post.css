@@ -68,5 +68,8 @@
   .md a {
     color: #0079d3;
     text-decoration: none; }
+  .md ul {
+    list-style-type: disc;
+    margin-left: 1em; }
 
 /*# sourceMappingURL=reddit_post.css.map */

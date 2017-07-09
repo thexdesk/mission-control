@@ -1,4 +1,5 @@
 <% reddit = request.env['redd.session'] %>
-<% post = post_info $reddit_post_id %>
 
-<%= post['html'] %>
+<% if session[:post] %>
+  <%= post_info(session[:post])['html'] %>
+<% end %>

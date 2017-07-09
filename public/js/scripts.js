@@ -40,14 +40,17 @@ function save() {
 	if(elem.constructor === HTMLTextAreaElement) {
 		// is a text area (aka not events), send id with value
 		const id = elem.id;
+		console.log(id);
 		const value = elem.value;
 
 		$.ajax({
 			method: 'POST',
 			url: '/update',
 			data: { id: id, value: value },
-			success: () => $('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight')
+			success: data => {
+				$('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight');
+				$('.reddit').html(data);
+			}
 		});
 	}
 }
-
