@@ -10,7 +10,6 @@ set :port, 8080
 $reddit_post_id = '417weg'  # need to prompt for this along with authentication
 
 enable :sessions  # for session variables
-use Rack::Session::Cookie, :secret => ''
 use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
   client_id:    '',
