@@ -25,7 +25,7 @@ window.onload = () => {
 	}
 
 	// MDE animation handler
-	$('.editor-toolbar > a[title="Save to reddit"]').each( function() {
+	$('.fa-upload').each( function() {
 		$(this).on('animationend', () => $(this).removeClass('highlight'));
 	});
 

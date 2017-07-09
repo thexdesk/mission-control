@@ -5,6 +5,16 @@ def render_erb fname
   ERB.new(file).result(binding)
 end
 
+def reddit_post
+  "#{session[:intro]}\n
+  #{session[:viewing]}\n
+  #{session[:stats]}\n
+  #{session[:mission]}\n
+  #{session[:landing]}\n
+  #{session[:resources]}\n
+  #{session[:participate]}"
+end
+
 def post_info id
   session = request.env['redd.session']
   submission = session.from_ids ["t3_#{id}"].to_ary

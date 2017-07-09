@@ -2,7 +2,7 @@
 
 require 'sinatra'
 require 'redd/middleware'
-require './wrapper_functions'
+require './helper_functions'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 set :port, 8080
@@ -44,11 +44,11 @@ end
 # for updating section
 
 get '/status' do
-  render_erb 'status'
+  render_erb 'sections/status'
 end
 
 get '/post' do
-  render_erb 'reddit_post'
+  render_erb 'sections/live_post'
 end
 
 
