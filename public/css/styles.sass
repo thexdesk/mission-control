@@ -108,12 +108,23 @@ section.interface
 			.sort-icon
 				position: absolute
 				top: 20%
-				right: 1em
+				right: 0.5em
 				display: inline-block
 				background: url('../icons/sort.svg') center no-repeat
 				height: 60%
-				width: 1em
+				width: 2em
 				cursor: pointer
+
+			&:first-child .sort-icon
+				background: url('../icons/sort-first.svg') center no-repeat
+
+			&:last-child .sort-icon
+				background: url('../icons/sort-last.svg') center no-repeat
+
+			&:first-child:last-child .sort-icon
+				background: none
+				pointer-events: none
+				cursor: default
 
 			span
 				cursor: pointer
@@ -139,7 +150,9 @@ section.interface
 			&:last-of-type
 				width: calc(100% - 200px)
 
-	i.fa-upload
+	i.fa-upload,
+	i.fa-plus,
+	i.fa-minus
 		color: #2c3e50
 		opacity: 0.6
 		width: 30px

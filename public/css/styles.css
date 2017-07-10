@@ -81,12 +81,20 @@ section.interface {
       section.interface #events li .sort-icon {
         position: absolute;
         top: 20%;
-        right: 1em;
+        right: 0.5em;
         display: inline-block;
         background: url("../icons/sort.svg") center no-repeat;
         height: 60%;
-        width: 1em;
+        width: 2em;
         cursor: pointer; }
+      section.interface #events li:first-child .sort-icon {
+        background: url("../icons/sort-first.svg") center no-repeat; }
+      section.interface #events li:last-child .sort-icon {
+        background: url("../icons/sort-last.svg") center no-repeat; }
+      section.interface #events li:first-child:last-child .sort-icon {
+        background: none;
+        pointer-events: none;
+        cursor: default; }
       section.interface #events li span {
         cursor: pointer;
         display: inline-block;
@@ -107,7 +115,9 @@ section.interface {
         margin-right: 1.5em; }
       section.interface #events input:last-of-type {
         width: calc(100% - 200px); }
-  section.interface i.fa-upload {
+  section.interface i.fa-upload,
+  section.interface i.fa-plus,
+  section.interface i.fa-minus {
     color: #2c3e50;
     opacity: 0.6;
     width: 30px;
@@ -117,7 +127,9 @@ section.interface {
     cursor: pointer;
     text-align: center;
     line-height: 30px; }
-    section.interface i.fa-upload:hover {
+    section.interface i.fa-upload:hover,
+    section.interface i.fa-plus:hover,
+    section.interface i.fa-minus:hover {
       background: #fcfcfc;
       border-color: #95a5a6;
       opacity: 0.8; }

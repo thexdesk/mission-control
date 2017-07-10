@@ -64,3 +64,30 @@ function updateStats() {
 		success: data => document.getElementById('status-liveupdate').innerHTML = data
 	});
 }
+
+function addEvent() {
+	const events = document.getElementById('events');
+
+	const row = document.createElement('li');
+
+	const icon = document.createElement('i');
+	icon.classList.add('sort-icon', 'ui-sortable-handle');
+	row.appendChild(icon);
+
+	const tPM = document.createElement('span');
+	tPM.setAttribute('onclick', 'this.innerHTML = this.innerHTML == "T+" ? "T–" : "T+"');
+	tPM.innerHTML = 'T+';
+	row.appendChild(tPM);
+
+	row.appendChild( document.createElement('input') );
+	row.innerHTML += ' Message: ';
+	row.appendChild( document.createElement('input') );
+
+	events.insertBefore(row, events.firstChild);
+}
+
+function removeEvent() {
+	const events = document.getElementById('events');
+	if(events.children.length > 1)
+		events.removeChild(events.firstElementChild);
+}
