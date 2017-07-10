@@ -1,3 +1,8 @@
+'use strict';  // don't allow crap JS practices
+
+// use vanilla JS over jQuery where feasible
+// only thing I'm really using jQuery for is AJAX and jQuery UI
+
 window.onload = () => {
 	// register dialog element with polyfill
 	const dialog = document.querySelector('dialog');
@@ -29,18 +34,16 @@ window.onload = () => {
 		$(this).on('animationend', () => $(this).removeClass('highlight'));
 	});
 
-	// remove what appears to be a tracking iframe embedded by reddit
-	const elem = document.getElementById('emb_xcomm');
-	if(elem) elem.parentElement.removeChild(elem);
+	// update post stats every 5 minutes
+	setInterval(updateStats, 5*60*1000);
 }
 
 function save() {
-	elem = arguments[0].element;
+	const elem = arguments[0].element;
 	
 	if(elem.constructor === HTMLTextAreaElement) {
 		// is a text area (aka not events), send id with value
 		const id = elem.id;
-		console.log(id);
 		const value = elem.value;
 
 		$.ajax({
@@ -49,8 +52,15 @@ function save() {
 			data: { id: id, value: value },
 			success: data => {
 				$('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight');
-				$('.reddit').html(data);
+				$('.reddit').html(data);  // data is rendered HTML from reddit
 			}
 		});
 	}
+}
+
+function updateStats() {
+	$.ajax({
+		url: '/status',
+		success: data => document.getElementById('status-liveupdate').innerHTML = data
+	});
 }
