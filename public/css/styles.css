@@ -99,7 +99,8 @@ section.interface {
         cursor: pointer;
         display: inline-block;
         width: 16px;
-        margin-right: 2px; }
+        margin-right: 2px;
+        color: #22c; }
       section.interface #events li.ui-state-highlight {
         height: calc(1em + 8px);
         background: rgba(153, 153, 255, 0.4);

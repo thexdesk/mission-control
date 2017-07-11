@@ -40,22 +40,41 @@ window.onload = () => {
 
 function save() {
 	const elem = arguments[0].element;
-	
-	if(elem.constructor === HTMLTextAreaElement) {
-		// is a text area (aka not events), send id with value
-		const id = elem.id;
-		const value = elem.value;
 
-		$.ajax({
-			method: 'POST',
-			url: '/update',
-			data: { id: id, value: value },
-			success: data => {
-				$('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight');
-				$('.reddit').html(data);  // data is rendered HTML from reddit
-			}
-		});
+	const id = elem.id;
+	const value = elem.value;
+
+	$.ajax({
+		method: 'POST',
+		url: '/update',
+		data: { id: id, value: value },
+		success: data => {
+			$('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight');
+			$('.reddit').html(data);  // data is rendered HTML from reddit
+		}
+	});
+}
+
+function saveEvents() {
+	const events = document.getElementById('events').children;
+
+	let allEvents = [];
+	for(const evnt of events) {
+		const children = evnt.children;
+		const tPM = children[2].value == '' ? '' : children[1].innerHTML + children[2].value;
+		const message = children[3].value;
+		allEvents.push([tPM, message]);
 	}
+
+	$.ajax({
+		method: 'POST',
+		url: 'update',
+		data: { id: 'events', value: allEvents },
+		success: data => {
+			$('#events [title="Save to reddit"]').addClass('highlight');
+			$('.reddit').html(data);  // data is rendered HTML from reddit
+		}
+	});
 }
 
 function updateStats() {
@@ -75,7 +94,7 @@ function addEvent() {
 	row.appendChild(icon);
 
 	const tPM = document.createElement('span');
-	tPM.setAttribute('onclick', 'this.innerHTML = this.innerHTML == "T+" ? "T–" : "T+"');
+	tPM.setAttribute('onclick', 'this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+"');
 	tPM.innerHTML = 'T+';
 	row.appendChild(tPM);
 
