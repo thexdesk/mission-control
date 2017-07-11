@@ -49,14 +49,14 @@
 						<% if event[1] == '' then continue end %>
 						<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
 						<li><i class='sort-icon'></i>
-							<span onclick='this.innerTML = this.innerHTML == T+" ? "T-" : "T+";'>T+</span><input value='<%= event[0][2..-1] %>'>
-							Message: <input value='<%= event[1] %>'>
+							<span onclick='this.innerHTML = this.innerHTML == T+" ? "T-" : "T+";'>T+</span><input value='<%= event[0][2..-1] %>'>
+							Message: <input value='<%= event[1] %>' onkeyup='hotSwap(this)'>
 					<% end %>
 				<% end %>
 			<% else %>
 				<li><i class='sort-icon'></i>
 					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input>
-					Message: <input>
+					Message: <input onkeyup='hotSwap(this)'>
 				</li>
 			<% end %>
 		</ul>

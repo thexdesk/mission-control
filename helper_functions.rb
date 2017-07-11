@@ -1,7 +1,7 @@
 require 'erb'
 
 $message_symbols = {
-  ':music:' => '♫♫♫♫♫',
+  ':music:' => '♫',
   ':rocket:' => '🚀',
   ':sat:' => '🛰',
   ':satellite:' => '🛰'

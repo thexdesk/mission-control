@@ -100,7 +100,10 @@ function addEvent() {
 
 	row.appendChild( document.createElement('input') );
 	row.innerHTML += ' Message: ';
-	row.appendChild( document.createElement('input') );
+
+	const message = document.createElement('input');
+	message.setAttribute('onkeyup', 'hotSwap(this)');
+	row.appendChild(message);
 
 	events.insertBefore(row, events.firstChild);
 }
@@ -109,4 +112,20 @@ function removeEvent() {
 	const events = document.getElementById('events');
 	if(events.children.length > 1)
 		events.removeChild(events.firstElementChild);
+}
+
+
+const hotSwapVals = {
+	':music:': '♫',
+	':rocket:': '🚀',
+	':sat:': '🛰',
+	':satellite:': '🛰'
+}
+
+function hotSwap(obj) {
+	if(obj.constructor !== HTMLInputElement) throw 'Object must be HTMLInputElement';
+
+	const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
+	const val = obj.value.replace(regex, key => hotSwapVals[key]);
+	obj.value = val;
 }
