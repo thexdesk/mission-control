@@ -102,7 +102,7 @@ function addEvent() {
 	row.innerHTML += ' Message: ';
 
 	const message = document.createElement('input');
-	message.setAttribute('onkeyup', 'hotSwap(this)');
+	message.setAttribute('onkeyup', 'hotSwap(this); saveIfEnter(event);');
 	row.appendChild(message);
 
 	events.insertBefore(row, events.firstChild);
@@ -128,4 +128,9 @@ function hotSwap(obj) {
 	const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
 	const val = obj.value.replace(regex, key => hotSwapVals[key]);
 	obj.value = val;
+}
+
+function saveIfEnter(evnt) {
+	if(evnt.keyCode == 13)  // enter
+		saveEvents()
 }
