@@ -31,8 +31,8 @@
 	</section>
 
 	<section class='interface'>
-		<textarea id='intro' data-initial='# Welcome to the r/SpaceX ________ Official Launch Discussion & Updates Thread!'></textarea>
-		<textarea id='viewing' data-initial='### Watching the launch live'></textarea>
+		<textarea id='intro' data-initial='<%= if session[:intro] then session[:intro] else '# Welcome to the r/SpaceX ________ Official Launch Discussion & Updates Thread!' end %>'></textarea>
+		<textarea id='viewing' data-initial='<%= if session[:viewing] then session[:viewing] else '### Watching the launch live' end %>'></textarea>
 
 		<h3>### Live Updates
 			<i class='fa fa-upload' title='Save to reddit' onclick='saveEvents()'></i>
@@ -40,17 +40,32 @@
 			<i class='fa fa-plus' title='Add event at top' onclick='addEvent()'></i>
 		</h3>
 		<ul id='events'>
-			<li><i class='sort-icon'></i>
-				<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input>
-				Message: <input>
-			</li>
+			<%# fetch from server if possible  %>
+			<% if session[:events] %>
+				<% events = session[:events] %>
+				<% if events != nil %>
+					<% events.each do |event| %>
+						<% event = event[1] %>
+						<% if event[1] == '' then continue end %>
+						<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
+						<li><i class='sort-icon'></i>
+							<span onclick='this.innerTML = this.innerHTML == T+" ? "T-" : "T+";'>T+</span><input value='<%= event[0][2..-1] %>'>
+							Message: <input value='<%= event[1] %>'>
+					<% end %>
+				<% end %>
+			<% else %>
+				<li><i class='sort-icon'></i>
+					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input>
+					Message: <input>
+				</li>
+			<% end %>
 		</ul>
 
-		<textarea id='stats' data-initial='### Stats'></textarea>
-		<textarea id='mission' data-initial='### Mission'></textarea>
-		<textarea id='landing' data-initial='### Landing Attempt'></textarea>
-		<textarea id='resources' data-initial='### Resources'></textarea>
-		<textarea id='participate' data-initial='### Participate in the discussion!'></textarea>
+		<textarea id='stats' data-initial='<%= if session[:stats] then session[:stats] else '### Stats' end %>'></textarea>
+		<textarea id='mission' data-initial='<%= if session[:mission] then session[:mission] else '### Mission' end %>'></textarea>
+		<textarea id='landing' data-initial='<%= if session[:landing] then session[:landing] else '### Landing Attempt' end %>'></textarea>
+		<textarea id='resources' data-initial='<%= if session[:resources] then session[:resources] else '### Resources' end %>'></textarea>
+		<textarea id='participate' data-initial='<%= if session[:participate] then session[:participate] else '### Participate in the discussion!' end %>'></textarea>
 	</section>
 
 	<section class='logo'></section>

@@ -52,7 +52,7 @@ def format_events events
     str = "| Time | Update |\n| --- | --- |"
     events.each do |event|
       event = event[1]
-      if event[1] == '' then continue end  # only display events with message
+      if event[1] == '' then next end  # only display events with message
       $message_symbols.each do |k,v| event[1][k] &&= v end  # substitute where possible
       str += "\n| #{event[0]} | #{event[1]} |"
     end
