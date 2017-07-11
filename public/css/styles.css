@@ -4,17 +4,17 @@
 
 body {
   display: grid;
-  grid-template: "youtube interface logo" 61px "youtube interface twitter" 277px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
+  grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" 217px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
   overflow: hidden;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 13px; }
   @media (max-width: 1500px) {
     body {
-      grid-template-rows: 52px 207px 20px 1fr;
+      grid-template-rows: 52px 60px 147px 20px 1fr;
       grid-template-columns: 460px 1fr 270px; } }
   body.interface-left {
-    grid-template: "logo interface youtube" 61px "twitter interface youtube" 277px "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr 600px; }
+    grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" 217px "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr 600px; }
     @media (max-width: 1500px) {
       body.interface-left {
         grid-template-columns: 270px 1fr 460px; } }
@@ -60,6 +60,21 @@ section.status {
     display: inline; }
   section.status #interface-left {
     display: none; }
+
+section.timer {
+  grid-area: timer;
+  text-align: center;
+  font-size: 60px;
+  line-height: 60px;
+  cursor: pointer;
+  white-space: nowrap; }
+  section.timer.unset {
+    font-size: 42px; }
+  @media (max-width: 1500px) {
+    section.timer {
+      font-size: 54px; } }
+  section.timer.unset {
+    font-size: 36px; }
 
 section.interface {
   grid-area: interface;

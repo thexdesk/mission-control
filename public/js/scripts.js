@@ -36,6 +36,9 @@ window.onload = () => {
 
 	// update post stats every 5 minutes
 	setInterval(updateStats, 5*60*1000);
+
+	window.launchTime = null;
+	setInterval(updateCountdown, 1000);
 }
 
 function save() {
@@ -133,4 +136,47 @@ function hotSwap(obj) {
 function saveIfEnter(evnt) {
 	if(evnt.keyCode == 13)  // enter
 		saveEvents()
+}
+
+function updateCountdown() {
+	function pad(num) { return num < 10 ? '0'+num : num; }
+
+	const curTime = new Date();
+	const launchTime = window.launchTime;
+
+	if(launchTime === null) {
+		let timer = document.getElementById('timer');
+		timer.innerHTML = 'Set launch time';
+		timer.classList.add('unset');
+		return;
+	}
+
+	timer.classList.remove('unset');
+
+	const sign = launchTime > curTime ? '-' : '+';
+
+	const hours = Math.abs(launchTime - curTime) / 3600000 | 0;
+	const mins = Math.abs(launchTime - curTime) % 3600000 / 60000 | 0;
+	const secs = Math.abs(launchTime - curTime) % 60000 / 1000 | 0;
+
+	let time;
+
+	if(hours > 0) {
+		time = hours + ':' + pad(mins) + ':' + pad(secs);
+	}
+	else if(mins > 0) {
+		time = mins + ':' + pad(secs);
+	}
+	else {
+		time = secs;
+	}
+
+	document.getElementById('timer').innerHTML = 'T' + sign + time;
+}
+
+function setLaunchTime() {
+	window.launchTime = Date.parse(prompt('Launch time: (your location, YYYY-MM-DD HH:MM:SS)'));
+	if(window.launchTime === NaN) {
+		window.launchTime = null;
+	}
 }

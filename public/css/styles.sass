@@ -15,11 +15,11 @@ $twitter-1366-width: 270px
 
 body
 	display: grid
-	grid-template: "youtube interface logo" 61px "youtube interface twitter" $yt-height - 61px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
+	grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" $yt-height - 61px - 60px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
 	grid-gap: $gutter
 
 	@media (max-width: 1500px)
-		grid-template-rows: 52px ($yt-1366-height - 52px) 20px 1fr
+		grid-template-rows: 52px 60px ($yt-1366-height - 52px - 60px) 20px 1fr
 		grid-template-columns: $yt-1366-width 1fr $twitter-1366-width
 
 	overflow: hidden
@@ -27,7 +27,7 @@ body
 	font-size: 13px
 
 	&.interface-left
-		grid-template: "logo interface youtube" 61px "twitter interface youtube" $yt-height - 61px "twitter interface status" 20px "twitter interface reddit" 1fr / #{$twitter-width} 1fr $yt-width
+		grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" $yt-height - 61px - 60px "twitter interface status" 20px "twitter interface reddit" 1fr / #{$twitter-width} 1fr $yt-width
 
 		@media (max-width: 1500px)
 			grid-template-columns: $twitter-1366-width 1fr $yt-1366-width
@@ -84,6 +84,23 @@ section.status
 
 	#interface-left
 		display: none
+
+section.timer
+	grid-area: timer
+	text-align: center
+	font-size: 60px
+	line-height: 60px
+	cursor: pointer
+	white-space: nowrap
+
+	&.unset
+		font-size: 42px
+	
+	@media (max-width: 1500px)
+		font-size: 54px
+	
+	&.unset
+		font-size: 36px
 	
 section.interface
 	grid-area: interface
