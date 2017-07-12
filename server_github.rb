@@ -22,7 +22,7 @@ get '/' do
   if request.env['redd.session']
     render_erb 'mission_control'
   else
-    "<a href='/auth'>Authenticate</a>"
+    render_erb 'authenticate'
   end
 end
 

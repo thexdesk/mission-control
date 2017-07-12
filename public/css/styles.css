@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0; }
 
-body {
+body:not(.auth) {
   display: grid;
   grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" 217px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
@@ -10,28 +10,41 @@ body {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 13px; }
   @media (max-width: 1500px) {
-    body {
+    body:not(.auth) {
       grid-template-rows: 52px 60px 147px 20px 1fr;
       grid-template-columns: 460px 1fr 270px; } }
-  body.interface-left {
+  body:not(.auth).interface-left {
     grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" 217px "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr 600px; }
     @media (max-width: 1500px) {
-      body.interface-left {
+      body:not(.auth).interface-left {
         grid-template-columns: 270px 1fr 460px; } }
-    body.interface-left section.reddit {
+    body:not(.auth).interface-left section.reddit {
       direction: ltr; }
-    body.interface-left section.twitter {
+    body:not(.auth).interface-left section.twitter {
       direction: rtl; }
-    body.interface-left i#info-button {
+    body:not(.auth).interface-left i#info-button {
       right: 622px; }
-    body.interface-left section.status {
+    body:not(.auth).interface-left section.status {
       flex-direction: row-reverse; }
-      body.interface-left section.status * {
+      body:not(.auth).interface-left section.status * {
         flex-direction: row-reverse; }
-      body.interface-left section.status #interface-left {
+      body:not(.auth).interface-left section.status #interface-left {
         display: inline; }
-      body.interface-left section.status #interface-right {
+      body:not(.auth).interface-left section.status #interface-right {
         display: none; }
+
+body.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px; }
+  body.auth a {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.5em; }
 
 iframe.youtube {
   grid-area: youtube;
@@ -174,7 +187,7 @@ i#info-button {
     opacity: 1; }
 
 a {
-  color: #22f;
+  color: #005288;
   text-decoration: none; }
 
 .CodeMirror,
