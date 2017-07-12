@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head lang='en'>
-	<title>r/Spacex Mission Control</title>
+	<title><%= session[:launch] %> | r/Spacex Mission Control</title>
 	<link rel='icon' type='image/png' href='/icons/iss-16.png' sizes='16x16'>
 	<link rel='icon' type='image/png' href='/icons/iss-32.png' sizes='32x32'>
 	<link rel='stylesheet' href='css/packages.css'>
@@ -11,10 +11,10 @@
 	<script async src="https://platform.twitter.com/widgets.js"></script>
 	<script src='js/packages.js'></script>
 	<script src='js/scripts.js'></script>
-	<%= if session[:time] then "<script>window.launchTime = #{session[:time]}</script>" else '' end %>
+	<%= if session[:time] then "<script>window.launchTime = #{session[:time]}</script>" end %>
 </head>
 <body>
-	<iframe class='youtube' src='https://youtube.com/embed/ivdKRJzl6y0?autoplay=0'></iframe>
+	<iframe class='youtube' src='https://youtube.com/embed/<%= session[:video] %>?autoplay=0'></iframe>
 
 	<section class='status'>
 		<a href='#' onclick='document.body.classList.toggle("interface-left")'>
@@ -32,7 +32,7 @@
 	</section>
 
 	<section class='interface'>
-		<textarea id='intro' data-initial='<%= if session[:intro] then session[:intro] else '# Welcome to the r/SpaceX ________ Official Launch Discussion & Updates Thread!' end %>'></textarea>
+		<textarea id='intro' data-initial='<%= if session[:intro] then session[:intro] else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!" end %>'></textarea>
 		<textarea id='viewing' data-initial='<%= if session[:viewing] then session[:viewing] else '### Watching the launch live' end %>'></textarea>
 
 		<h3>### Live Updates

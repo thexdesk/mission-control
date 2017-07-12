@@ -37,6 +37,7 @@ window.onload = () => {
 	// update post stats every 5 minutes
 	setInterval(updateStats, 5*60*1000);
 
+	// update countdown every second
 	if(window.launchTime === undefined)
 		window.launchTime = null;
 	setInterval(updateCountdown, 1000);

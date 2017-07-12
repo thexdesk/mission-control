@@ -6,7 +6,7 @@
   padding: 0;
   margin: 0; }
 
-body:not(.auth) {
+body:not(.auth):not(.init) {
   display: grid;
   grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" 217px "status interface twitter" 20px "reddit interface twitter" 1fr / 600px 1fr 320px;
   grid-gap: 4px;
@@ -14,30 +14,31 @@ body:not(.auth) {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 13px; }
   @media (max-width: 1500px) {
-    body:not(.auth) {
+    body:not(.auth):not(.init) {
       grid-template-rows: 52px 60px 147px 20px 1fr;
       grid-template-columns: 460px 1fr 270px; } }
-  body:not(.auth).interface-left {
+  body:not(.auth):not(.init).interface-left {
     grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" 217px "twitter interface status" 20px "twitter interface reddit" 1fr / 320px 1fr 600px; }
     @media (max-width: 1500px) {
-      body:not(.auth).interface-left {
+      body:not(.auth):not(.init).interface-left {
         grid-template-columns: 270px 1fr 460px; } }
-    body:not(.auth).interface-left section.reddit {
+    body:not(.auth):not(.init).interface-left section.reddit {
       direction: ltr; }
-    body:not(.auth).interface-left section.twitter {
+    body:not(.auth):not(.init).interface-left section.twitter {
       direction: rtl; }
-    body:not(.auth).interface-left i#info-button {
+    body:not(.auth):not(.init).interface-left i#info-button {
       right: 622px; }
-    body:not(.auth).interface-left section.status {
+    body:not(.auth):not(.init).interface-left section.status {
       flex-direction: row-reverse; }
-      body:not(.auth).interface-left section.status * {
+      body:not(.auth):not(.init).interface-left section.status * {
         flex-direction: row-reverse; }
-      body:not(.auth).interface-left section.status #interface-left {
+      body:not(.auth):not(.init).interface-left section.status #interface-left {
         display: inline; }
-      body:not(.auth).interface-left section.status #interface-right {
+      body:not(.auth):not(.init).interface-left section.status #interface-right {
         display: none; }
 
-body.auth {
+body.auth,
+body.init {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,10 +46,28 @@ body.auth {
   height: 100vh;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 13px; }
-  body.auth a {
+  body.auth a,
+  body.init a {
     margin-top: 0.5rem;
     padding: 0.5rem;
     font-size: 1.5em; }
+  body.auth form,
+  body.init form {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    text-align: center; }
+  body.auth td:first-child,
+  body.init td:first-child {
+    text-align: left;
+    padding: 0.5rem 0.5rem 0 0; }
+  body.auth td:first-child:last-child,
+  body.init td:first-child:last-child {
+    text-align: center;
+    padding-right: 0; }
+  body.auth input[type='submit'],
+  body.init input[type='submit'] {
+    font-size: 1rem;
+    padding: 0.5rem; }
 
 iframe.youtube {
   grid-area: youtube;
@@ -137,17 +156,11 @@ section.interface {
         height: calc(1em + 8px);
         background: rgba(153, 153, 255, 0.4);
         border: 1px solid rgba(153, 153, 255, 0.4); }
-    section.interface #events input {
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      background: transparent;
-      padding: 2px;
-      outline-color: rgba(0, 82, 136, 0.4); }
-      section.interface #events input:first-of-type {
-        width: 53px;
-        margin-right: 1.5em; }
-      section.interface #events input:last-of-type {
-        width: calc(100% - 200px); }
+    section.interface #events input:first-of-type {
+      width: 53px;
+      margin-right: 1.5em; }
+    section.interface #events input:last-of-type {
+      width: calc(100% - 200px); }
   section.interface i.fa-upload,
   section.interface i.fa-plus,
   section.interface i.fa-minus {
@@ -193,6 +206,13 @@ i#info-button {
 a {
   color: #005288;
   text-decoration: none; }
+
+input {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: transparent;
+  padding: 2px;
+  outline-color: rgba(0, 82, 136, 0.4); }
 
 .CodeMirror,
 .CodeMirror-scroll {

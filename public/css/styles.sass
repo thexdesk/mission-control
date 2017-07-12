@@ -18,7 +18,7 @@ $twitter-1366-width: 270px
 	padding: 0
 	margin: 0
 
-body:not(.auth)
+body:not(.auth):not(.init)
 	display: grid
 	grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" $yt-height - 61px - 60px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
 	grid-gap: $gutter
@@ -58,7 +58,8 @@ body:not(.auth)
 			#interface-right
 				display: none
 
-body.auth
+body.auth,
+body.init
 	display: flex
 	justify-content: center
 	align-items: center
@@ -71,6 +72,23 @@ body.auth
 		margin-top: 0.5rem
 		padding: 0.5rem
 		font-size: 1.5em
+
+	form
+		margin-top: 0.5rem
+		font-size: 1rem
+		text-align: center
+
+	td:first-child
+		text-align: left
+		padding: 0.5rem 0.5rem 0 0
+
+	td:first-child:last-child  // last row
+		text-align: center
+		padding-right: 0
+
+	input[type='submit']
+		font-size: 1rem
+		padding: 0.5rem
 
 iframe.youtube
 	grid-area: youtube
@@ -175,18 +193,11 @@ section.interface
 				background: rgba(#99f, 0.4)
 				border: 1px solid rgba(#99f, 0.4)
 
-		input
-			border: 1px solid #ddd
-			border-radius: 3px
-			background: transparent
-			padding: 2px
-			outline-color: rgba($spx-blue, 0.4)
-
-			&:first-of-type  // T±
-				width: 53px
-				margin-right: 1.5em
-			&:last-of-type  // message
-				width: calc(100% - 200px)
+		input:first-of-type  // T±
+			width: 53px
+			margin-right: 1.5em
+		input:last-of-type  // message
+			width: calc(100% - 200px)
 
 	i.fa-upload,
 	i.fa-plus,
@@ -233,6 +244,15 @@ i#info-button
 a
 	color: $spx-blue
 	text-decoration: none
+
+input
+	border: 1px solid #ddd
+	border-radius: 3px
+	background: transparent
+	padding: 2px
+	outline-color: rgba($spx-blue, 0.4)
+
+
 
 .CodeMirror,
 .CodeMirror-scroll

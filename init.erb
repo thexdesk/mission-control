@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+	<title>r/Spacex Mission Control</title>
+	<link rel='icon' type='image/png' href='/icons/iss-16.png' sizes='16x16'>
+	<link rel='icon' type='image/png' href='/icons/iss-32.png' sizes='32x32'>
+	<link rel='stylesheet' href='/css/styles.css'>
+</head>
+<body class='init'>
+
+	<img src='icons/logo.png'>
+
+	<form method='POST'>
+		<table>
+			<tr>
+				<td>Launch</td>
+				<td><input name='launch' <%= if session[:launch] then "value='#{session[:launch]}'" end %> required></td>
+			</tr>
+			<tr>
+				<td>YouTube link</td>
+				<td><input name='video' <%= if session[:video] then "value='#{session[:video]}'" end %> required></td>
+			</tr>
+			<tr>
+				<td colspan=2><input type='submit' value="Ok, let's go!"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

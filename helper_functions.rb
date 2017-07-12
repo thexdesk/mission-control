@@ -46,7 +46,8 @@ end
 # edits post if it exists
 def update_post
   if session[:post] == nil
-    post = make_post 'Testing automated post creation', reddit_post  # still need to allow runtime title creation
+    title = "r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread"
+    post = make_post title, reddit_post
     session[:post] = post.id
   else
     post = request.env['redd.session'].from_ids ["t3_#{session[:post]}"]

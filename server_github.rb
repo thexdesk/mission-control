@@ -27,8 +27,13 @@ get '/' do
 end
 
 get '/auth/callback' do
-  redirect to '/' unless request.env['redd.error']
-  "Error: #{request.env['redd.error'].message} (<a href='/'>Back</a>)"
+  if request.env['redd.error']
+    "Error: #{request.env['redd.error'].message} (<a href='/'>Back</a>)"
+  elsif not session[:launch] or not session[:video]
+    redirect to 'init'
+  else
+    redirect to '/'
+  end
 end
 
 get '/logout' do
@@ -47,10 +52,22 @@ get '/post' do
   render_erb 'sections/live_post'
 end
 
+# initializing variables
+get '/init' do
+  render_erb 'init'
+end
+
+post '/init' do
+  # not doing server-side validation on this
+  # if someone wants to bypass the validation, it only screws things up for them
+  session[:launch] = params[:launch]
+  session[:video] = params[:video].match(/^(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{10,})/)[1]  # get video id from url
+  redirect to '/'
+end
+
 
 # receive updates
-
 post '/update' do
   session[params[:id]] = params[:value]
-  update_post unless params[:id] == 'time'
+  update_post unless ['time', 'launch', 'video'].include? params[:id]
 end
