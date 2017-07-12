@@ -55,6 +55,7 @@
 					<% end %>
 				<% end %>
 			<% else %>
+			<%# nothing stored on server, give a single blank event %>
 				<li><i class='sort-icon'></i>
 					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input>
 					Message: <input onkeyup='hotSwap(this); saveIfEnter(event);'>
@@ -78,7 +79,7 @@
 	</section>
 
 	<i id='info-button' onclick='document.getElementById("info").showModal()'></i>
-	<dialog id='info'><!-- Info will go here --></dialog>
+	<dialog id='info'><!-- Info will go here --></dialog>  <%# this will be where basic info about what can be clicked, basic functionality, etc. %>
 
 </body>
 </html>

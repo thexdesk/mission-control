@@ -1,3 +1,7 @@
+@charset "UTF-8";
+/* grid-template will be across multiple rows when SASS supports it (I've re-emphasized this at github.com/sasstools/sass-lint/issues/591)
+ * everything else is pretty self-explanitory ─ I've commented it if it's not
+ */
 * {
   padding: 0;
   margin: 0; }
@@ -85,9 +89,9 @@ section.timer {
     font-size: 42px; }
   @media (max-width: 1500px) {
     section.timer {
-      font-size: 54px; } }
-  section.timer.unset {
-    font-size: 36px; }
+      font-size: 54px; }
+      section.timer.unset {
+        font-size: 36px; } }
 
 section.interface {
   grid-area: interface;
@@ -138,7 +142,7 @@ section.interface {
       border-radius: 3px;
       background: transparent;
       padding: 2px;
-      outline-color: #005288; }
+      outline-color: rgba(0, 82, 136, 0.4); }
       section.interface #events input:first-of-type {
         width: 53px;
         margin-right: 1.5em; }

@@ -1,3 +1,8 @@
+/*
+ * grid-template will be across multiple rows when SASS supports it (I've re-emphasized this at github.com/sasstools/sass-lint/issues/591)
+ * everything else is pretty self-explanitory ─ I've commented it if it's not
+ */
+
 $spx-blue: #005288
 
 $yt-width: 600px
@@ -33,10 +38,10 @@ body:not(.auth)
 			grid-template-columns: $twitter-1366-width 1fr $yt-1366-width
 
 		section.reddit
-			direction: ltr
+			direction: ltr  // forces correct display, even if parent is RTL
 
 		section.twitter
-			direction: rtl
+			direction: rtl  // place scrollbar on left
 
 		i#info-button
 			right: $yt-width + 22px
@@ -79,7 +84,7 @@ section.reddit
 	width: 100%
 	height: calc(100vh - #{$yt-height} - #{$gutter*2} - 20px)
 	overflow-y: scroll
-	direction: rtl
+	direction: rtl  // place scrollbar on left
 
 section.status
 	grid-area: status
@@ -107,14 +112,15 @@ section.timer
 	cursor: pointer
 	white-space: nowrap
 
+	// shrink text to fit if necessary
 	&.unset
 		font-size: 42px
 	
 	@media (max-width: 1500px)
 		font-size: 54px
-	
-	&.unset
-		font-size: 36px
+
+		&.unset
+			font-size: 36px
 	
 section.interface
 	grid-area: interface
@@ -129,8 +135,8 @@ section.interface
 		list-style-type: none
 
 		li
-			position: relative  // this allows carets to be positioned absolutely
-			background: rgba(#fff, 0.7)
+			position: relative  // this allows arrows to be positioned absolutely
+			background: rgba(#fff, 0.7) // make things pretty when reordering rows
 			border-radius: 4px
 			border: 1px solid #ddd
 			padding: 0.4em
@@ -154,7 +160,7 @@ section.interface
 
 			&:first-child:last-child .sort-icon
 				background: none
-				pointer-events: none
+				pointer-events: none  // disables dragging
 				cursor: default
 
 			span
@@ -174,12 +180,12 @@ section.interface
 			border-radius: 3px
 			background: transparent
 			padding: 2px
-			outline-color: $spx-blue
+			outline-color: rgba($spx-blue, 0.4)
 
-			&:first-of-type
+			&:first-of-type  // T±
 				width: 53px
 				margin-right: 1.5em
-			&:last-of-type
+			&:last-of-type  // message
 				width: calc(100% - 200px)
 
 	i.fa-upload,
