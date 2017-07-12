@@ -3,7 +3,6 @@
 require 'sinatra'
 require 'redd/middleware'
 require './helper_functions'
-require './event_class'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 set :port, 8080
@@ -53,5 +52,5 @@ end
 
 post '/update' do
   session[params[:id]] = params[:value]
-  update_post
+  update_post unless params[:id] == 'time'
 end

@@ -37,7 +37,8 @@ window.onload = () => {
 	// update post stats every 5 minutes
 	setInterval(updateStats, 5*60*1000);
 
-	window.launchTime = null;
+	if(window.launchTime === undefined)
+		window.launchTime = null;
 	setInterval(updateCountdown, 1000);
 }
 
@@ -82,7 +83,7 @@ function saveEvents() {
 
 function updateStats() {
 	$.ajax({
-		url: '/status',
+		url: 'status',
 		success: data => document.getElementById('status-liveupdate').innerHTML = data
 	});
 }
@@ -176,7 +177,12 @@ function updateCountdown() {
 
 function setLaunchTime() {
 	window.launchTime = Date.parse(prompt('Launch time: (your location, YYYY-MM-DD HH:MM:SS)'));
-	if(window.launchTime === NaN) {
+	if(isNaN(window.launchTime)) {
 		window.launchTime = null;
 	}
+	$.ajax({
+		method: 'POST',
+		url: 'update',
+		data: { id: 'time', value: window.launchTime }
+	});
 }

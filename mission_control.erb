@@ -11,6 +11,7 @@
 	<script async src="https://platform.twitter.com/widgets.js"></script>
 	<script src='js/packages.js'></script>
 	<script src='js/scripts.js'></script>
+	<%= if session[:time] then "<script>window.launchTime = #{session[:time]}</script>" else '' end %>
 </head>
 <body>
 	<iframe class='youtube' src='https://youtube.com/embed/ivdKRJzl6y0?autoplay=0'></iframe>
