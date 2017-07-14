@@ -8,6 +8,11 @@ $message_symbols = {
   ':satellite:' => '🛰'
 }
 
+
+def _session
+  $sess_var[session[:id]]
+end
+
 # take a file name, return rendered HTML from .erb file
 def render_erb fname
   file = File.read("#{fname}.erb")
@@ -16,10 +21,10 @@ end
 
 # fully formatted markdown post
 def reddit_post
-  if session[:events]
-    "#{session[:intro]}\n\n#{session[:viewing]}\n\n### Live Updates\n#{format_events session[:events]}\n\n#{session[:stats]}\n\n#{session[:mission]}\n\n#{session[:landing]}\n\n#{session[:resources]}\n\n#{session[:participate]}"
+  if _session[:events]
+    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n### Live Updates\n#{format_events _session[:events]}\n\n#{_session[:stats]}\n\n#{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n\n#{_session[:participate]}"
   else
-    "#{session[:intro]}\n\n#{session[:viewing]}\n\n#{session[:stats]}\n\n#{session[:mission]}\n\n#{session[:landing]}\n\n#{session[:resources]}\n\n#{session[:participate]}"
+    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n#{_session[:stats]}\n\n#{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n\n#{_session[:participate]}"
   end
 end
 
@@ -45,15 +50,15 @@ end
 # creates a post if it doesn't exist
 # edits post if it exists
 def update_post
-  if session[:post] == nil
-    title = "r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread"
+  if _session[:post] == nil
+    title = "r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread"
     post = make_post title, reddit_post
-    session[:post] = post.id
+    _session[:post] = post.id
   else
-    post = request.env['redd.session'].from_ids ["t3_#{session[:post]}"]
+    post = request.env['redd.session'].from_ids ["t3_#{_session[:post]}"]
     post[0].edit reddit_post
   end
-  post_info(session[:post])['html']
+  post_info(_session[:post])['html']
 end
 
 # get list of events and return a formatted table

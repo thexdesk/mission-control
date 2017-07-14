@@ -145,8 +145,10 @@ function hotSwap(obj) {
 	if(obj.constructor !== HTMLInputElement) throw 'Object must be HTMLInputElement';
 
 	const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
+
+	const initVal = obj.value;
 	const val = obj.value.replace(regex, key => hotSwapVals[key]);
-	obj.value = val;
+	if(initVal != val) obj.value = val;  // prevents moving cursor to end if not needed
 }
 
 // bound on event inputs

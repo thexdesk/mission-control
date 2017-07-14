@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head lang='en'>
-	<title><%= session[:launch] %> | r/Spacex Mission Control</title>
+	<title><%= _session[:launch] %> | r/Spacex Mission Control</title>
 	<link rel='icon' type='image/png' href='/icons/iss-16.png' sizes='16x16'>
 	<link rel='icon' type='image/png' href='/icons/iss-32.png' sizes='32x32'>
 	<link rel='stylesheet' href='css/packages.css'>
@@ -11,10 +11,10 @@
 	<script async src="https://platform.twitter.com/widgets.js"></script>
 	<script src='js/packages.js'></script>
 	<script src='js/scripts.js'></script>
-	<%= if session[:time] then "<script>window.launchTime = #{session[:time]}</script>" end %>
+	<%= if _session[:time] then "<script>window.launchTime = #{_session[:time]}</script>" end %>
 </head>
 <body>
-	<iframe class='youtube' src='https://youtube.com/embed/<%= session[:video] %>?autoplay=0'></iframe>
+	<iframe class='youtube' src='https://youtube.com/embed/<%= $sess_var[session[:id]][:video] %>?autoplay=0'></iframe>
 
 	<section class='status'>
 		<a href='#' onclick='document.body.classList.toggle("interface-left")'>
@@ -32,8 +32,8 @@
 	</section>
 
 	<section class='interface'>
-		<textarea id='intro' data-initial='<%= if session[:intro] then session[:intro] else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!" end %>'></textarea>
-		<textarea id='viewing' data-initial='<%= if session[:viewing] then session[:viewing] else '### Watching the launch live' end %>'></textarea>
+		<textarea id='intro' data-initial='<%= if _session[:intro] then _session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;").gsub('"', '&quot;') end %>'></textarea>
+		<textarea id='viewing' data-initial='<%= if _session[:viewing] then _session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
 
 		<h3>### Live Updates
 			<i class='fa fa-upload' title='Save to reddit' onclick='saveEvents()'></i>
@@ -42,32 +42,32 @@
 		</h3>
 		<ul id='events'>
 			<%# fetch from server if possible  %>
-			<% if session[:events] %>
-				<% events = session[:events] %>
+			<% if _session[:events] %>
+				<% events = _session[:events] %>
 				<% if events != nil %>
 					<% events.each do |event| %>
 						<% event = event[1] %>
-						<% if event[1] == '' then continue end %>
+						<% if event[1] == '' then next end %>
 						<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
 						<li><i class='sort-icon'></i>
-							<span onclick='this.innerHTML = this.innerHTML == T+" ? "T-" : "T+";'>T+</span><input value='<%= event[0][2..-1] %>'>
-							Message: <input value='<%= event[1] %>' onkeyup='hotSwap(this); saveIfEnter(event);'>
+							<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[0][0..1] %></span><input value='<%= event[0][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event)'>
+							Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup='hotSwap(this); saveIfEnter(event);'>
 					<% end %>
 				<% end %>
 			<% else %>
 			<%# nothing stored on server, give a single blank event %>
 				<li><i class='sort-icon'></i>
-					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input>
+					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event)'>
 					Message: <input onkeyup='hotSwap(this); saveIfEnter(event);'>
 				</li>
 			<% end %>
 		</ul>
 
-		<textarea id='stats' data-initial='<%= if session[:stats] then session[:stats] else '### Stats' end %>'></textarea>
-		<textarea id='mission' data-initial='<%= if session[:mission] then session[:mission] else '### Mission' end %>'></textarea>
-		<textarea id='landing' data-initial='<%= if session[:landing] then session[:landing] else '### Landing Attempt' end %>'></textarea>
-		<textarea id='resources' data-initial='<%= if session[:resources] then session[:resources] else '### Resources' end %>'></textarea>
-		<textarea id='participate' data-initial='<%= if session[:participate] then session[:participate] else '### Participate in the discussion!' end %>'></textarea>
+		<textarea id='stats' data-initial='<%= if _session[:stats] then _session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
+		<textarea id='mission' data-initial='<%= if _session[:mission] then _session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
+		<textarea id='landing' data-initial='<%= if _session[:landing] then _session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
+		<textarea id='resources' data-initial='<%= if _session[:resources] then _session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
+		<textarea id='participate' data-initial='<%= if _session[:participate] then _session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
 	</section>
 
 	<section class='logo'></section>
