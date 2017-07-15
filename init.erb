@@ -14,7 +14,7 @@
 		<table>
 			<tr>
 				<td>Launch</td>
-				<td><input name='launch' <%= if _session[:launch] then "value='#{_session[:launch]}'" end %> required></td>
+				<td><input name='launch' <%= if _session[:launch] then "value='#{_session[:launch].gsub("'", "&apos;")}'" end %> required></td>
 			</tr>
 			<tr>
 				<td>YouTube link</td>

@@ -32,7 +32,7 @@
 	</section>
 
 	<section class='interface'>
-		<textarea id='intro' data-initial='<%= if _session[:intro] then _session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;").gsub('"', '&quot;') end %>'></textarea>
+		<textarea id='intro' data-initial='<%= if _session[:intro] then _session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
 		<textarea id='viewing' data-initial='<%= if _session[:viewing] then _session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
 
 		<h3>### Live Updates
