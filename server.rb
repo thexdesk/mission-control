@@ -5,14 +5,13 @@ require 'redd/middleware'
 require './helper_functions'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
-set :port, 8080
 
 enable :sessions  # for session identifier
 use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
-  client_id:    '',
-  secret:       '',
-  redirect_uri: 'http://localhost:8080/auth/callback',
+  client_id:    ENV['CLIENT_ID'],
+  secret:       ENV['SECRET'],
+  redirect_uri: 'http://spacex-mission-control.heroku.com/auth/callback',
   scope:        ['identity', 'submit', 'edit', 'read'],
   via:          '/auth'
 
