@@ -1,0 +1,10 @@
+GlobalVars:
+  AllowedVariables:
+    - $sess_var
+    - $message_symbols
+
+Metrics/AbcSize:
+  Enabled: false
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation

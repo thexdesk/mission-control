@@ -1,4 +1,5 @@
 require 'erb'
+require 'date'
 
 # for swapping in events if it wasn't caught by JS client-side
 $message_symbols = {
@@ -8,13 +9,12 @@ $message_symbols = {
   ':satellite:' => '🛰'
 }
 
-
 def _session
   $sess_var[session[:id]]
 end
 
 # take a file name, return rendered HTML from .erb file
-def render_erb fname
+def render_erb(fname)
   file = File.read("#{fname}.erb")
   ERB.new(file).result(binding)
 end
@@ -22,14 +22,19 @@ end
 # fully formatted markdown post
 def reddit_post
   if _session[:events]
-    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n### Live Updates\n#{format_events _session[:events]}\n\n#{_session[:stats]}\n\n#{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n\n#{_session[:participate]}"
+    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n### Live Updates\n
+    #{format_events _session[:events]}\n\n#{_session[:stats]}\n
+    #{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n
+    #{_session[:participate]}"
   else
-    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n#{_session[:stats]}\n\n#{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n\n#{_session[:participate]}"
+    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n#{_session[:stats]}\n
+    #{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n
+    #{_session[:participate]}"
   end
 end
 
 # get score, number of comments, and html from reddit post id
-def post_info id
+def post_info(id)
   submission = request.env['redd.session'].from_ids ["t3_#{id}"].to_ary
   {
     'score' => submission[0].score,
@@ -40,7 +45,7 @@ end
 
 # create a self post with a given title and text
 # specified subreddit can be swapped out easily
-def make_post title, text=''
+def make_post(title, text = '')
   request
     .env['redd.session']
     .subreddit('spacextesting')
@@ -50,8 +55,9 @@ end
 # creates a post if it doesn't exist
 # edits post if it exists
 def update_post
-  if _session[:post] == nil
-    title = "r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread"
+  if _session[:post].nil?
+    title = "r/SpaceX #{_session[:launch]} Official Launch Discussion & " \
+            'Updates Thread'
     post = make_post title, reddit_post
     _session[:post] = post.id
   else
@@ -62,15 +68,24 @@ def update_post
 end
 
 # get list of events and return a formatted table
-def format_events events
-  if events != nil
-    str = "| Time | Update |\n| --- | --- |"
-    events.each do |event|
-      event = event[1]
-      if event[1] == '' then next end  # only display events with message
-      $message_symbols.each do |k,v| event[1][k] &&= v end  # substitute where possible
-      str += "\n| #{event[0]} | #{event[1]} |"
-    end
+def format_events(events)
+  return if events.nil?
+  str = "| Time | Update |\n| --- | --- |"
+  events.each do |event|
+    event = event[1]
+    if event[1] == '' then next end # only display events with message
+
+    # substitute where possible
+    $message_symbols.each { |k, v| event[1][k] &&= v }
+    str += "\n| #{event[0]} | #{event[1]} |"
   end
   str
+end
+
+# get all launches within 7 days
+def upcoming_launches
+  d = Date.today
+  today = d.to_s
+  one_week = (d + 7).to_s
+  [today, one_week]
 end
