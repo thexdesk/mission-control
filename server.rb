@@ -11,7 +11,7 @@ use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
   client_id:    ENV['CLIENT_ID'],
   secret:       ENV['SECRET'],
-  redirect_uri: 'http://spacex-mission-control.heroku.com/auth/callback',
+  redirect_uri: 'https://spacex-mission-control.herokuapp.com/auth/callback',
   scope:        ['identity', 'submit', 'edit', 'read'],
   via:          '/auth'
 
