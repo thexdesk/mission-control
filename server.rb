@@ -28,9 +28,9 @@ $sess_var.default = {}
 # OAuth and main page
 get '/' do
   if request.env['redd.session']
-    render_erb 'mission_control'
+    render_erb 'pages/mission_control'
   else
-    render_erb 'authenticate'
+    render_erb 'pages/authenticate'
   end
 end
 
@@ -61,7 +61,7 @@ end
 
 # initializing variables
 get '/init' do
-  render_erb 'init'
+  render_erb 'pages/init'
 end
 
 post '/init' do
