@@ -70,7 +70,15 @@ end
 post '/init' do
   # not doing server-side validation on this
   # if someone wants to bypass the validation, it only screws things up for them
-  _session[:launch] = params[:launch]
+
+  # if it's a launch from the API, it'll have launch time included as well
+  if params[:launch].include? '|'
+    nametime = params[:launch].split '|'
+    _session[:launch] = nametime[0]
+    _session[:time] = nametime[1].to_i * 1000 # JS wants milliseconds
+  else
+    _session[:launch] = params[:launch]
+  end
 
   # get video id from url
   _session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
