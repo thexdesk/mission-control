@@ -50,7 +50,7 @@ end
 def make_post(title, text = '')
   request
     .env['redd.session']
-    .subreddit('spacextesting')
+    .subreddit(ENV['SUBREDDIT'])
     .submit title, text: text, sendreplies: false
 end
 
