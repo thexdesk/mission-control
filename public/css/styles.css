@@ -193,7 +193,7 @@ section.logo {
 
 section.twitter {
   grid-area: twitter;
-  height: 100vh;
+  height: calc(100vh - 127px);
   overflow-y: scroll; }
 
 i#info-button {
