@@ -25,6 +25,9 @@ end
 $sess_var = {}
 $sess_var.default = {}
 
+# get upcoming launches for initialization page
+upcoming_launches
+
 # OAuth and main page
 get '/' do
   if request.env['redd.session']

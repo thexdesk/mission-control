@@ -4,6 +4,7 @@
  */
 
 $spx-blue: #005288
+$spx-blue-alpha: rgba($spx-blue, 0.4)
 
 $yt-width: 600px
 $yt-height: 338px
@@ -89,6 +90,13 @@ body.init
 	input[type='submit']
 		font-size: 1rem
 		padding: 0.5rem
+	
+	select
+		width: 100%
+		border-radius: 3px
+		border: 1px solid #ddd
+		outline-color: $spx-blue-alpha
+		background: transparent
 
 iframe.youtube
 	grid-area: youtube
@@ -250,8 +258,7 @@ input
 	border-radius: 3px
 	background: transparent
 	padding: 2px
-	outline-color: rgba($spx-blue, 0.4)
-
+	outline-color: $spx-blue-alpha
 
 
 .CodeMirror,

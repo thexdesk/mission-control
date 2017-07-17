@@ -68,6 +68,13 @@ body.init {
   body.init input[type='submit'] {
     font-size: 1rem;
     padding: 0.5rem; }
+  body.auth select,
+  body.init select {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    outline-color: rgba(0, 82, 136, 0.4);
+    background: transparent; }
 
 iframe.youtube {
   grid-area: youtube;

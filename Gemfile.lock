@@ -14,13 +14,22 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
+    json (2.1.0)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
     mustermann (1.0.0)
+    netrc (0.11.0)
     public_suffix (2.0.5)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
     redd (0.8.8)
       http (~> 2.2)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -35,11 +44,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json (>= 2.1.0)
   redd (>= 0.8.8)
+  rest-client (>= 2.0.2)
   sinatra (>= 2.0.0)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.15.1

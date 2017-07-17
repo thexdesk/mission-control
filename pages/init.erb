@@ -14,11 +14,22 @@
 		<table>
 			<tr>
 				<td>Launch</td>
-				<td><input name='launch' <%= if _session[:launch] then "value='#{_session[:launch].gsub("'", "&apos;")}'" end %> required></td>
+				<td>
+					<% launches = upcoming_launches %>
+					<% if launches.keys.include? 'error' %>
+						<input name='launch' required>
+					<% else %>
+						<select name='launch' required>
+							<% launches.each do |launch, time| %>
+								<option value='<%= launch.gsub("'", '&apos;') + '|' + time %>'><%= launch %></option>
+							<% end %>
+						</select>
+					<% end %>
+				</td>
 			</tr>
 			<tr>
 				<td>YouTube link</td>
-				<td><input name='video' <%= if _session[:video] then "value='#{_session[:video]}'" end %> required></td>
+				<td><input name='video' type='url' <%= if _session[:video] then "value='#{_session[:video]}'" end %> required></td>
 			</tr>
 			<tr>
 				<td colspan=2><input type='submit' value="Ok, let's go!"></td>

@@ -1,5 +1,7 @@
 require 'erb'
 require 'date'
+require 'rest-client'
+require 'json'
 
 # for swapping in events if it wasn't caught by JS client-side
 $message_symbols = {
@@ -87,5 +89,20 @@ def upcoming_launches
   d = Date.today
   today = d.to_s
   one_week = (d + 7).to_s
-  [today, one_week]
+
+  resp = RestClient.get 'https://api.spacexdata.com/launches/upcoming' \
+                        "/from=#{today}&to=#{one_week}"
+  body = JSON.parse(resp.body)
+  return body if body.is_a? Hash # error (success is array)
+
+  launches = {}
+  body.each do |obj|
+    date = DateTime.parse(obj['launch_date_utc']).strftime('%s')
+
+    if obj['payload_1'].start_with? 'SpaceX '
+      obj['payload_1'] = obj['payload_1'][7..-1]
+    end
+    launches[obj['payload_1']] = date
+  end
+  launches
 end
