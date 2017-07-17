@@ -79,7 +79,7 @@
 	</section>
 
 	<i id='info-button' onclick='document.getElementById("info").showModal()'></i>
-	<dialog id='info'><!-- Info will go here --></dialog>  <%# this will be where basic info about what can be clicked, basic functionality, etc. %>
+	<dialog id='info'><%= render_erb 'sections/info' %></dialog>
 
 </body>
 </html>

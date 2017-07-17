@@ -64,8 +64,10 @@ body.init {
   body.init td:first-child:last-child {
     text-align: center;
     padding-right: 0; }
-  body.auth input[type='submit'],
-  body.init input[type='submit'] {
+  body.auth input[type='submit'], body.auth dialog button[type='submit'], dialog body.auth button[type='submit'],
+  body.init input[type='submit'],
+  body.init dialog button[type='submit'],
+  dialog body.init button[type='submit'] {
     font-size: 1rem;
     padding: 0.5rem; }
   body.auth select,
@@ -163,10 +165,10 @@ section.interface {
         height: calc(1em + 8px);
         background: rgba(153, 153, 255, 0.4);
         border: 1px solid rgba(153, 153, 255, 0.4); }
-    section.interface #events input:first-of-type {
+    section.interface #events input:first-of-type, section.interface #events dialog button:first-of-type, dialog section.interface #events button:first-of-type {
       width: 53px;
       margin-right: 1.5em; }
-    section.interface #events input:last-of-type {
+    section.interface #events input:last-of-type, section.interface #events dialog button:last-of-type, dialog section.interface #events button:last-of-type {
       width: calc(100% - 200px); }
   section.interface i.fa-upload,
   section.interface i.fa-plus,
@@ -214,12 +216,24 @@ a {
   color: #005288;
   text-decoration: none; }
 
-input {
+input, dialog button {
   border: 1px solid #ddd;
   border-radius: 3px;
   background: transparent;
   padding: 2px;
   outline-color: rgba(0, 82, 136, 0.4); }
+
+dialog h1 {
+  text-align: center; }
+dialog h3 {
+  text-align: center;
+  margin-bottom: 1em; }
+dialog p {
+  margin-bottom: 1em; }
+dialog button {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5em; }
 
 .CodeMirror,
 .CodeMirror-scroll {
