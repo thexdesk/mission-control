@@ -32,42 +32,7 @@
 	</section>
 
 	<section class='interface'>
-		<textarea id='intro' data-initial='<%= if _session[:intro] then _session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
-		<textarea id='viewing' data-initial='<%= if _session[:viewing] then _session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
-
-		<h3>### Live Updates
-			<i class='fa fa-upload' title='Save to reddit' onclick='saveEvents()'></i>
-			<i class='fa fa-minus' title='Remove top event' onclick='removeEvent()'></i>
-			<i class='fa fa-plus' title='Add event at top' onclick='addEvent()'></i>
-		</h3>
-		<ul id='events'>
-			<%# fetch from server if possible  %>
-			<% if _session[:events] %>
-				<% events = _session[:events] %>
-				<% if events != nil %>
-					<% events.each do |event| %>
-						<% event = event[1] %>
-						<% if event[1] == '' then next end %>
-						<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
-						<li><i class='sort-icon'></i>
-							<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[0][0..1] %></span><input value='<%= event[0][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event)'>
-							Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup='hotSwap(this); saveIfEnter(event);'>
-					<% end %>
-				<% end %>
-			<% else %>
-			<%# nothing stored on server, give a single blank event %>
-				<li><i class='sort-icon'></i>
-					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event)'>
-					Message: <input onkeyup='hotSwap(this); saveIfEnter(event);'>
-				</li>
-			<% end %>
-		</ul>
-
-		<textarea id='stats' data-initial='<%= if _session[:stats] then _session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
-		<textarea id='mission' data-initial='<%= if _session[:mission] then _session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
-		<textarea id='landing' data-initial='<%= if _session[:landing] then _session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
-		<textarea id='resources' data-initial='<%= if _session[:resources] then _session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
-		<textarea id='participate' data-initial='<%= if _session[:participate] then _session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
+		<%= render_erb 'sections/interface' %>
 	</section>
 
 	<section class='logo'></section>
