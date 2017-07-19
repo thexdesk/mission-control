@@ -127,6 +127,23 @@ section.interface {
   overflow-y: scroll;
   padding-top: 4px;
   padding-right: 4px; }
+  @supports (display: flow-root) {
+    section.interface .headers {
+      display: flow-root; } }
+  @supports not (display: flow-root) {
+    section.interface .headers::after {
+      content: "";
+      display: table;
+      clear: both; } }
+  section.interface .headers .left {
+    float: left; }
+  section.interface .headers .right {
+    float: right;
+    display: flex;
+    text-transform: uppercase; }
+    section.interface .headers .right a {
+      margin-right: 1em;
+      padding: 0.5em; }
   section.interface #events {
     margin-top: 0.5em;
     margin-bottom: 1em;

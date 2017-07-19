@@ -155,6 +155,28 @@ section.interface
 	padding-top: $gutter
 	padding-right: $gutter
 
+	.headers
+		@supports (display: flow-root)
+			display: flow-root
+
+		@supports not (display: flow-root)
+			&::after
+				content: ''
+				display: table
+				clear: both
+
+		.left
+			float: left
+
+		.right
+			float: right
+			display: flex
+			text-transform: uppercase
+
+			a
+				margin-right: 1em
+				padding: 0.5em
+
 	#events
 		margin-top: 0.5em
 		margin-bottom: 1em
