@@ -111,7 +111,9 @@ function addEvent() {
 	row.appendChild(tPM);
 
 	// T± input and following text
-	row.appendChild( document.createElement('input') );
+	const input = document.createElement('input');
+	input.setAttribute('onkeyup', 'saveIfEnter(event); setSign(this);');
+	row.appendChild(input);
 	row.innerHTML += ' Message: ';
 
 	// message input
@@ -160,7 +162,7 @@ function saveIfEnter(evnt) {
 // updates the countdown timer based on launch time
 // runs every second
 function updateCountdown() {
-	function pad(num) { return num < 10 ? '0'+num : num; }
+	const pad = num => num < 10 ? '0' + num : num;
 
 	const curTime = new Date();
 	const launchTime = window.launchTime;
@@ -195,7 +197,7 @@ function updateCountdown() {
 // popup to ask for launch time
 // will be replaced by <dialog> element in future (has custom styling and looks better)
 function setLaunchTime() {
-	window.launchTime = Date.parse(prompt('Launch time: (your location, YYYY-MM-DD HH:MM:SS)'));
+	window.launchTime = Date.parse(prompt('Launch time: (your time zone, YYYY-MM-DD HH:MM:SS)'));
 	if(isNaN(window.launchTime))
 		window.launchTime = null;
 	$.ajax({
@@ -203,4 +205,20 @@ function setLaunchTime() {
 		url: 'update',
 		data: { id: 'time', value: window.launchTime }
 	});
+}
+
+
+
+function setSign(obj) {
+	const label = obj.previousElementSibling;
+	const val = obj.value;
+
+	if(val[0] == '-') {
+		label.innerHTML = 'T-';
+		obj.value = val.substr(1);
+	}
+	else if(val[0] == '+') {
+		label.innerHTML = 'T+';
+		obj.value = val.substr(1);
+	}
 }
