@@ -98,6 +98,10 @@ function addEvent() {
 	const events = document.getElementById('events');
 
 	const row = document.createElement('li');
+	let sign = '+'; // placed here for scope
+
+	if(window.launchTime !== null && window.launchTime > new Date())
+		sign = '-';
 
 	// add "sortable" icon handle
 	const icon = document.createElement('i');
@@ -107,7 +111,7 @@ function addEvent() {
 	// T± clickable
 	const tPM = document.createElement('span');
 	tPM.setAttribute('onclick', 'this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+"');
-	tPM.innerHTML = 'T+';
+	tPM.innerHTML = 'T' + sign;
 	row.appendChild(tPM);
 
 	// T± input and following text
@@ -207,8 +211,7 @@ function setLaunchTime() {
 	});
 }
 
-
-
+// set sign if input starts with it
 function setSign(obj) {
 	const label = obj.previousElementSibling;
 	const val = obj.value;
