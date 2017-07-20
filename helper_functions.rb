@@ -99,10 +99,12 @@ def upcoming_launches
   body.each do |obj|
     date = DateTime.parse(obj['launch_date_utc']).strftime('%s')
 
-    if obj['payload_1'].start_with? 'SpaceX ' # CRS missions
-      obj['payload_1'] = obj['payload_1'][7..-1]
+    payload = obj['payloads'][0]['payload_id']
+
+    if payload.start_with? 'SpaceX ' # CRS missions
+      payload = payload[7..-1]
     end
-    launches[obj['payload_1']] = date
+    launches[payload] = date
   end
   launches
 end
