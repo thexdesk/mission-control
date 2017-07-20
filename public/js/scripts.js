@@ -189,7 +189,7 @@ function updateCountdown() {
 	let time;  // placed here for scope
 
 	if(hours > 0)
-		time = hours + ':' + pad(mins) + ':' + pad(secs);
+		time = hours + 'h ' + mins + 'm';
 	else if(mins > 0)
 		time = mins + ':' + pad(secs);
 	else
