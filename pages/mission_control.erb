@@ -37,7 +37,7 @@
 
 	<section class='logo'></section>
 
-	<section class='timer unset' id='timer' onclick='setLaunchTime()'>Set launch time</section>
+	<section class='timer unset' id='timer' onclick='document.getElementById("launchTime").showModal()'>Set launch time</section>
 
 	<section class='twitter'>
 		<a class='twitter-timeline' data-aria-polite='rude' data-chrome='noheader nofooter noborders transparent' data-dnt='true' data-link-color='#005288' href='https://twitter.com/theZcuber/lists/r-spacex-mission-control'></a>
@@ -45,6 +45,15 @@
 
 	<i id='info-button' onclick='document.getElementById("info").showModal()'></i>
 	<dialog id='info'><%= render_erb 'sections/info' %></dialog>
+
+	<dialog id='launchTime'>
+		<h2>Enter the launch time</h2>
+		(in your timezone)<br/><br/>
+
+		<input type='datetime-local' id='datetime'><br/><br/>
+		<button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
+		<button onclick='setLaunchTime(null)'>Clear timer</button>
+	</dialog>
 
 </body>
 </html>

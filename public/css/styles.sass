@@ -259,6 +259,10 @@ input
 	background: transparent
 	padding: 2px
 	outline-color: $spx-blue-alpha
+	font-family: Verdana, Geneva, sans-serif
+
+	&[type='datetime-local']
+		text-align: center
 
 dialog
 	h1
@@ -272,10 +276,20 @@ dialog
 		margin-bottom: 1em
 	
 	button
+		@extend input
 		display: block
 		margin: 0 auto
 		padding: 0.5em
-		@extend input
+		transition: background 100ms ease-in
+
+		&:hover
+			background: #ccf
+
+	&#launchTime
+		text-align: center
+
+		button
+			display: inline-block
 
 .CodeMirror,
 .CodeMirror-scroll

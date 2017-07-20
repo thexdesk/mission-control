@@ -221,7 +221,10 @@ input, dialog button {
   border-radius: 3px;
   background: transparent;
   padding: 2px;
-  outline-color: rgba(0, 82, 136, 0.4); }
+  outline-color: rgba(0, 82, 136, 0.4);
+  font-family: Verdana, Geneva, sans-serif; }
+  input[type='datetime-local'], dialog button[type='datetime-local'] {
+    text-align: center; }
 
 dialog h1 {
   text-align: center; }
@@ -233,7 +236,14 @@ dialog p {
 dialog button {
   display: block;
   margin: 0 auto;
-  padding: 0.5em; }
+  padding: 0.5em;
+  transition: background 100ms ease-in; }
+  dialog button:hover {
+    background: #ccf; }
+dialog#launchTime {
+  text-align: center; }
+  dialog#launchTime button {
+    display: inline-block; }
 
 .CodeMirror,
 .CodeMirror-scroll {

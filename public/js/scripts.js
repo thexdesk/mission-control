@@ -198,12 +198,12 @@ function updateCountdown() {
 	document.getElementById('timer').innerHTML = 'T' + sign + time;
 }
 
-// popup to ask for launch time
-// will be replaced by <dialog> element in future (has custom styling and looks better)
-function setLaunchTime() {
-	window.launchTime = Date.parse(prompt('Launch time: (your time zone, YYYY-MM-DD HH:MM:SS)'));
-	if(isNaN(window.launchTime))
-		window.launchTime = null;
+// popup to ask for launch time (uses <dialog>)
+function setLaunchTime(launchTime) {
+	window.launchTime = launchTime === null ? null : Date.parse(launchTime);
+
+	document.getElementById('launchTime').close();
+
 	$.ajax({
 		method: 'POST',
 		url: 'update',
