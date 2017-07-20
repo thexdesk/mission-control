@@ -9,9 +9,9 @@
 	</h3>
 
 	<h3 class='right'> <%# the "oh fuck" panel %>
-		<a href='#' onclick=''>RUD</a>
-		<a href='#' onclick=''>Hold</a>
-		<a href='#' onclick=''>Scrub</a>
+		<a href='#' onclick='emergency(this)'>RUD</a>
+		<a href='#' onclick='emergency(this)'>Hold</a>
+		<a href='#' onclick='emergency(this)'>Scrub</a>
 	</h3>
 </div>
 
@@ -43,4 +43,3 @@
 <textarea id='landing' data-initial='<%= if _session[:landing] then _session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
 <textarea id='resources' data-initial='<%= if _session[:resources] then _session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
 <textarea id='participate' data-initial='<%= if _session[:participate] then _session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
-

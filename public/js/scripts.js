@@ -127,6 +127,9 @@ function addEvent() {
 
 	// add new row at beginning
 	events.insertBefore(row, events.firstChild);
+
+	// useful for emergency messages
+	return row;
 }
 
 // remove event at top of list
@@ -224,4 +227,26 @@ function setSign(obj) {
 		label.innerHTML = 'T+';
 		obj.value = val.substr(1);
 	}
+}
+
+
+// customizable messages
+const emergency_messages = {
+	'RUD': 'RUD',
+	'Hold': 'Hold',
+	'Scrub': 'Scrub'
+};
+
+// messages from emergency panel
+function emergency(obj) {
+	const children = addEvent().children;
+	const type = obj.innerHTML;
+	const time = document.getElementById('timer').innerHTML.substr(2); // from countdown timer
+
+	if(time != 't launch time')
+		children[2].value = time;
+
+	children[3].value = emergency_messages[type];
+
+	saveEvents();
 }
