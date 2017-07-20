@@ -101,9 +101,7 @@ def upcoming_launches
 
     payload = obj['payloads'][0]['payload_id']
 
-    if payload.start_with? 'SpaceX ' # CRS missions
-      payload = payload[7..-1]
-    end
+    payload = payload[7..-1] if payload.start_with? 'SpaceX ' # CRS missions
     launches[payload] = date
   end
   launches

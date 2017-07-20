@@ -1,0 +1,8 @@
+%flow-root
+	@supports (display: flow-root)
+		display: flow-root
+	@supports not (display: flow-root)
+		&::after
+			content: ''
+			display: table
+			clear:both
