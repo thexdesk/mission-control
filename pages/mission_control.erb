@@ -8,7 +8,7 @@
 	<script async src="https://platform.twitter.com/widgets.js"></script>
 	<script src='js/packages.js'></script>
 	<script src='js/scripts.js'></script>
-	<%= if _session[:time] then "<script>window.launchTime = #{_session[:time]}</script>" end %>
+	<%= if _session[:time] then "<script>window.time = #{_session[:time]}</script>" end %>
 </head>
 <body>
 	<iframe class='youtube' src='https://youtube.com/embed/<%= $sess_var[session[:id]][:video] %>?autoplay=0'></iframe>
@@ -47,7 +47,7 @@
 		<h2>Enter the launch time</h2>
 		(in your timezone)<br/><br/>
 
-		<input type='datetime-local' id='datetime'><br/><br/>
+		<input type='datetime-local' id='datetime' step=1><br/><br/> <%# step=1 displays seconds %>
 		<button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
 		<button onclick='setLaunchTime(null)'>Clear timer</button>
 	</dialog>

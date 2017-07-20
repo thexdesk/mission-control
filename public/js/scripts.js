@@ -38,8 +38,6 @@ window.onload = () => {
 	setInterval(updateStats, 5*60*1000);
 
 	// update countdown every second
-	if(window.launchTime === undefined)
-		window.launchTime = null;
 	setInterval(updateCountdown, 1000);
 }
 
@@ -100,7 +98,7 @@ function addEvent() {
 	const row = document.createElement('li');
 	let sign = '+'; // placed here for scope
 
-	if(window.launchTime !== null && window.launchTime > new Date())
+	if(window.time != null && window.time > new Date())
 		sign = '-';
 
 	// add "sortable" icon handle
@@ -172,9 +170,9 @@ function updateCountdown() {
 	const pad = num => num < 10 ? '0' + num : num;
 
 	const curTime = new Date();
-	const launchTime = window.launchTime;
+	const launchTime = window.time;
 
-	if(launchTime === null) {
+	if(launchTime == null) {
 		let timer = document.getElementById('timer');
 		timer.innerHTML = 'Set launch time';
 		timer.classList.add('unset');
@@ -203,14 +201,14 @@ function updateCountdown() {
 
 // popup to ask for launch time (uses <dialog>)
 function setLaunchTime(launchTime) {
-	window.launchTime = launchTime === null ? null : Date.parse(launchTime);
+	window.time = launchTime == null ? null : Date.parse(launchTime);
 
 	document.getElementById('launchTime').close();
 
 	$.ajax({
 		method: 'POST',
 		url: 'update',
-		data: { id: 'time', value: window.launchTime }
+		data: { id: 'time', value: window.time }
 	});
 }
 
