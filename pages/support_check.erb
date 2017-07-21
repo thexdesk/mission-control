@@ -1,0 +1,32 @@
+<script>
+function supports(arr) {
+	let pass = 0;
+	let fail = 0;
+
+	for(obj of arr) {
+		obj = obj.split(':');
+		CSS.supports(obj[0], obj[1]) ? pass++ : fail++;
+	}
+
+	if(fail !== 0)
+		console.error('Incompatible browser');
+	else
+		window.location.replace('/supported');
+}
+
+supports([
+	'display: grid',
+	'display: flex',
+	'grid-template: "foo bar" 10px "baz qux" 1fr / 50% 1fr',
+	'flex-direction: row-reverse',
+	'flex-direction: column',
+	'justify-content: center',
+	'align-items: center',
+	'height: 100vh',
+	'height: calc(100% - 50px)'
+]);
+</script>
+
+Sorry, it looks like your browser doesn't support all the features we need to operate property. Please try a different browser.
+<br/><br/>
+<a href='/supported'>Continue anyway?</a>

@@ -30,11 +30,21 @@ upcoming_launches
 
 # OAuth and main page
 get '/' do
-  if request.env['redd.session']
-    render_erb 'pages/mission_control'
+  if _session[:support]
+    if request.env['redd.session']
+      render_erb 'pages/mission_control'
+    else
+      render_erb 'pages/authenticate'
+    end
   else
-    render_erb 'pages/authenticate'
+    render_erb 'pages/support_check'
   end
+end
+
+# browser support is ok (or override)
+get '/supported' do
+  _session[:support] = true
+  redirect to '/'
 end
 
 get '/auth/callback' do
