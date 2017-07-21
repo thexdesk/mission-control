@@ -5,8 +5,9 @@
 
 window.onload = () => {
 	// register dialog element with polyfill
-	const dialog = document.querySelector('dialog');
-	dialogPolyfill.registerDialog(dialog);
+	const dialogs = document.querySelectorAll('dialog');
+	for(dialog of dialogs)
+		dialogPolyfill.registerDialog(dialog);
 
 	// register jQuery UI reordering
 	$('#events').sortable({ placeholder: 'ui-state-highlight', handle: ".sort-icon" });
