@@ -16,7 +16,6 @@ use Redd::Middleware,
   via:          '/auth'
 
 # assign a session id if not set
-# user's session is in `sess` variable
 before do
   session[:id] ||= SecureRandom.uuid
 end
@@ -24,9 +23,6 @@ end
 # session variables
 $sess_var = {}
 $sess_var.default = {}
-
-# get upcoming launches for initialization page
-upcoming_launches
 
 # OAuth and main page
 get '/' do
