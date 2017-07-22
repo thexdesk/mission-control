@@ -104,6 +104,11 @@ function addEvent() {
 	const events = document.getElementById('events');
 
 	const row = document.createElement('li');
+	row.classList.add('hidden');
+
+	// add new row at beginning
+	events.insertBefore(row, events.firstChild);
+
 	let sign = '+'; // placed here for scope
 
 	if(window.time != null && window.time > new Date())
@@ -128,11 +133,14 @@ function addEvent() {
 
 	// message input
 	const message = document.createElement('input');
-	message.setAttribute('onkeyup', 'hotSwap(this); saveIfEnter(event);');
+	message.setAttribute('onkeyup', 'saveIfEnter(event)');
+	message.setAttribute('oninput', 'hotSwap(this); addEventIfNeeded();');
 	row.appendChild(message);
 
-	// add new row at beginning
-	events.insertBefore(row, events.firstChild);
+	// trigger animation to show row
+	// use setTimeout to prevent optimization that removes effect
+	setTimeout(() => row.classList.remove('hidden'), 0);
+	setTimeout(() => row.classList.add('reverse'), 600);  // for possible removal
 
 	// useful for emergency messages
 	return row;
@@ -141,8 +149,10 @@ function addEvent() {
 // remove event at top of list
 function removeEvent() {
 	const events = document.getElementById('events');
-	if(events.children.length > 1)  // don't allow removing last event
-		events.removeChild(events.firstElementChild);
+	if(events.children.length > 1) {  // don't allow removing last event
+		events.firstElementChild.classList.add('hidden');
+		setTimeout(() => events.removeChild(events.firstElementChild), 600);
+	}
 }
 
 
@@ -259,4 +269,12 @@ function emergency(obj) {
 	children[3].value = emergency_messages[type];
 
 	saveEvents();
+}
+
+function addEventIfNeeded() {
+	const firstChild = document.getElementById('events').firstElementChild;
+	const message = firstChild.children[3];
+
+	if(message.value.length == 1)
+		addEvent();
 }

@@ -192,6 +192,18 @@ section.interface
 			border: 1px solid #ddd
 			padding: 0.4rem
 			margin-bottom: 0.6rem
+			height: 21px // this is just the value it works out to be (needed for transition)
+			transition: height 300ms ease-in-out, border-width 300ms ease-in-out, padding 300ms ease-in-out, margin-bottom 300ms ease-in-out, opacity 300ms ease-in-out 300ms
+
+			&.reverse
+				transition: height 300ms ease-in-out 300ms, border-width 300ms ease-in-out 300ms, padding 300ms ease-in-out 300ms, margin-bottom 300ms ease-in-out 300ms, opacity 300ms ease-in-out
+
+			&.hidden
+				border-width: 0
+				padding: 0
+				margin-bottom: 0
+				height: 0
+				opacity: 0
 
 			.sort-icon
 				position: absolute
