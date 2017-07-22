@@ -23,6 +23,9 @@ $twitter-1366-width: 270px
 	padding: 0
 	margin: 0
 
+\:root
+	font-size: 13px
+
 body:not(.auth):not(.init)
 	display: grid
 	grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" $yt-height - 61px - 60px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
@@ -50,6 +53,9 @@ body:not(.auth):not(.init)
 
 		i#info-button
 			right: $yt-width + 22px
+
+			@media (max-width: 1500px)
+				right: $yt-1366-width + 22px
 
 		section.status
 			flex-direction: row-reverse
@@ -137,20 +143,20 @@ section.status
 section.timer
 	grid-area: timer
 	text-align: center
-	font-size: 60px
+	font-size: 54px
 	line-height: 60px
 	cursor: pointer
 	white-space: nowrap
 
 	// shrink text to fit if necessary
 	&.unset
-		font-size: 42px
+		font-size: 36px
 	
 	@media (max-width: 1500px)
-		font-size: 54px
+		font-size: 48px
 
 		&.unset
-			font-size: 36px
+			font-size: 32px
 
 section.interface
 	grid-area: interface
@@ -171,12 +177,12 @@ section.interface
 			text-transform: uppercase
 
 			a
-				margin-right: 1em
-				padding: 0.5em
+				margin-right: 1rem
+				padding: 0.5rem
 
 	#events
-		margin-top: 0.5em
-		margin-bottom: 1em
+		margin-top: 0.5rem
+		margin-bottom: 1rem
 		list-style-type: none
 
 		li
@@ -184,17 +190,17 @@ section.interface
 			background: rgba(#fff, 0.7) // make things pretty when reordering rows
 			border-radius: 4px
 			border: 1px solid #ddd
-			padding: 0.4em
-			margin-bottom: 0.6em
+			padding: 0.4rem
+			margin-bottom: 0.6rem
 
 			.sort-icon
 				position: absolute
 				top: 20%
-				right: 0.5em
+				right: 0.5rem
 				display: inline-block
 				background: url('../icons/sort.svg') center no-repeat
 				height: 60%
-				width: 2em
+				width: 2rem
 				cursor: pointer
 
 			&:first-child .sort-icon
@@ -211,20 +217,20 @@ section.interface
 			span
 				cursor: pointer
 				display: inline-block
-				width: 16px
+				width: 20px
 				margin-right: 2px
 				color: #22c
 
 			&.ui-state-highlight
-				height: calc(1em + 8px)
+				height: calc(1rem + 8px)
 				background: rgba(#99f, 0.4)
 				border: 1px solid rgba(#99f, 0.4)
 
 		input:first-of-type  // T±
 			width: 53px
-			margin-right: 1.5em
+			margin-right: 1.5rem
 		input:last-of-type  // message
-			width: calc(100% - 200px)
+			width: calc(100% - 204px)
 
 	i.fa-upload,
 	i.fa-plus,
@@ -243,6 +249,9 @@ section.interface
 			background: #fcfcfc
 			border-color: #95a5a6
 			opacity: 0.8
+
+	textarea
+		display: none
 
 section.logo
 	grid-area: logo
@@ -268,11 +277,16 @@ i#info-button
 	&:hover
 		opacity: 1
 
+	@media (max-width: 1500px)
+		right: $twitter-1366-width + 22px
+
 a
 	color: $spx-blue
 	text-decoration: none
 
 input
+	color: #000
+	font-size: 1rem
 	border: 1px solid #ddd
 	border-radius: 3px
 	background: transparent
@@ -289,16 +303,16 @@ dialog
 
 	h3
 		text-align: center
-		margin-bottom: 1em
+		margin-bottom: 1rem
 	
 	p
-		margin-bottom: 1em
+		margin-bottom: 1rem
 	
 	button
 		@extend input
 		display: block
 		margin: 0 auto
-		padding: 0.5em
+		padding: 0.5rem
 		transition: background 100ms ease-in
 
 		&:hover

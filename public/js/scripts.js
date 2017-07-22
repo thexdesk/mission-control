@@ -5,12 +5,11 @@
 
 window.onload = () => {
 	// register dialog element with polyfill
-	const dialogs = document.querySelectorAll('dialog');
-	for(dialog of dialogs)
+	for(const dialog of document.querySelectorAll('dialog'))
 		dialogPolyfill.registerDialog(dialog);
 
 	// register jQuery UI reordering
-	$('#events').sortable({ placeholder: 'ui-state-highlight', handle: ".sort-icon" });
+	$('#events').sortable({ placeholder: 'ui-state-highlight', handle: '.sort-icon' });
 
 	// register textareas as Markdown editor
 	for(const obj of document.querySelectorAll('textarea')) {
@@ -40,6 +39,14 @@ window.onload = () => {
 
 	// update countdown every second
 	setInterval(updateCountdown, 1000);
+
+	// remove format in popup if <input type=datetime-local> is supported
+	const elem = document.createElement('input');
+	elem.setAttribute('type', 'datetime-local');
+	if(elem.type == 'datetime-local') {
+		const removing = document.getElementById('datetime-format');
+		removing.parentNode.removeChild(removing);
+	}
 }
 
 // save a certain section to reddit
@@ -146,7 +153,7 @@ const hotSwapVals = {
 	':rocket:': '🚀',
 	':sat:': '🛰',
 	':satellite:': '🛰'
-}
+};
 
 // swap out text with emoji on an input
 function hotSwap(obj) {
@@ -154,9 +161,8 @@ function hotSwap(obj) {
 
 	const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
 
-	const initVal = obj.value;
 	const val = obj.value.replace(regex, key => hotSwapVals[key]);
-	if(initVal != val) obj.value = val;  // prevents moving cursor to end if not needed
+	if(obj.value != val) obj.value = val;  // prevents moving cursor to end if not needed
 }
 
 // bound on event inputs
@@ -168,25 +174,22 @@ function saveIfEnter(evnt) {
 // updates the countdown timer based on launch time
 // runs every second
 function updateCountdown() {
+	if(window.time == null)
+		return;
+
 	const pad = num => num < 10 ? '0' + num : num;
+
+	let timer = document.getElementById('timer');
 
 	const curTime = new Date();
 	const launchTime = window.time;
-
-	if(launchTime == null) {
-		let timer = document.getElementById('timer');
-		timer.innerHTML = 'Set launch time';
-		timer.classList.add('unset');
-		return;
-	}
-
-	timer.classList.remove('unset');
+	const diff = Math.abs(launchTime - curTime)
 
 	const sign = launchTime > curTime ? '-' : '+';
 
-	const hours = Math.abs(launchTime - curTime) / 3600000 | 0;
-	const mins = Math.abs(launchTime - curTime) % 3600000 / 60000 | 0;
-	const secs = Math.abs(launchTime - curTime) % 60000 / 1000 | 0;
+	const hours = diff / 3600000 | 0;
+	const mins = diff % 3600000 / 60000 | 0;
+	const secs = diff % 60000 / 1000 | 0;
 
 	let time;  // placed here for scope
 
@@ -197,12 +200,21 @@ function updateCountdown() {
 	else
 		time = secs;
 
-	document.getElementById('timer').innerHTML = 'T' + sign + time;
+	timer.innerHTML = 'T' + sign + time;
 }
 
 // popup to ask for launch time (uses <dialog>)
 function setLaunchTime(launchTime) {
 	window.time = launchTime == null ? null : Date.parse(launchTime);
+
+	if(window.time == null) {
+		document.getElementById('timer').innerHTML = 'Set launch time';
+		document.getElementById('timer').classList.add('unset');
+	}
+	else {
+		document.getElementById('timer').classList.remove('unset');
+		updateCountdown();
+	}
 
 	document.getElementById('launchTime').close();
 
@@ -215,15 +227,14 @@ function setLaunchTime(launchTime) {
 
 // set sign if input starts with it
 function setSign(obj) {
-	const label = obj.previousElementSibling;
 	const val = obj.value;
 
 	if(val[0] == '-') {
-		label.innerHTML = 'T-';
+		obj.previousElementSibling.innerHTML = 'T-';
 		obj.value = val.substr(1);
 	}
 	else if(val[0] == '+') {
-		label.innerHTML = 'T+';
+		obj.previousElementSibling.innerHTML = 'T+';
 		obj.value = val.substr(1);
 	}
 }
@@ -242,7 +253,7 @@ function emergency(obj) {
 	const type = obj.innerHTML;
 	const time = document.getElementById('timer').innerHTML.substr(2); // from countdown timer
 
-	if(time != 't launch time')
+	if(window.time != null)
 		children[2].value = time;
 
 	children[3].value = emergency_messages[type];

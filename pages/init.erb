@@ -1,25 +1,25 @@
 <!DOCTYPE HTML>
-<html lang='en'>
+<html lang=en>
 <head>
 	<title>r/Spacex Mission Control</title>
-	<link rel='icon' type='image/png' href='/icons/iss-16.png' sizes='16x16'>
-	<link rel='icon' type='image/png' href='/icons/iss-32.png' sizes='32x32'>
-	<link rel='stylesheet' href='/css/all.css'>
+	<link rel=icon type=image/png href=/icons/iss-16.png sizes=16x16>
+	<link rel=icon type=image/png href=/icons/iss-32.png sizes=32x32>
+	<link rel=stylesheet href=/css/all.css>
 </head>
-<body class='init'>
+<body class=init>
 
-	<img src='icons/logo.png'>
+	<img src=icons/logo.png>
 
-	<form method='POST'>
+	<form method=POST>
 		<table>
 			<tr>
 				<td>Launch</td>
 				<td>
 					<% launches = upcoming_launches %>
 					<% if launches.keys.include? 'error' %>
-						<input name='launch' required>
+						<input name=launch required>
 					<% else %>
-						<select name='launch' required>
+						<select name=launch required>
 							<% launches.each do |launch, time| %>
 								<option value='<%= launch.gsub("'", '&apos;') + '|' + time %>'><%= launch %></option>
 							<% end %>
@@ -29,10 +29,10 @@
 			</tr>
 			<tr>
 				<td>YouTube link</td>
-				<td><input name='video' type='url' <%= if _session[:video] then "value='#{_session[:video]}'" end %> required></td>
+				<td><input name=video type=url <%= if _session[:video] then "value='#{_session[:video]}'" end %> required></td>
 			</tr>
 			<tr>
-				<td colspan=2><input type='submit' value="Ok, let's go!"></td>
+				<td colspan=2><input type=submit value="Ok, let's go!"></td>
 			</tr>
 		</table>
 	</form>
