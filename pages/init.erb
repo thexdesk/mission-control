@@ -19,7 +19,7 @@
 					<% if launches.keys.include? 'error' %>
 						<input name=launch required>
 					<% else %>
-						<select name=launch required>
+						<select name=launch required <%= if launches.length == 1 then 'disabled' end %>>
 							<% launches.each do |launch, time| %>
 								<option value='<%= launch.gsub("'", '&apos;') + '|' + time %>'><%= launch %></option>
 							<% end %>
