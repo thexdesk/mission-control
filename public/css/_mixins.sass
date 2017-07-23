@@ -1,0 +1,59 @@
+// mixins from @jhpratt/sass-defaults/_mixins.sass
+
+// 1500px breakpoint
+=small
+	@media (max-width: 1500px)
+		@content
+
+// single declaration for small and large screens
+=prop($prop, $small, $large)
+	#{$prop}: $large
+	+small
+		#{$prop}: $small
+
+// prefixes made easy
+=prefix($property, $value, $prefixes: (), $prop-val: prop)
+	@if $prop-val == prop or $prop-val == property
+		@each $prefix in $prefixes
+			+supports(#{'-' + $prefix + '-' + $property}, $value)
+
+	@else if $prop-val == val or $prop-val == value
+		@each $prefix in $prefixes
+			+supports(#{$property}, #{'-' + $prefix + '-' + $value})
+
+	+supports(#{$property}, $value)
+
+=supports($prop, $val)
+	@supports ($prop: $val)
+		#{$prop}: $val
+
+=fonts
+	font-family: Verdana, Geneva, sans-serif
+	font-size: 1rem
+
+=flex-center
+	display: flex
+	justify-content: center
+	align-items: center
+
+// can use `null` to skip a certain value
+=padding($top, $right, $bottom, $left)
+	padding-top: $top
+	padding-right: $right
+	padding-bottom: $bottom
+	padding-left: $left
+
+// can use `null` to skip a certain value
+=margin($top, $right, $bottom, $left)
+	margin-top: $top
+	margin-right: $right
+	margin-bottom: $bottom
+	margin-left: $left
+
+// can use `null` to skip a certain value
+=position($val, $top: 0, $right: 0, $bottom: 0, $left: 0)
+	position: $val
+	top: $top
+	right: $right
+	bottom: $bottom
+	left: $left

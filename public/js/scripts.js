@@ -9,7 +9,14 @@ window.onload = () => {
 		dialogPolyfill.registerDialog(dialog);
 
 	// register jQuery UI reordering
-	$('#events').sortable({ placeholder: 'ui-state-highlight', handle: '.sort-icon' });
+	$('#events').sortable({
+		placeholder: 'ui-state-highlight',
+		handle: '.sort-icon',
+		axis: 'y',
+		revert: 300,
+		containment: 'parent',
+		tolerance: 'pointer'
+	});
 
 	// register textareas as Markdown editor
 	for(const obj of document.querySelectorAll('textarea')) {

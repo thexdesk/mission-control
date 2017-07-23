@@ -15,10 +15,6 @@ $yt-1366-width: 460px
 $yt-1366-height: 259px
 $twitter-1366-width: 270px
 
-%fonts
-	font-family: Verdana, Geneva, sans-serif
-
-
 *
 	padding: 0
 	margin: 0
@@ -31,18 +27,17 @@ body:not(.auth):not(.init)
 	grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" $yt-height - 61px - 60px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
 	grid-gap: $gutter
 
-	@media (max-width: 1500px)
+	+small
 		grid-template-rows: 52px 60px ($yt-1366-height - 52px - 60px) 20px 1fr
 		grid-template-columns: $yt-1366-width 1fr $twitter-1366-width
 
 	overflow: hidden
-	font-size: 13px
-	@extend %fonts
+	+fonts
 
 	&.interface-left
 		grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" $yt-height - 61px - 60px "twitter interface status" 20px "twitter interface reddit" 1fr / #{$twitter-width} 1fr $yt-width
 
-		@media (max-width: 1500px)
+		+small
 			grid-template-columns: $twitter-1366-width 1fr $yt-1366-width
 
 		section.reddit
@@ -65,13 +60,10 @@ body:not(.auth):not(.init)
 
 body.auth,
 body.init
-	display: flex
-	justify-content: center
-	align-items: center
+	+flex-center
 	flex-direction: column
 	height: 100vh
-	font-size: 13px
-	@extend %fonts
+	+fonts
 
 	a
 		margin-top: 0.5rem
@@ -121,9 +113,7 @@ section.reddit
 
 section.status
 	grid-area: status
-	display: flex
-	align-content: center
-	justify-content: center
+	+flex-center
 
 	& > *
 		display: flex
@@ -140,20 +130,14 @@ section.status
 section.timer
 	grid-area: timer
 	text-align: center
-	font-size: 54px
+	+prop(font-size, 48px, 54px)
 	line-height: 60px
 	cursor: pointer
 	white-space: nowrap
 
 	// shrink text to fit if necessary
 	&.unset
-		font-size: 36px
-	
-	@media (max-width: 1500px)
-		font-size: 48px
-
-		&.unset
-			font-size: 32px
+		+prop(font-size, 32px, 36px)
 
 section.interface
 	position: relative  // for placing info button
@@ -164,25 +148,20 @@ section.interface
 	padding-right: $gutter
 
 	i#info-button
-		position: absolute
+		+position(absolute, 11px, 11px, null, null)
 		z-index: 1000
-		top: 11px
-		right: 11px
 		height: 20px
 		width: 20px
 		background: url('../icons/info.svg')
 		opacity: 0.3
-		cursor: pointer
+		cursor: help
 		transition: opacity 200ms
 
 		&:hover
 			opacity: 1
 
-		@media (max-width: 1500px)
-			right: $twitter-1366-width + 22px
-
 	.headers
-		@extend %flow-root
+		+flow-root
 
 		.left
 			float: left
@@ -197,8 +176,7 @@ section.interface
 				padding: 0.5rem
 
 	#events
-		margin-top: 0.5rem
-		margin-bottom: 1rem
+		+margin(0.5rem, null, 1rem, null)
 		list-style-type: none
 
 		li
@@ -222,14 +200,15 @@ section.interface
 				opacity: 0
 
 			.sort-icon
-				position: absolute
-				top: 20%
-				right: 0.5rem
+				+position(absolute, 20%, 0.5rem, null, null)
 				display: inline-block
 				background: url('../icons/sort.svg') center no-repeat
 				height: 60%
 				width: 2rem
-				cursor: pointer
+				+prefix(cursor, grab, webkit, val)
+
+				&:active
+					+prefix(cursor, grabbing, webkit, val)
 
 			&:first-child .sort-icon
 				background: url('../icons/sort-first.svg') center no-repeat
@@ -296,13 +275,12 @@ a
 
 input
 	color: #000
-	font-size: 1rem
 	border: 1px solid #ddd
 	border-radius: 3px
 	background: transparent
 	padding: 2px
 	outline-color: $spx-blue-alpha
-	@extend %fonts
+	+fonts
 
 	&[type='datetime-local']
 		text-align: center
