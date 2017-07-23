@@ -51,12 +51,6 @@ body:not(.auth):not(.init)
 		section.twitter
 			direction: rtl  // place scrollbar on left
 
-		i#info-button
-			right: $yt-width + 22px
-
-			@media (max-width: 1500px)
-				right: $yt-1366-width + 22px
-
 		section.status
 			flex-direction: row-reverse
 
@@ -162,11 +156,30 @@ section.timer
 			font-size: 32px
 
 section.interface
+	position: relative  // for placing info button
 	grid-area: interface
 	height: calc(100vh - #{$gutter})
 	overflow-y: scroll
 	padding-top: $gutter
 	padding-right: $gutter
+
+	i#info-button
+		position: absolute
+		z-index: 1000
+		top: 11px
+		right: 11px
+		height: 20px
+		width: 20px
+		background: url('../icons/info.svg')
+		opacity: 0.3
+		cursor: pointer
+		transition: opacity 200ms
+
+		&:hover
+			opacity: 1
+
+		@media (max-width: 1500px)
+			right: $twitter-1366-width + 22px
 
 	.headers
 		@extend %flow-root
@@ -276,24 +289,6 @@ section.twitter
 	grid-area: twitter
 	height: calc(100vh - 127px)
 	overflow-y: scroll
-
-i#info-button
-	position: fixed
-	z-index: 1000
-	top: 11px
-	right: $twitter-width + 22px
-	height: 20px
-	width: 20px
-	background: url('../icons/info.svg')
-	opacity: 0.3
-	cursor: pointer
-	transition: opacity 200ms
-
-	&:hover
-		opacity: 1
-
-	@media (max-width: 1500px)
-		right: $twitter-1366-width + 22px
 
 a
 	color: $spx-blue

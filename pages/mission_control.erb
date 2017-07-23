@@ -29,6 +29,7 @@
 	</section>
 
 	<section class=interface>
+		<i id=info-button onclick='document.getElementById("info").showModal()'></i>
 		<%= render_erb 'sections/interface' %>
 	</section>
 
@@ -40,7 +41,6 @@
 		<a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true	data-link-color=#005288 href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
 	</section>
 
-	<i id=info-button onclick='document.getElementById("info").showModal()'></i>
 	<dialog id=info><%= render_erb 'sections/info' %></dialog>
 
 	<dialog id=launchTime>
