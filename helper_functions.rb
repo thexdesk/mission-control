@@ -24,14 +24,14 @@ end
 # fully formatted markdown post
 def reddit_post
   if _session[:events]
-    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n### Live Updates\n
-    #{format_events _session[:events]}\n\n#{_session[:stats]}\n
-    #{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n
-    #{_session[:participate]}"
+    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n### Live Updates
+    \n#{format_events _session[:events]}\n\n#{_session[:stats]}
+    \n#{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}
+    \n#{_session[:participate]}"
   else
-    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n#{_session[:stats]}\n
-    #{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}\n
-    #{_session[:participate]}"
+    "#{_session[:intro]}\n\n#{_session[:viewing]}\n\n#{_session[:stats]}
+    \n#{_session[:mission]}\n\n#{_session[:landing]}\n\n#{_session[:resources]}
+    \n#{_session[:participate]}"
   end
 end
 
