@@ -57,3 +57,15 @@
 	right: $right
 	bottom: $bottom
 	left: $left
+
+=antialias
+	+supports(-moz-osx-font-smoothing, grayscale)
+	+prefix(font-smoothing, antialiased, webkit)
+
+=selection
+	::moz-selection,
+	::selection
+		@content
+
+=no-select
+	+prefix(user-select, none, webkit moz ms)
