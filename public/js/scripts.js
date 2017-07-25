@@ -23,16 +23,20 @@ window.onload = () => {
 		new SimpleMDE({
 			element: obj,
 			initialValue: obj.getAttribute('data-initial') || '',
-			toolbar: ['bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|',
+			toolbar: [
 				{ name: 'save',
 				  action: save,
 				  className: 'fa fa-upload',
 				  title: 'Save to reddit'
-				}, 'guide'],
+				},
+				'|', 'bold', 'italic', 'strikethrough', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'table', 'horizontal-rule', '|', 'guide'],
 			promptURLs: true,
 			status: false,
 			forceSync: true,
-			spellChecker: false
+			spellChecker: false,
+			shortcuts: {
+				save: 'Cmd-Alt-U'
+			}
 		});
 	}
 
