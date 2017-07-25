@@ -5,11 +5,18 @@ function supports(arr) {
 
 	for(obj of arr) {
 		obj = obj.split(':');
-		CSS.supports(obj[0], obj[1]) ? pass++ : fail++;
+		if(CSS.supports(obj[0], obj[1])) {
+			pass++;
+			console.log('Pass: ' + obj.join(':'));
+		}
+		else {
+			fail++;
+			console.warn('Fail: ' + obj.join(':'));
+		}
 	}
 
 	if(fail !== 0)
-		console.error('Incompatible browser');
+		console.error('Incompatible browser (pass ' + pass + ', fail ' + fail + ')');
 	else
 		window.location.replace('/supported');
 }
