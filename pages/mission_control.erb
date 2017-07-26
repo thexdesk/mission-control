@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
 <html>
 <head lang=en>
-	<title><%= _session[:launch] %> | r/Spacex Mission Control</title>
+	<title><%= session[:launch] %> | r/Spacex Mission Control</title>
 	<link rel=icon type=image/png href=/icons/iss-16.png sizes=16x16>
 	<link rel=icon type=image/png href=/icons/iss-32.png sizes=32x32>
 	<link rel=stylesheet href=css/all.css>
 	<script async src=https://platform.twitter.com/widgets.js></script>
 	<script src=js/packages.js></script>
 	<script src=js/scripts.js></script>
-	<%= if _session[:time] then "<script>window.time = #{_session[:time]}</script>" end %>
+	<%= if session[:time] then "<script>window.time = #{session[:time]}</script>" end %>
 </head>
 <body>
-	<iframe class=youtube src=https://youtube.com/embed/<%= $sess_var[session[:id]][:video] %>?autoplay=0></iframe>
+	<iframe class=youtube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
 
 	<section class=status>
 		<a href=# onclick='document.body.classList.toggle("interface-left")'>

@@ -6,7 +6,9 @@ require './helper_functions'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 
-enable :sessions # for session identifier
+use Rack::Session::Pool, # identifier that points to session data
+  expire_after: 60 * 60 * 24 * 7 # one week
+
 use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
   client_id:    ENV['CLIENT_ID'],
@@ -15,18 +17,13 @@ use Redd::Middleware,
   scope:        %w[identity submit edit read],
   via:          '/auth'
 
-# assign a session id if not set
-before do
-  session[:id] ||= SecureRandom.uuid
-end
-
 # session variables
 $sess_var = {}
 $sess_var.default = {}
 
 # OAuth and main page
 get '/' do
-  if _session[:support]
+  if session[:support]
     if request.env['redd.session']
       render_erb 'pages/mission_control'
     else
@@ -39,14 +36,14 @@ end
 
 # browser support is ok (or override)
 get '/supported' do
-  _session[:support] = true
+  session[:support] = true
   redirect to '/'
 end
 
 get '/auth/callback' do
   if request.env['redd.error']
     "Error: #{request.env['redd.error'].message} (<a href='/'>Back</a>)"
-  elsif !_session[:launch] || !_session[:video]
+  elsif !session[:launch] || !session[:video]
     redirect to 'init'
   else
     redirect to '/'
@@ -55,6 +52,7 @@ end
 
 get '/logout' do
   request.env['redd.session'] = nil
+  session.clear
   redirect to '/'
 end
 
@@ -80,21 +78,21 @@ post '/init' do
   # if it's a launch from the API, it'll have launch time included as well
   if params[:launch].include? '|'
     nametime = params[:launch].split '|'
-    _session[:launch] = nametime[0]
-    _session[:time] = nametime[1].to_i * 1000 # JS wants milliseconds
+    session[:launch] = nametime[0]
+    session[:time] = nametime[1].to_i * 1000 # JS wants milliseconds
   else
-    _session[:launch] = params[:launch]
+    session[:launch] = params[:launch]
   end
 
   # get video id from url
-  _session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
+  session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
   youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{10,})}x)[1]
   redirect to '/'
 end
 
 # receive updates
 post '/update' do
-  _session[params[:id].to_sym] = params[:value]
+  session[params[:id].to_sym] = params[:value]
   update_post unless %w[time launch video].include? params[:id]
 end
 

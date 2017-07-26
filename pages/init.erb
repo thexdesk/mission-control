@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td>YouTube link</td>
-				<td><input name=video type=url <%= if _session[:video] then "value='#{_session[:video]}'" end %> required></td>
+				<td><input name=video type=url <%= if session[:video] then "value='#{session[:video]}'" end %> required></td>
 			</tr>
 			<tr>
 				<td colspan=2><input type=submit value="Ok, let's go!"></td>

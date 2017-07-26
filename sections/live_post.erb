@@ -1,7 +1,7 @@
 <% reddit = request.env['redd.session'] %>
 
-<% if _session[:post] %>
-  <%= post_info(_session[:post])['html'] %>
+<% if session[:post] %>
+  <%= post_info(session[:post])['html'] %>
 <% else %>
   <div class=flex>
     <a href=# onclick=createPost() class='fa fa-upload'></a>

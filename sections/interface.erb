@@ -1,5 +1,5 @@
-<textarea id=intro data-initial='<%= if _session[:intro] then _session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{_session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
-<textarea id=viewing data-initial='<%= if _session[:viewing] then _session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
+<textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
+<textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
 
 <div class=headers>
 	<h3 class=left>
@@ -18,8 +18,8 @@
 
 <ul id=events>
 	<%# fetch from server if possible  %>
-	<% if _session[:events] %>
-		<% events = _session[:events] %>
+	<% if session[:events] %>
+		<% events = session[:events] %>
 		<% if events != nil %>
 			<% events.each do |event| %>
 				<% event = event[1] %>
@@ -39,8 +39,8 @@
 	<% end %>
 </ul>
 
-<textarea id=stats data-initial='<%= if _session[:stats] then _session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
-<textarea id=mission data-initial='<%= if _session[:mission] then _session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
-<textarea id=landing data-initial='<%= if _session[:landing] then _session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
-<textarea id=resources data-initial='<%= if _session[:resources] then _session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
-<textarea id=participate data-initial='<%= if _session[:participate] then _session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
+<textarea id=stats data-initial='<%= if session[:stats] then session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
+<textarea id=mission data-initial='<%= if session[:mission] then session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
+<textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
+<textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
+<textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>

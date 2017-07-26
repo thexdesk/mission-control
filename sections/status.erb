@@ -1,7 +1,7 @@
 <% reddit = request.env['redd.session'] %>
 
-<% if _session[:post] %>
-  <% post = post_info _session[:post] %>
+<% if session[:post] %>
+  <% post = post_info session[:post] %>
   <img src=https://img.shields.io/badge/comments-<%= post['num_comments'] %>-..svg?style=social alt='comments <%= post['num_comments'] %>'>
   <img src=https://img.shields.io/badge/post_score-<%= post['score'] %>-..svg?style=social alt='post score <%= post['score'] %>'>
 <% end %>
