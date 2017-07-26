@@ -11,6 +11,12 @@
 	<%= if session[:time] then "<script>window.time = #{session[:time]}</script>" end %>
 </head>
 <body>
+	<div id=loader class=loader>
+		<% for _ in 1..6 %>
+			<div></div>
+		<% end %>
+	</div>
+
 	<iframe class=youtube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
 
 	<section class=status>

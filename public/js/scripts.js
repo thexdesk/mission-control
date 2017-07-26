@@ -3,6 +3,14 @@
 // use vanilla JS over jQuery where it doesn't take a terrible amount of effort
 // only thing I'm really using jQuery for is AJAX and jQuery UI
 
+document.onreadystatechange = () => {
+	if(document.readyState == 'complete') {
+		const loader = document.getElementById('loader');
+		loader.style['opacity'] = 0;
+		setTimeout(() => loader.style['display'] = 'none', 500);
+	}
+};
+
 window.onload = () => {
 	// register dialog element with polyfill
 	for(const dialog of document.querySelectorAll('dialog'))
