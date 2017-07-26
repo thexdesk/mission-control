@@ -34,6 +34,13 @@ body:not(.auth):not(.init)
 	overflow: hidden
 	+fonts
 
+	&::after
+		content: ''
+		+position(absolute)
+		background: url('/icons/iss.svg') 50% 50% / contain no-repeat
+		opacity: 0.05
+		z-index: -100
+
 	&.interface-left
 		grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" $yt-height - 61px - 60px "twitter interface status" 20px "twitter interface reddit" 1fr / #{$twitter-width} 1fr $yt-width
 
@@ -181,15 +188,20 @@ section.interface
 
 		.left
 			float: left
+			background: rgba(#fff, 0.7)
+			border-radius: 8px
 
 		.right
 			float: right
 			display: flex
 			text-transform: uppercase
+			background: rgba(#fff, 0.7)
+			border-radius: 8px
 
 			a
-				margin-right: 1rem
+				margin-right: 0.5rem
 				padding: 0.5rem
+				padding-right: 0
 
 	#events
 		+margin(0.5rem, null, 1rem, null)
@@ -331,6 +343,24 @@ dialog
 .CodeMirror,
 .CodeMirror-scroll
 	min-height: 50px
+
+.CodeMirror,
+.editor-toolbar
+	background: rgba(#fff, 0.7)
+
+.editor-toolbar
+	opacity: 1
+	border: 1px solid #ddd
+	border-bottom: 0
+
+	&:hover
+		opacity: 1
+	
+	a
+		opacity: 0.6
+
+		&:hover
+			opacity: 1
 
 // custom scrollbar in browsers that support it
 ::-webkit-scrollbar-track
