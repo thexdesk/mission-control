@@ -111,6 +111,21 @@ section.reddit
 	overflow-y: scroll
 	direction: rtl  // place scrollbar on left
 
+	.flex
+		height: 100%
+		font-size: 2.5em
+		+flex-center
+		flex-direction: column
+
+		.greyed-out
+			color: #ddd
+
+		a.fa-upload
+			margin-bottom: 0.2em
+
+			&::before
+				font-size: 2em
+
 section.status
 	grid-area: status
 	+flex-center

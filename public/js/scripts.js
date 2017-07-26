@@ -34,9 +34,6 @@ window.onload = () => {
 			status: false,
 			forceSync: true,
 			spellChecker: false,
-			shortcuts: {
-				save: 'Cmd-Alt-U'
-			}
 		});
 	}
 
@@ -74,6 +71,16 @@ function save() {
 		success: data => {
 			$('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight');
 			$('.reddit').html(data);  // data is rendered HTML from reddit
+		}
+	});
+}
+
+// create empty post
+function createPost() {
+	$.ajax({
+		url: 'update/create',
+		success: data => {
+			$('.reddit').html('<div class=flex><span class=greyed-out>[empty post]</span></div>');  // blank post, let's show this
 		}
 	});
 }

@@ -97,3 +97,9 @@ post '/update' do
   _session[params[:id].to_sym] = params[:value]
   update_post unless %w[time launch video].include? params[:id]
 end
+
+# called only when post doesn't exist
+# creates blank reddit post
+get '/update/create' do
+  update_post true
+end

@@ -56,10 +56,14 @@ end
 
 # creates a post if it doesn't exist
 # edits post if it exists
-def update_post
-  if _session[:post].nil?
-    title = "r/SpaceX #{_session[:launch]} Official Launch Discussion & " \
-            'Updates Thread'
+def update_post(create_only = false)
+  title = "r/SpaceX #{_session[:launch]} Official Launch Discussion & " \
+          'Updates Thread'
+
+  if create_only && _session[:post].nil?
+    post = make_post title
+    _session[:post] = post.id
+  elsif _session[:post].nil?
     post = make_post title, reddit_post
     _session[:post] = post.id
   else
