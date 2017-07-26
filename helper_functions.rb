@@ -91,7 +91,7 @@ def upcoming_launches
   one_week = (d + 7).to_s
 
   params = { params: { from: today, to: one_week } }
-  resp = RestClient.get 'https://api.spacexdata.com/launches/upcoming', params
+  resp = RestClient.get 'https://api.spacexdata.com/v1/launches/upcoming', params
   body = JSON.parse(resp.body)
   return body if body.is_a? Hash # error (success is array)
 
