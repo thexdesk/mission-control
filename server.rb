@@ -25,7 +25,10 @@ $sess_var.default = {}
 get '/' do
   if session[:support]
     if request.env['redd.session']
-      render_erb 'pages/mission_control'
+      # need to render before setting noshow
+      page = render_erb 'pages/mission_control'
+      session[:noshow] = true # hide info dialo on future pageloads
+      page
     else
       render_erb 'pages/authenticate'
     end

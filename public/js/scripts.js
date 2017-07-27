@@ -3,11 +3,16 @@
 // use vanilla JS over jQuery where it doesn't take a terrible amount of effort
 // only thing I'm really using jQuery for is AJAX and jQuery UI
 
+// remove loading modal
 document.onreadystatechange = () => {
 	if(document.readyState == 'complete') {
 		const loader = document.getElementById('loader');
 		loader.style['opacity'] = 0;
 		setTimeout(() => loader.style['display'] = 'none', 500);
+
+		// show info dialog
+		if(!window.noshow)
+			document.getElementById('info').showModal();
 	}
 };
 
