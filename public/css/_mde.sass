@@ -1,5 +1,4 @@
 // copying styles from reddit post
-// bug places cursor in wrong position when using margin
 
 .CodeMirror
 	margin-bottom: 1em
@@ -14,26 +13,18 @@
 		.cm-header-2
 			font-size: (9em / 7)
 			line-height: (25em / 18)
-			//margin-top: (5em / 6)
-			//margin-bottom: (5em / 6)
 		
 		.cm-header-3,
 		.cm-header-4
 			font-size: (8em / 7)
 			font-weight: 600
 			font-style: inherit
-			-webkit-font-smoothing: antialiased
+			+antialias
 			line-height: 1.25em
-			margin: 0
-			padding: 0
-			//margin-top: 0.625em
-			//margin-bottom: 0.625em
+			+size(null, null, 0, 0)
 		
 		.CodeMirror-line
-			margin: 0
-			padding: 0
-			//margin-top: (5em / 14)
-			//margin-bottom: (5em / 14)
+			+size(null, null, 0, 0)
 			font-size: 1em
 			line-height: (10em / 7)
 		

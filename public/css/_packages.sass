@@ -1,13 +1,9 @@
 dialog
+	// could use +size here, but it would get tricky without autoprefixer
 	+position(absolute, null, 0, null)
-	+prefix(width, fit-content, webkit moz, val)
-	max-width: 35vw
-	+prefix(height, fit-content, webkit moz, val)
-	margin: auto
-	border: 1px solid rgba(#000, 0.3)
-	border-radius: 6px
+	+size(fit-content null 35vw, fit-content, 1em, auto)
+	+border(1px solid rgba(#000, 0.3) 6px)
 	box-shadow: 0 3px 7px rgba(#000, 0.3)
-	padding: 1em
 	background: #fff
 	color: #000
 	display: none
@@ -46,8 +42,7 @@ dialog.fixed
 		white-space: nowrap
 
 	&-linenumber
-		padding: 0 3px 0 5px
-		min-width: 20px
+		+size(null 20px, null, 0 3px 0 5px)
 		text-align: right
 		color: #999
 		white-space: nowrap
@@ -133,6 +128,10 @@ dialog.fixed
 		color: red
 
 .CodeMirror
+	position: relative
+	overflow: hidden
+	background: rgba(#fff, 0.7)
+
 	&-composing
 		border-bottom: 2px solid
 
@@ -149,16 +148,9 @@ dialog.fixed
 	&-activeline-background
 		background: #e8f2ff
 
-	position: relative
-	overflow: hidden
-	background: #fff
-
 	&-scroll
 		overflow: scroll !important
-		margin-bottom: -30px
-		margin-right: -30px
-		padding-bottom: 30px
-		height: 100%
+		+size(null, 100%, null null 30px, null -30px -30px null)
 		outline: 0
 		position: relative
 
@@ -174,11 +166,9 @@ dialog.fixed
 		display: none
 
 	&-vscrollbar
-		position: absolute
+		+position(absolute, 0, 0, null, null)
 		z-index: 6
 		display: none
-		right: 0
-		top: 0
 		overflow-x: hidden
 		overflow-y: scroll
 
@@ -197,18 +187,15 @@ dialog.fixed
 		bottom: 0
 
 	&-gutters
-		position: absolute
-		left: 0
-		top: 0
+		+position(absolute, 0, 0, null, null)
 		min-height: 100%
 		z-index: 3
 
 	&-gutter
 		white-space: normal
-		height: 100%
 		display: inline-block
 		vertical-align: top
-		margin-bottom: -30px
+		+size(null, 100%, null, null null -30px)
 
 		&-wrapper
 			position: absolute
@@ -218,9 +205,7 @@ dialog.fixed
 			+no-select
 
 		&-background
-			position: absolute
-			top: 0
-			bottom: 0
+			+position(absolute, 0, null, 0, null)
 			z-index: 4
 
 		&-elt
@@ -275,8 +260,7 @@ dialog.fixed
 
 	&-measure
 		position: absolute
-		width: 100%
-		height: 0
+		+size(100%, 0)
 		overflow: hidden
 		visibility: hidden
 
@@ -302,23 +286,17 @@ dialog.fixed
 		background: #d7d4f0
 
 	&-line
-		&::selection
+		+selection
 			background: #d7d4f0
 
 		> span
-			&::selection, > span::selection
+			+selection
+			> span::-moz-selection,
+			> span::selection
 				background: #d7d4f0
 
 	&-crosshair
 		cursor: crosshair
-
-	&-line
-		&::-moz-selection
-			background: #d7d4f0
-
-		> span
-			&::-moz-selection, > span::-moz-selection
-				background: #d7d4f0
 
 .cm-searching
 	background: rgba(#ff0, 0.4)
@@ -333,17 +311,13 @@ span.CodeMirror-selectedtext
 	background: 0 0
 
 .CodeMirror
-	height: auto
-	min-height: 300px
-	border: 1px solid #ddd
-	border-bottom-left-radius: 4px
-	border-bottom-right-radius: 4px
-	padding: 10px
+	+border(1px solid #ddd 0 0 4px 4px)
+	+size(null, auto 50px, 10px)
 	font: inherit
 	z-index: 1
 
 	&-scroll
-		min-height: 300px
+		min-height: 50px
 
 	&-fullscreen
 		background: #fff
@@ -356,22 +330,22 @@ span.CodeMirror-selectedtext
 
 .editor-toolbar
 	position: relative
-	opacity: 0.6
+	opacity: 1
 	+no-select
-	user-select: none
 	padding: 0
-	border-top: 1px solid #bbb
-	border-left: 1px solid #bbb
-	border-right: 1px solid #bbb
-	border-top-left-radius: 4px
-	border-top-right-radius: 4px
+	+border(1px solid #ddd 4px 4px 0 0)
+	border-bottom: none
 	margin-top: 1em
+	background: rgba(#fff, 0.7)
 
 	&:first-of-type
 		margin-top: 0
+	
+	a
+		opacity: 0.6
 
-	&:hover
-		opacity: 0.8
+		&:hover
+			opacity: 1
 
 .editor-wrapper input.title
 	&:focus,
@@ -380,46 +354,36 @@ span.CodeMirror-selectedtext
 
 .editor-toolbar
 	&.fullscreen
-		width: 100%
-		height: 50px
+		+size(100%, 50px, 10px null)
 		overflow-x: auto
 		overflow-y: hidden
 		white-space: nowrap
-		padding-top: 10px
-		padding-bottom: 10px
 		box-sizing: border-box
-		background: #fff
+		background: rgba(#fff, 0.7)
 		border: 0
 		+position(fixed, 0, null, null)
 		opacity: 1
 		z-index: 9
 
+		&::before,
+		&::after
+			+size(20px, 50px, 0, 0)
+
 		&::before
-			width: 20px
-			height: 50px
-			background: linear-gradient(to right, rgba(255, 255, 255, 1) 0, rgba(255, 255, 255, 0) 100%)
+			background: lienar-gradient(to right, #fff 0, rgba(#fff, 0) 100%)
 			+position(fixed, 0, null, null)
-			margin: 0
-			padding: 0
 
 		&::after
-			width: 20px
-			height: 50px
-			background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 100%)
+			background: linear-gradient(to right, rgba(#fff, 0) 0, #fff 100%)
 			+position(fixed, 0, 0, null, null)
-			margin: 0
-			padding: 0
 
 	a
 		display: inline-block
 		text-align: center
 		text-decoration: none !important
 		color: #2c3e50 !important
-		width: 30px
-		height: 30px
-		margin: 0
-		border: 1px solid transparent
-		border-radius: 3px
+		+size(30px, 30px, null, 0)
+		+border(1px solid transparent 3px)
 		cursor: pointer
 
 		&.active,
@@ -432,12 +396,11 @@ span.CodeMirror-selectedtext
 
 	i.separator
 		display: inline-block
-		width: 0
 		border-left: 1px solid #d9d9d9
 		border-right: 1px solid #fff
 		color: transparent
 		text-indent: -10px
-		margin: 0 6px
+		+size(0, null, null, 0 6px)
 
 	a
 		&.fa-header-x::after
@@ -447,20 +410,10 @@ span.CodeMirror-selectedtext
 			position: relative
 			top: 2px
 
-		&.fa-header-1::after
-			content: "1"
-
-		&.fa-header-2::after
-			content: "2"
-
-		&.fa-header-3::after
-			content: "3"
-
-		&.fa-header-bigger::after
-			content: "▲"
-
-		&.fa-header-smaller::after
-			content: "▼"
+		$vals: 1 1, 2 2, 3 3, bigger ▲, smaller ▼
+		@each $tuple in $vals
+			&.fa-header-#{nth($tuple, 1)}::after
+				content: '#{nth($tuple, 2)}'
 
 	&.disabled-for-preview a:not(.no-disable)
 		pointer-events: none
@@ -476,8 +429,7 @@ span.CodeMirror-selectedtext
 
 	span
 		display: inline-block
-		min-width: 4em
-		margin-left: 1em
+		+size(null 4em, null, null, null null null 1em)
 
 .editor-preview,
 .editor-preview-side
@@ -488,67 +440,47 @@ span.CodeMirror-selectedtext
 	box-sizing: border-box
 
 .editor-statusbar
-	.lines::before
-		content: 'lines: '
-
-	.words::before
-		content: 'words: '
-
-	.characters::before
-		content: 'characters: '
+	$vals: lines words characters
+	@each $val in $vals
+		.#{$val}::before
+			content: '#{$val}: '
 
 .editor-preview
-	position: absolute
-	width: 100%
-	height: 100%
-	top: 0
-	left: 0
+	+position(absolute, 0, null, null, 0)
+	+size(100%)
 	z-index: 7
 
-.editor-preview-side
-	position: fixed
-	bottom: 0
-	width: 50%
-	top: 50px
-	right: 0
-	z-index: 9
-	border: 1px solid #ddd
+	&-side
+		+position(fixed, 50px, 0, 0, null)
+		width: 50%
+		z-index: 9
+		border: 1px solid #ddd
 
-.editor-preview-active,
-.editor-preview-active-side
-	display: block
+	&-active,
+	&-active-side
+		display: block
 
-.editor-preview-side > p
-	margin-top: 0
-
-.editor-preview
+	&-side > p,
 	> p
 		margin-top: 0
 
+	&-side pre,
 	pre
 		background: #eee
 		margin-bottom: 10px
 
-.editor-preview-side pre
-	background: #eee
-	margin-bottom: 10px
-
-.editor-preview-side table,
-.editor-preview table
-	td, th
-		border: 1px solid #ddd
-		padding: 5px
+	&-side table,
+	table
+		td, th
+			border: 1px solid #ddd
+			padding: 5px
 
 .CodeMirror
 	.CodeMirror-code
-		.cm-tag
-			color: #63a35c
-
-		.cm-attribute
-			color: #795da3
-
-		.cm-string
-			color: #183691
+		$colors: tag #63a35c, attribute #795da3, string #183691
+		@each $tuple in $colors
+			.cm-#{nth($tuple, 1)}
+				color: #{nth($tuple, 2)}
 
 	.CodeMirror-selected
 		background: #d9d9d9

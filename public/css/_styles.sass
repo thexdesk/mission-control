@@ -16,8 +16,7 @@ $yt-1366-height: 259px
 $twitter-1366-width: 270px
 
 *
-	padding: 0
-	margin: 0
+	+size(null, null, 0, 0)
 
 \:root
 	font-size: 13px
@@ -74,8 +73,7 @@ body.init
 	+fonts
 
 	a
-		margin-top: 0.5rem
-		padding: 0.5rem
+		+size(null, null, 0.5rem, 0.5rem null null)
 		font-size: 1.5em
 
 	form
@@ -94,7 +92,7 @@ body.init
 	input
 		background: rgba(#fff, 0.7)
 
-	input[type='submit']
+	input[type=submit]
 		font-size: 1rem
 		padding: 0.5rem
 		background: rgba(#fff, 0.7)
@@ -104,22 +102,19 @@ body.init
 	
 	select
 		width: 100%
-		border-radius: 3px
-		border: 1px solid #ddd
+		+border(1px solid #ddd 3px)
 		outline-color: $spx-blue-alpha
-		background: rgbba(#fff, 0.7)
+		background: rgba(#fff, 0.7)
 
 iframe.youtube
 	grid-area: youtube
 	background: #000
 	border: none
-	width: 100%
-	height: 100%
+	+size(100%)
 
 section.reddit
 	grid-area: reddit
-	width: 100%
-	height: calc(100vh - #{$yt-height} - #{$gutter*2} - 20px)
+	+size(100%, calc(100vh - #{$yt-height $gutter*2 - 20px}))
 	overflow-y: scroll
 	direction: rtl  // place scrollbar on left
 
@@ -142,11 +137,11 @@ section.status
 	grid-area: status
 	+flex-center
 
-	& > *
+	> *
 		display: flex
 		height: 20px
 
-		& > *
+		> *
 			margin: 0 3px
 
 	#interface-right
@@ -170,16 +165,13 @@ section.timer
 section.interface
 	position: relative  // for placing info button
 	grid-area: interface
-	height: calc(100vh - #{$gutter})
 	overflow-y: scroll
-	padding-top: $gutter
-	padding-right: $gutter
+	+size(null, calc(100vh - #{gutter}), $gutter $gutter null null)
 
 	i#info-button
 		+position(absolute, 11px, 11px, null, null)
 		z-index: 1000
-		height: 20px
-		width: 20px
+		+size(20px)
 		font-size: 20px
 		opacity: 0.3
 		cursor: help
@@ -204,22 +196,17 @@ section.interface
 			border-radius: 8px
 
 			a
-				margin-right: 0.5rem
-				padding: 0.5rem
-				padding-right: 0
+				+size(null, null, 0.5rem 0 0.5rem 0.5rem, null 0.5rem null 0.5rem)
 
 	#events
-		+margin(0.5rem, null, 1rem, null)
+		+margin(0.5rem, null, 1rem)
 		list-style-type: none
 
 		li
 			position: relative  // this allows arrows to be positioned absolutely
 			background: rgba(#fff, 0.7) // make things pretty when reordering rows
-			border-radius: 4px
-			border: 1px solid #ddd
-			padding: 0.4rem
-			margin-bottom: 0.6rem
-			height: 21px // this is just the value it works out to be (needed for transition)
+			+border(1px solid #ddd 4px)
+			+size(null, 21px, 0.4rem, null null 0.6rem) // height is what it works out to be (needed for transition)
 			transition: height 300ms ease-in-out, border-width 300ms ease-in-out, padding 300ms ease-in-out, margin-bottom 300ms ease-in-out, opacity 300ms ease-in-out 300ms
 
 			&.reverse
@@ -227,17 +214,14 @@ section.interface
 
 			&.hidden
 				border-width: 0
-				padding: 0
-				margin-bottom: 0
-				height: 0
+				+size(null, 0, 0, null null 0)
 				opacity: 0
 
 			.sort-icon
 				+position(absolute, 20%, 0.5rem, null, null)
 				display: inline-block
 				background: url('../icons/sort.svg') center no-repeat
-				height: 60%
-				width: 2rem
+				+size(2rem, 60%)
 				+prefix(cursor, grab, webkit, val)
 
 				&:active
@@ -257,8 +241,7 @@ section.interface
 			span
 				cursor: pointer
 				display: inline-block
-				width: 20px
-				margin-right: 2px
+				+size(20px, null, null, null 2px null null)
 				color: #22c
 
 			&.ui-state-highlight
@@ -267,8 +250,8 @@ section.interface
 				border: 1px solid rgba(#99f, 0.4)
 
 		input:first-of-type  // T±
-			width: 53px
-			margin-right: 1.5rem
+			+size(53px, null, null, null 1.5rem null null)
+
 		input:last-of-type  // message
 			width: calc(100% - 204px)
 
@@ -277,10 +260,8 @@ section.interface
 	i.fa-minus
 		color: #2c3e50
 		opacity: 0.6
-		width: 30px
-		height: 30px
-		border: 1px solid transparent
-		border-radius: 3px
+		+size(30px)
+		+border(1px solid transparent 3px)
 		cursor: pointer
 		text-align: center
 		line-height: 30px
@@ -292,7 +273,7 @@ section.interface
 
 section.logo
 	grid-area: logo
-	background: url('../icons/logo.png') top left/100% no-repeat
+	background: url('../icons/logo.png') top left / 100% no-repeat
 
 section.twitter
 	grid-area: twitter
@@ -305,14 +286,13 @@ a
 
 input
 	color: #000
-	border: 1px solid #ddd
-	border-radius: 3px
+	+border(1px solid #ddd 3px)
 	background: transparent
 	padding: 2px
 	outline-color: $spx-blue-alpha
 	+fonts
 
-	&[type='datetime-local']
+	&[type=datetime-local]
 		text-align: center
 
 dialog
@@ -332,8 +312,7 @@ dialog
 	button
 		@extend input
 		display: block
-		margin: 0 auto
-		padding: 0.5rem
+		+size(null, null, 0.5rem, 0 auto)
 		transition: background 100ms ease-in
 
 		&:hover
@@ -345,27 +324,6 @@ dialog
 		button
 			display: inline-block
 
-.CodeMirror,
-.CodeMirror-scroll
-	min-height: 50px
-
-.CodeMirror,
-.editor-toolbar
-	background: rgba(#fff, 0.7)
-
-.editor-toolbar
-	opacity: 1
-	border: 1px solid #ddd
-	border-bottom: 0
-
-	&:hover
-		opacity: 1
-	
-	a
-		opacity: 0.6
-
-		&:hover
-			opacity: 1
 
 // custom scrollbar in browsers that support it
 ::-webkit-scrollbar-track

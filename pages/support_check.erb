@@ -1,9 +1,11 @@
 <script>
+'use strict';
+
 function supports(arr) {
 	let pass = 0;
 	let fail = 0;
 
-	for(obj of arr) {
+	for(let obj of arr) {
 		obj = obj.split(':');
 		if(CSS.supports(obj[0], obj[1])) {
 			pass++;

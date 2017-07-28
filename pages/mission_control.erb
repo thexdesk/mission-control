@@ -52,7 +52,7 @@
 
 	<dialog id=launchTime>
 		<h2>Enter the launch time</h2>
-		<span id='datetime-format'>(YYYY-MM-DD HH:MM:SS)<br></span>
+		<span id=datetime-format>(YYYY-MM-DD HH:MM:SS)<br></span> <%# only gets rendered if browser doesn't support datetime-local %>
 		(in your timezone)
 		<br><br>
 
@@ -60,6 +60,5 @@
 		<button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
 		<button onclick='setLaunchTime(null)'>Clear timer</button>
 	</dialog>
-
 </body>
 </html>

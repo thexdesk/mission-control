@@ -27,7 +27,7 @@ get '/' do
     if request.env['redd.session']
       # need to render before setting noshow
       page = render_erb 'pages/mission_control'
-      session[:noshow] = true # hide info dialo on future pageloads
+      session[:noshow] = true # hide info dialog on future pageloads
       page
     else
       render_erb 'pages/authenticate'

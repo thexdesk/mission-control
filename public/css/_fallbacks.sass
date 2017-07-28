@@ -1,8 +1,19 @@
+// everything in this file is intended to be temporary
+// it should be regularly updated to match browser support
+
 =flow-root
 	@supports (display: flow-root)
 		display: flow-root
+		visibility: visible
 	@supports not (display: flow-root)
 		&::after
 			content: ''
 			display: table
 			clear: both
+
+=fit-content($axis)
+	@if $axis == height or $axis == both
+		+prefix(height, fit-content, webkit moz, val)
+
+	@if $axis == width or $axis == both
+		+prefix(width, fit-content, webkit moz, val)

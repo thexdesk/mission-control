@@ -100,7 +100,6 @@ def upcoming_launches
     date = DateTime.parse(obj['launch_date_utc']).strftime('%s')
 
     payload = obj['payloads'][0]['payload_id']
-
     payload = payload[7..-1] if payload.start_with? 'SpaceX ' # CRS missions
     launches[payload] = date
   end

@@ -92,9 +92,8 @@ function save() {
 function createPost() {
 	$.ajax({
 		url: 'update/create',
-		success: data => {
-			$('.reddit').html('<div class=flex><span class=greyed-out>[empty post]</span></div>');  // blank post, let's show this
-		}
+		success: data =>
+			$('.reddit').html('<div class=flex><span class=greyed-out>[empty post]</span></div>')  // blank post, let's show this
 	});
 }
 
@@ -220,7 +219,7 @@ function updateCountdown() {
 
 	const pad = num => num < 10 ? '0' + num : num;
 
-	let timer = document.getElementById('timer');
+	const timer = document.getElementById('timer');
 
 	const curTime = new Date();
 	const launchTime = window.time;
@@ -283,9 +282,9 @@ function setSign(obj) {
 
 // customizable messages
 const emergency_messages = {
-	'RUD': 'RUD',
-	'Hold': 'Hold',
-	'Scrub': 'Scrub'
+	'RUD':    'RUD',
+	'Hold':   'Hold',
+	'Scrub':  'Scrub'
 };
 
 // messages from emergency panel
