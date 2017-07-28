@@ -22,6 +22,14 @@ $twitter-1366-width: 270px
 \:root
 	font-size: 13px
 
+body
+	&::before
+		content: ''
+		+position(absolute)
+		background: url('/icons/iss.svg') 50% 50% / contain no-repeat
+		opacity: 0.05
+		z-index: -100
+
 body:not(.auth):not(.init)
 	display: grid
 	grid-template: "youtube interface logo" 61px "youtube interface timer" 60px "youtube interface twitter" $yt-height - 61px - 60px "status interface twitter" 20px "reddit interface twitter" 1fr / #{$yt-width} 1fr $twitter-width
@@ -33,13 +41,6 @@ body:not(.auth):not(.init)
 
 	overflow: hidden
 	+fonts
-
-	&::after
-		content: ''
-		+position(absolute)
-		background: url('/icons/iss.svg') 50% 50% / contain no-repeat
-		opacity: 0.05
-		z-index: -100
 
 	&.interface-left
 		grid-template: "logo interface youtube" 61px "timer interface youtube" 60px "twitter interface youtube" $yt-height - 61px - 60px "twitter interface status" 20px "twitter interface reddit" 1fr / #{$twitter-width} 1fr $yt-width
@@ -90,9 +91,13 @@ body.init
 		text-align: center
 		padding-right: 0
 
+	input
+		background: rgba(#fff, 0.7)
+
 	input[type='submit']
 		font-size: 1rem
 		padding: 0.5rem
+		background: rgba(#fff, 0.7)
 
 		&:hover
 			background: #ccf
@@ -102,7 +107,7 @@ body.init
 		border-radius: 3px
 		border: 1px solid #ddd
 		outline-color: $spx-blue-alpha
-		background: transparent
+		background: rgbba(#fff, 0.7)
 
 iframe.youtube
 	grid-area: youtube
