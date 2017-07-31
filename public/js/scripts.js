@@ -58,7 +58,8 @@ window.onload = () => {
 	setInterval(updateStats, 5*60*1000);
 
 	// update countdown every second
-	setInterval(updateCountdown, 1000);
+	window.countdown = setInterval(updateCountdown, 1000);
+	window.terminalCount = false;
 
 	// remove format in popup if <input type=datetime-local> is supported
 	const elem = document.createElement('input');
@@ -239,6 +240,18 @@ function updateCountdown() {
 	const hours = diff / 3600000 | 0;
 	const mins = diff % 3600000 / 60000 | 0;
 	const secs = diff % 60000 / 1000 | 0;
+	const tenths = diff % 1000 / 100 | 0;
+
+	if(diff < 60000 && !window.terminalCount) {
+		clearInterval(window.countdown);
+		window.countdown = setInterval(updateCountdown, 100);
+		window.terminalCount = true;
+	}
+	else if(diff >= 60000 && window.terminalCount) {
+		clearInterval(window.countdown);
+		window.countdown = setInterval(updateCountdown, 1000);
+		window.terminalCount = false;
+	}
 
 	let time;  // placed here for scope
 
@@ -247,7 +260,7 @@ function updateCountdown() {
 	else if(mins > 0)
 		time = mins + ':' + pad(secs);
 	else
-		time = secs;
+		time = secs + '.' + tenths;
 
 	timer.innerHTML = 'T' + sign + time;
 }
@@ -300,7 +313,10 @@ const emergency_messages = {
 function emergency(obj) {
 	const children = addEvent().children;
 	const type = obj.innerHTML;
-	const time = document.getElementById('timer').innerHTML.substr(2); // from countdown timer
+	let time = document.getElementById('timer').innerHTML.substr(2); // from countdown timer
+
+	if(time.substr(-2, 1) == '.')
+		time = time.slice(0, -2);
 
 	if(window.time != null)
 		children[2].value = time;

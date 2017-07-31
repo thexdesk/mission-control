@@ -96,6 +96,7 @@ body.init
 		font-size: 1rem
 		padding: 0.5rem
 		background: rgba(#fff, 0.7)
+		transition: background 100ms ease-in
 
 		&:hover
 			background: #ccf
@@ -114,7 +115,7 @@ iframe.youtube
 
 section.reddit
 	grid-area: reddit
-	+size(100%, calc(100vh - #{$yt-height $gutter*2 - 20px}))
+	+size(100%, calc(100vh - #{$yt-height + $gutter*2 - 20px}))
 	overflow-y: scroll
 	direction: rtl  // place scrollbar on left
 
