@@ -1,7 +1,6 @@
 'use strict';  // don't allow crap JS practices
 
 // use vanilla JS over jQuery where it doesn't take a terrible amount of effort
-// only thing I'm really using jQuery for is AJAX and jQuery UI
 
 // remove loading modal
 document.onreadystatechange = () => {
@@ -129,6 +128,15 @@ function updateStats() {
 	});
 }
 
+// capture tab event and redirect it to the previous row
+function _tabEvent(e, obj) {
+	if(e.keyCode == 9) {  // tab
+		e.preventDefault();
+		if(obj.parentElement !== obj.parentElement.parentElement.firstElementChild)  // if not first row
+			obj.parentElement.previousElementSibling.children[2].focus();
+	}
+}
+
 // add an event at the top of the list
 function addEvent() {
 	const events = document.getElementById('events');
@@ -164,6 +172,7 @@ function addEvent() {
 	// message input
 	const message = document.createElement('input');
 	message.setAttribute('onkeyup', 'saveIfEnter(event)');
+	message.setAttribute('onkeydown', '_tabEvent(event, this)');
 	message.setAttribute('oninput', 'hotSwap(this); addEventIfNeeded();');
 	row.appendChild(message);
 
@@ -206,8 +215,8 @@ function hotSwap(obj) {
 }
 
 // bound on event inputs
-function saveIfEnter(evnt) {
-	if(evnt.keyCode == 13)  // enter
+function saveIfEnter(e) {
+	if(e.keyCode == 13)  // enter
 		saveEvents()
 }
 

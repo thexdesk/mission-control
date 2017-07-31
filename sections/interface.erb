@@ -27,14 +27,14 @@
 				<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
 				<li class=reverse><i class=sort-icon></i>
 					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[0][0..1] %></span><input value='<%= event[0][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
-					Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) oninput='hotSwap(this); addEventIfNeeded();'>
+					Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
 			<% end %>
 		<% end %>
 	<% else %>
 	<%# nothing stored on server, give a single blank event %>
 		<li class=reverse><i class=sort-icon></i>
 			<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
-			Message: <input onkeyup=saveIfEnter(event) oninput='hotSwap(this); addEventIfNeeded();'>
+			Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
 		</li>
 	<% end %>
 </ul>
