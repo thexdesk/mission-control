@@ -18,3 +18,12 @@
 			$result: append($result, nth($list, $i))
 
 	@return $result
+
+// non-recursive
+@function num-null($list)
+	$count: 0
+
+	@each $obj in $list
+		@if not $obj
+			$count: $count + 1
+	@return $count

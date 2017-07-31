@@ -8,7 +8,7 @@
 		@content
 
 // single declaration for small and large screens
-=prop($prop, $small, $large)
+=responsive($prop, $small, $large)
 	+small
 		#{$prop}: $small
 
@@ -46,8 +46,15 @@
 	@else
 		width: $width
 
-	min-width: $min
-	max-width: $max
+	@if $min == fit-content
+		+fit-content(min-width)
+	@else
+		min-width: $min
+
+	@if $max == fit-content
+		+fit-content(max-width)
+	@else
+		max-width: $max
 
 =height($height, $min: null, $max: null)
 	@if $height == fit-content
@@ -55,20 +62,59 @@
 	@else
 		height: $height
 
-	min-height: $min
-	max-height: $max
+	@if $min == fit-content
+		+fit-content(min-height)
+	@else
+		min-height: $min
+
+	@if $max == fit-content
+		+fit-content(max-height)
+	@else
+		max-height: $max
 
 =padding($top: null, $right: $top, $bottom: $top, $left: $right)
-	padding-top: $top
-	padding-right: $right
-	padding-bottom: $bottom
-	padding-left: $left
+	$list: $top, $right, $bottom, $left
+	$num-null: num-null($list)
+
+	@if $num-null != 0
+		padding-top: $top
+		padding-right: $right
+		padding-bottom: $bottom
+		padding-left: $left
+
+	@else if $top == $right and $right == $bottom and $bottom == $left
+		padding: $top
+
+	@else if $top == $bottom and $left == $right
+		padding: $top $right
+
+	@else if $top != $bottom and $left == $right
+		padding: $top $right $bottom
+
+	@else
+		padding: $top $right $bottom $left
 
 =margin($top: null, $right: $top, $bottom: $top, $left: $right)
-	margin-top: $top
-	margin-right: $right
-	margin-bottom: $bottom
-	margin-left: $left
+	$list: $top, $right, $bottom, $left
+	$num-null: num-null($list)
+
+	@if $num-null != 0
+		margin-top: $top
+		margin-right: $right
+		margin-bottom: $bottom
+		margin-left: $left
+
+	@else if $top == $right and $right == $bottom and $bottom == $left
+		margin: $top
+
+	@else if $top == $bottom and $left == $right
+		margin: $top $right
+
+	@else if $top != $bottom and $left == $right
+		margin: $top $right $bottom
+
+	@else
+		margin: $top $right $bottom $left
 
 =size($width, $height: $width, $padding: null, $margin: null)
 	+width($width...)

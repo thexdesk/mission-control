@@ -154,14 +154,14 @@ section.status
 section.timer
 	grid-area: timer
 	text-align: center
-	+prop(font-size, 48px, 54px)
+	+responsive(font-size, 48px, 54px)
 	line-height: 60px
 	cursor: pointer
 	white-space: nowrap
 
 	// shrink text to fit if necessary
 	&.unset
-		+prop(font-size, 32px, 36px)
+		+responsive(font-size, 32px, 36px)
 
 section.interface
 	position: relative  // for placing info button
