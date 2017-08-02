@@ -242,7 +242,8 @@ function updateCountdown() {
 	const secs = diff % 60000 / 1000 | 0;
 	const tenths = diff % 1000 / 100 | 0;
 
-	if(diff < 60000 && !window.terminalCount) {
+	// use 61 seconds instead of 60 to make change ASAP
+	if(diff < 61000 && !window.terminalCount) {
 		clearInterval(window.countdown);
 		window.countdown = setInterval(updateCountdown, 100);
 		window.terminalCount = true;
