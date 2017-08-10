@@ -89,7 +89,7 @@ post '/init' do
 
   # get video id from url
   session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
-  youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{10,})}x)[1]
+  youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})}x)[1]
   redirect to '/'
 end
 
