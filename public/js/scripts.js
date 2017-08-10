@@ -142,43 +142,17 @@ function _tabEvent(e, obj) {
 function addEvent() {
 	const events = document.getElementById('events');
 
-	const row = document.createElement('li');
-	row.classList.add('hidden');
+	const template = document.getElementById('event-template');
+	// firstElementChild is to prevent weird bugs, and we only have one child
+	const row = document.importNode(template.content, true).firstElementChild;
+
+	if(window.time != null && window.time > new Date())
+		row.children[1].innerHTML = 'T-';
 
 	// add new row at beginning
 	events.insertBefore(row, events.firstChild);
 
-	let sign = '+'; // placed here for scope
-
-	if(window.time != null && window.time > new Date())
-		sign = '-';
-
-	// add "sortable" icon handle
-	const icon = document.createElement('i');
-	icon.classList.add('sort-icon', 'ui-sortable-handle');
-	row.appendChild(icon);
-
-	// T± clickable
-	const tPM = document.createElement('span');
-	tPM.setAttribute('onclick', 'this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+"');
-	tPM.innerHTML = 'T' + sign;
-	row.appendChild(tPM);
-
-	// T± input and following text
-	const input = document.createElement('input');
-	input.setAttribute('onkeyup', 'saveIfEnter(event); setSign(this);');
-	row.appendChild(input);
-	row.innerHTML += ' Message: ';
-
-	// message input
-	const message = document.createElement('input');
-	message.setAttribute('onkeyup', 'saveIfEnter(event)');
-	message.setAttribute('onkeydown', '_tabEvent(event, this)');
-	message.setAttribute('oninput', 'hotSwap(this); addEventIfNeeded();');
-	row.appendChild(message);
-
 	// trigger animation to show row
-	// use setTimeout to prevent optimization that removes effect
 	setTimeout(() => row.classList.remove('hidden'), 0);
 	setTimeout(() => row.classList.add('reverse'), 600);  // for possible removal
 

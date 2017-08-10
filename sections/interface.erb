@@ -44,3 +44,10 @@
 <textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
 <textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
 <textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
+
+<template id=event-template>
+	<li class=hidden><i class=sort-icon></i>
+		<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
+		Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+	</li>
+</template>
