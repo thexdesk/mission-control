@@ -242,8 +242,22 @@ section.interface
 			span
 				cursor: pointer
 				display: inline-block
-				+size(20px, null, null, null 2px null null)
-				color: #22c
+
+				&:first-of-type
+					+size(42px, null, null, null 2px null null)
+
+					&::before
+						content: attr(data-content)
+
+					&[data-content=Posted]
+						color: #090
+
+					&[data-content=Hidden]
+						color: #c22
+
+				&:last-of-type
+					+size(20px, null, null, null 2px null null)
+					color: #22c
 
 			&.ui-state-highlight
 				height: calc(1rem + 8px)
@@ -254,7 +268,7 @@ section.interface
 			+size(53px, null, null, null 1.5rem null null)
 
 		input:last-of-type  // message
-			width: calc(100% - 204px)
+			width: calc(100% - 246px)
 
 	i.fa-upload,
 	i.fa-plus,

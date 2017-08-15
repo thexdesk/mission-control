@@ -26,6 +26,7 @@
 				<% if event[1] == '' then next end %>
 				<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
 				<li class=reverse><i class=sort-icon></i>
+					<span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
 					<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[0][0..1] %></span><input value='<%= event[0][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
 					Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
 			<% end %>
@@ -33,6 +34,7 @@
 	<% else %>
 	<%# nothing stored on server, give a single blank event %>
 		<li class=reverse><i class=sort-icon></i>
+			<span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
 			<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
 			Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
 		</li>
@@ -47,6 +49,7 @@
 
 <template id=event-template>
 	<li class=hidden><i class=sort-icon></i>
+		<span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Hidden'></span>
 		<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
 		Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
 	</li>

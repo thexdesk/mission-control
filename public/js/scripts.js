@@ -105,9 +105,11 @@ function saveEvents() {
 	let allEvents = [];
 	for(const evnt of events) {
 		const children = evnt.children;
-		const tPM = children[2].value == '' ? '' : children[1].innerHTML + children[2].value;
-		const message = children[3].value;
-		allEvents.push([tPM, message]);
+		const tPM = children[3].value == '' ? '' : children[2].innerHTML + children[3].value;
+		const message = children[4].value;
+
+		if(children[1].getAttribute('data-content') == 'Posted')
+			allEvents.push([tPM, message]);
 	}
 
 	$.ajax({
@@ -134,7 +136,7 @@ function _tabEvent(e, obj) {
 	if(e.keyCode == 9) {  // tab
 		e.preventDefault();
 		if(obj.parentElement !== obj.parentElement.parentElement.firstElementChild)  // if not first row
-			obj.parentElement.previousElementSibling.children[2].focus();
+			obj.parentElement.previousElementSibling.children[3].focus();
 	}
 }
 
@@ -147,7 +149,7 @@ function addEvent() {
 	const row = document.importNode(template.content, true).firstElementChild;
 
 	if(window.time != null && window.time > new Date())
-		row.children[1].innerHTML = 'T-';
+		row.children[2].innerHTML = 'T-';
 
 	// add new row at beginning
 	events.insertBefore(row, events.firstChild);
@@ -168,7 +170,6 @@ function removeEvent() {
 		setTimeout(() => events.removeChild(events.firstElementChild), 600);
 	}
 }
-
 
 // simple hash with values to swap out
 // if modifying ─ keep in mind these do not get escaped before passing to regex
@@ -276,7 +277,6 @@ function setSign(obj) {
 	}
 }
 
-
 // customizable messages
 const emergency_messages = {
 	'RUD':    'RUD',
@@ -293,17 +293,19 @@ function emergency(obj) {
 	if(time.substr(-2, 1) == '.')
 		time = time.slice(0, -2);
 
-	if(window.time != null)
-		children[2].value = time;
+	children[1].setAttribute('data-content', 'Posted');
 
-	children[3].value = emergency_messages[type];
+	if(window.time != null)
+		children[3].value = time;
+
+	children[4].value = emergency_messages[type];
 
 	saveEvents();
 }
 
 function addEventIfNeeded() {
 	const firstChild = document.getElementById('events').firstElementChild;
-	const message = firstChild.children[3];
+	const message = firstChild.children[4];
 
 	if(message.value.length == 1)
 		addEvent();
