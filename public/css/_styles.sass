@@ -213,12 +213,25 @@ section.interface
 		.right
 			float: right
 			display: flex
-			text-transform: uppercase
-			background: rgba(#fff, 0.7)
-			border-radius: 8px
 
-			a
-				+size(null, null, 0.5rem 0 0.5rem 0.5rem, null 0.5rem)
+			select, button
+				background: rgba(#fff, 0.7)
+				+border(1px solid #ddd 3px)
+				+size(null, null, 0.5rem, null 0.5rem null null)
+				transition: background 100ms ease-in
+				outline-color: $spx-blue-alpha
+
+			button:hover
+				background: $spx-blue-alpha
+
+			span
+				text-transform: uppercase
+				background: rgba(#fff, 0.7)
+				border-radius: 8px
+				display: flex
+
+				a
+					+size(null, null, 0.5rem null 0.5rem 0.5rem, null 0.5rem)
 
 	#events
 		+margin(0.5rem, null, 1rem)

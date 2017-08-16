@@ -285,6 +285,40 @@ const emergency_messages = {
 	'Scrub':  'Scrub'
 };
 
+const std_messages = {
+	'LOX loading started':    'LOX loading started',
+	'LOX loading finished':   'LOX loading finished',
+	'RP-1 loading started':   'RP-1 loading started',
+	'RP-1 loading finished':  'RP-1 loading finished',
+	'Statup (T-60)':          'Startup',
+	'Liftoff':                'Liftoff',
+	'Max Q':                  'Max Q',
+	'MECO':                   'MECO',
+	'Stage separation':       'Stage separation',
+	'Second stage ignition':  'Second stage ignition',
+	'Boostback startup':      'Boostback startup',
+	'Boostback shutdown':     'Boostback shutdown',
+	'Fairing separation':     'Fairing separation',
+	'Reentry startup':        'Reentry startup',
+	'Reentry shutdown':       'Reentry shutdown',
+	'Landing startup':        'Landing startup',
+	'First stage transonic':  'First stage transonic',
+	'Landing success':        'Landing success',
+	'Landing failure':        'Landing failure',
+	'SECO':                   'SECO',
+	'Second stage relight':   'Second stage relight',
+	'SECO2':                  'SECO2',
+	'Dragon deploy':          'Dragon deploy',
+	'Payload deploy':         'Payload deploy',
+	'Launch success':         'Launch success',
+	'Launch failure':         'Launch failure',
+	'Launch director poll':   'Launch director poll',
+	'Launch director "go"':   'Launch director "go"',
+	'Pressure OK':            'Pressure OK',
+	'Ignition':               'Ignition',
+	'Tower cleared':          'Tower cleared'
+};
+
 // messages from emergency panel
 function emergency(obj) {
 	const children = addEvent().children;
@@ -304,8 +338,12 @@ function emergency(obj) {
 		children[3].value = time;
 
 	children[4].value = emergency_messages[type];
-
 	saveEvents();
+}
+
+// messages from standard panel
+function std_message() {
+	addEvent().children[4].value = std_messages[document.getElementById('events-dropdown').value];
 }
 
 function addEventIfNeeded() {
