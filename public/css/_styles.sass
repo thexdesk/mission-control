@@ -19,6 +19,8 @@ $twitter-1366-width: 270px
 	font-size: 13px
 
 body
+	background: #f7f7f7
+
 	&::before
 		content: ''
 		+position(absolute)
@@ -138,6 +140,7 @@ section.status
 	> *
 		display: flex
 		height: 20px
+		line-height: 20px
 
 		> *
 			margin: 0 3px
@@ -165,17 +168,23 @@ section.interface
 	overflow-y: scroll
 	+size(null, calc(100vh - #{$gutter}), $gutter $gutter null null)
 
-	i#info-button
-		+position(absolute, 11px, 11px, null, null)
+	i
 		z-index: 1000
 		+size(20px)
 		font-size: 20px
 		opacity: 0.3
-		cursor: help
 		transition: opacity 200ms
 
 		&:hover
 			opacity: 1
+
+		&#info-button
+			+position(absolute, 13px, 13px, null, null)
+			cursor: help
+
+	a#logout
+		+position(absolute, 13px, 43px, null, null)
+		color: #000
 
 	#tabs
 		list-style-type: none
