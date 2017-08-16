@@ -1,7 +1,4 @@
-/*
- * grid-template will be across multiple rows when SASS supports it (I've re-emphasized this at github.com/sasstools/sass-lint/issues/591)
- * everything else is pretty self-explanitory ─ I've commented it if it's not
- */
+// grid-template will be across multiple rows when SASS supports it (I've re-emphasized this at github.com/sasstools/sass-lint/issues/591)
 
 $spx-blue: #005288
 $spx-blue-alpha: rgba($spx-blue, 0.4)
@@ -159,7 +156,6 @@ section.timer
 	cursor: pointer
 	white-space: nowrap
 
-	// shrink text to fit if necessary
 	&.unset
 		+responsive(font-size, 32px, 36px)
 
@@ -180,6 +176,31 @@ section.interface
 
 		&:hover
 			opacity: 1
+
+	#tabs
+		list-style-type: none
+		font-size: 0
+		border-bottom: 1px solid #ddd
+		margin-bottom: 1rem
+
+		li
+			display: inline-block
+			+border(1px solid #ddd 3px 3px 0 0)
+			border-bottom: 0
+			+size(null, 1rem, 1rem)
+			color: $spx-blue
+			background: rgba(#fff, 0.7)
+			line-height: 1rem
+			font-weight: bold
+			font-size: 1rem
+			cursor: pointer
+
+			&:not(:first-of-type)
+				border-left: 0
+
+			&.current
+				background: rgba($spx-blue, 0.5)
+				color: white
 
 	.headers
 		+flow-root

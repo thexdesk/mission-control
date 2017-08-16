@@ -310,3 +310,25 @@ function addEventIfNeeded() {
 	if(message.value.length == 1)
 		addEvent();
 }
+
+function show_tab(tab) {
+	const events = document.querySelectorAll('.tab-events');
+	const sections = document.querySelectorAll('.tab-section');
+
+	const tabs = document.querySelectorAll('#tabs *');
+	tabs.forEach(obj => obj.classList.remove('current'));
+	tab.classList.add('current');
+
+	if(tab.innerHTML == 'Events') {
+		events.forEach(obj => obj.style['display'] = '');
+		sections.forEach(obj => obj.style['display'] = 'none');
+	}
+	else if(tab.innerHTML == 'Sections') {
+		events.forEach(obj => obj.style['display'] = 'none');
+		sections.forEach(obj => obj.style['display'] = '');
+	}
+	else if(tab.innerHTML == 'All') {
+		events.forEach(obj => obj.style['display'] = '');
+		sections.forEach(obj => obj.style['display'] = '');
+	}
+}
