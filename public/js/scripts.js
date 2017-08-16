@@ -199,7 +199,7 @@ function saveIfEnter(e) {
 // updates the countdown timer based on launch time
 // runs every second
 function updateCountdown() {
-	if(window.time == null)
+	if(window.time == null || window.hold_scrub == true)
 		return;
 
 	const pad = num => num < 10 ? '0' + num : num;
@@ -244,6 +244,7 @@ function updateCountdown() {
 // popup to ask for launch time (uses <dialog>)
 function setLaunchTime(launchTime) {
 	window.time = launchTime == null ? null : Date.parse(launchTime);
+	window.hold_scrub = false;
 
 	if(window.time == null) {
 		document.getElementById('timer').innerHTML = 'Set launch time';
@@ -290,12 +291,16 @@ function emergency(obj) {
 	const type = obj.innerHTML;
 	let time = document.getElementById('timer').innerHTML.substr(2); // from countdown timer
 
+	if(['Hold', 'Scrub'].includes(type))
+		window.hold_scrub = true
+
 	if(time.substr(-2, 1) == '.')
 		time = time.slice(0, -2);
 
 	children[1].setAttribute('data-content', 'Posted');
 
 	if(window.time != null)
+		children[2].value = time.slice(0, 2);
 		children[3].value = time;
 
 	children[4].value = emergency_messages[type];
