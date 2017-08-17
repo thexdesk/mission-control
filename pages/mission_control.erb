@@ -2,8 +2,8 @@
 <html>
 <head lang=en>
 	<title><%= session[:launch] %> | r/Spacex Mission Control</title>
-	<link rel=icon type=image/png href=/icons/iss-16.png sizes=16x16>
-	<link rel=icon type=image/png href=/icons/iss-32.png sizes=32x32>
+	<link rel=icon type=image/png href=/images/iss-16.png sizes=16x16>
+	<link rel=icon type=image/png href=/images/iss-32.png sizes=32x32>
 	<link rel=stylesheet href=css/all.css>
 	<script async src=https://platform.twitter.com/widgets.js></script>
 	<script src=js/packages.js></script>
@@ -18,7 +18,11 @@
 		<% end %>
 	</div>
 
-	<iframe class=youtube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
+	<% if session[:video] and session[:video] != '' %>
+		<iframe class=youtube src=https://youtube.com/embed/<%= session[:video] %>?autoplay=0></iframe>
+	<% else %>
+		<iframe class=youtube src=''></iframe>
+	<% end %>
 
 	<section class=status>
 		<a href=# onclick='document.body.classList.toggle("interface-left")'>
@@ -36,8 +40,11 @@
 	</section>
 
 	<section class=interface>
-		<a href=logout id=logout><i class='fa fa-sign-out'></i></a>
-		<i id=info-button class='fa fa-info-circle' onclick='document.getElementById("info").showModal()'></i>
+		<span class=icons>
+			<i id=info-button class='fa fa-info-circle' onclick='document.getElementById("info").showModal()'></i>
+			<i id=youtube-button class='fa fa-youtube-play' onclick='setYoutube()'></i>
+			<a href=logout id=logout><i class='fa fa-sign-out'></i></a>
+		</span>
 		<%= render_erb 'sections/interface' %>
 	</section>
 
@@ -57,9 +64,16 @@
 		(in your timezone)
 		<br><br>
 
-		<input type=datetime-local id=datetime step=1><br/><br/> <%# step=1 displays seconds %>
+		<input type=datetime-local id=datetime step=1><br><br> <%# step=1 displays seconds %>
 		<button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
 		<button onclick='setLaunchTime(null)'>Clear timer</button>
+	</dialog>
+
+	<dialog id=yt-dialog>
+		<h2>Enter YouTube link to webcast</h2>
+		<input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'><br><br>
+		<button class=clear>Clear</button>
+		<button class=update>Update</button>
 	</dialog>
 </body>
 </html>

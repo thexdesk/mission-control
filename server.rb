@@ -88,8 +88,11 @@ post '/init' do
   end
 
   # get video id from url
-  session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
-  youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})}x)[1]
+  # blank input doesn't set anything ─ nil or '' displays nothing
+  if params[:video] != ''
+    session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
+    youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})}x)[1]
+  end
   redirect to '/'
 end
 

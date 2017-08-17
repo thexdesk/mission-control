@@ -24,7 +24,7 @@ body
 	&::before
 		content: ''
 		+position(absolute)
-		background: url('/icons/iss.svg') 50% 50% / contain no-repeat
+		background: url('/images/iss.svg') 50% 50% / contain no-repeat
 		opacity: 0.05
 		z-index: -100
 
@@ -108,7 +108,7 @@ body.init
 
 iframe.youtube
 	grid-area: youtube
-	background: #000
+	background: url('/images/youtube.svg') 50% 50% / 50% no-repeat, #000
 	border: none
 	+size(100%)
 
@@ -168,23 +168,30 @@ section.interface
 	overflow-y: scroll
 	+size(null, calc(100vh - #{$gutter}), $gutter $gutter null null)
 
-	i
+	span.icons
+		display: flex
+		+position(absolute, 13px, 13px, null, null)
 		z-index: 1000
-		+size(20px)
 		font-size: 20px
-		opacity: 0.3
-		transition: opacity 200ms
 
-		&:hover
-			opacity: 1
+		> :not(:last-child)
+			margin-right: 1rem
 
-		&#info-button
-			+position(absolute, 13px, 13px, null, null)
-			cursor: help
+		i
+			opacity: 0.3
+			transition: opacity 200ms
 
-	a#logout
-		+position(absolute, 13px, 43px, null, null)
-		color: #000
+			&:hover
+				opacity: 1
+
+			&#info-button
+				cursor: help
+
+			&#youtube-button
+				cursor: pointer
+
+		a#logout
+			color: #000
 
 	#tabs
 		list-style-type: none
@@ -203,6 +210,7 @@ section.interface
 			font-weight: bold
 			font-size: 1rem
 			cursor: pointer
+			transition: background 100ms ease-in
 
 			&:not(:first-of-type)
 				border-left: 0
@@ -210,6 +218,9 @@ section.interface
 			&.current
 				background: rgba($spx-blue, 0.5)
 				color: white
+
+			&:not(.current):hover
+				background: rgba(#eee, 0.5)
 
 	.headers
 		+flow-root
@@ -242,6 +253,9 @@ section.interface
 				a
 					+size(null, null, 0.5rem null 0.5rem 0.5rem, null 0.5rem)
 
+					&:last-of-type
+						padding-right: 0.5rem
+
 	#events
 		+margin(0.5rem, null, 1rem)
 		list-style-type: none
@@ -264,7 +278,7 @@ section.interface
 			.sort-icon
 				+position(absolute, 20%, 0.5rem, null, null)
 				display: inline-block
-				background: url('../icons/sort.svg') center no-repeat
+				background: url('../images/sort.svg') center no-repeat
 				+size(2rem, 60%)
 				+prefix(cursor, grab, webkit, val)
 
@@ -272,10 +286,10 @@ section.interface
 					+prefix(cursor, grabbing, webkit, val)
 
 			&:first-child .sort-icon
-				background: url('../icons/sort-first.svg') center no-repeat
+				background: url('../images/sort-first.svg') center no-repeat
 
 			&:last-child .sort-icon
-				background: url('../icons/sort-last.svg') center no-repeat
+				background: url('../images/sort-last.svg') center no-repeat
 
 			&:first-child:last-child .sort-icon
 				background: none
@@ -331,7 +345,7 @@ section.interface
 
 section.logo
 	grid-area: logo
-	background: url('../icons/logo.png') top left / 100% no-repeat
+	background: url('../images/logo.png') top left / 100% no-repeat
 
 section.twitter
 	grid-area: twitter
@@ -376,11 +390,15 @@ dialog
 		&:hover
 			background: #ccf
 
-	&#launchTime
+	&#launchTime,
+	&#yt-dialog
 		text-align: center
 
 		button
 			display: inline-block
+
+			&:not(:last-of-type)
+				margin-right: 1rem
 
 
 // custom scrollbar in browsers that support it

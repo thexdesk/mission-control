@@ -3,6 +3,9 @@ GlobalVars:
     - $sess_var
     - $message_symbols
 
+Style/AsciiComments:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 
