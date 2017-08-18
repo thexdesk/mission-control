@@ -66,7 +66,7 @@ window.onload = () => {
 	elem.setAttribute('type', 'datetime-local');
 	if(elem.type == 'datetime-local') {
 		const removing = document.getElementById('datetime-format');
-		removing.parentNode.removeChild(removing);
+		removing.parentElement.removeChild(removing);
 	}
 }
 
@@ -106,7 +106,7 @@ function saveEvents() {
 	for(const evnt of events) {
 		const children = evnt.children;
 		const tPM = children[3].value == '' ? '' : children[2].innerHTML + children[3].value;
-		const message = children[4].value;
+		const message = children[5].value;
 
 		if(children[1].getAttribute('data-content') == 'Posted')
 			allEvents.push([tPM, message]);
@@ -346,22 +346,23 @@ function emergency(obj) {
 
 	children[1].setAttribute('data-content', 'Posted');
 
-	if(window.time != null)
-		children[2].value = time.slice(0, 2);
-		children[3].value = time;
+	if(window.time != null) {
+		children[2].innerHTML = time.slice(0, 2);
+		children[3].value = time.includes('.') ? time.slice(2, -2) : time.slice(2);
+	}
 
-	children[4].value = emergency_messages[type];
+	children[5].value = emergency_messages[type];
 	saveEvents();
 }
 
 // messages from standard panel
 function std_message() {
-	addEvent().children[4].value = std_messages[document.getElementById('events-dropdown').value];
+	addEvent().children[5].value = std_messages[document.getElementById('events-dropdown').value];
 }
 
 function addEventIfNeeded() {
 	const firstChild = document.getElementById('events').firstElementChild;
-	const message = firstChild.children[4];
+	const message = firstChild.children[5];
 
 	if(message.value.length == 1)
 		addEvent();
@@ -411,4 +412,14 @@ async function setYoutube() {
 	});
 
 	dialog.close();
+}
+
+function insertTime(obj) {
+	if(window.time != null) {
+		const children = obj.parentElement.children;
+		const time = document.getElementById('timer').innerHTML;
+
+		children[2].innerHTML = time.slice(0, 2);
+		children[3].value = time.includes('.') ? time.slice(2, -2) : time.slice(2);
+	}
 }

@@ -322,10 +322,21 @@ section.interface
 				border: 1px solid rgba(#99f, 0.4)
 
 		input:first-of-type  // T±
-			+size(53px, null, null, null 1.5rem null null)
+			width: 53px
+
+		i.fa-clock-o
+			font-size: 18px
+			margin-right: 0.5rem
+			+position(relative, 1px, null, null, null)
+			cursor: pointer
+			opacity: 0.7
+			transition: opacity 100ms ease-in
+
+			&:hover
+				opacity: 1
 
 		input:last-of-type  // message
-			width: calc(100% - 246px)
+			width: calc(100% - 269px)
 
 	i.fa-upload,
 	i.fa-plus,
