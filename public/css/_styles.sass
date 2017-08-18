@@ -301,16 +301,27 @@ section.interface
 				display: inline-block
 
 				&:first-of-type
-					+size(42px, null, null, null 2px null null)
+					+size(58px, null, null, null 2px null null)
 
 					&::before
-						content: attr(data-content)
+						content: 'Posted'
+						margin-right: 0.4rem
 
 					&[data-content=Posted]
 						color: #090
 
+						&::after
+							font-family: FontAwesome
+							display: inline-block
+							content: '\f046'
+
 					&[data-content=Hidden]
 						color: #c22
+						
+						&::after
+							font-family: FontAwesome
+							display: inline-block
+							content: '\f096'
 
 				&:last-of-type
 					+size(20px, null, null, null 2px null null)
@@ -329,14 +340,14 @@ section.interface
 			margin-right: 0.5rem
 			+position(relative, 1px, null, null, null)
 			cursor: pointer
-			opacity: 0.7
+			opacity: 0.6
 			transition: opacity 100ms ease-in
 
 			&:hover
 				opacity: 1
 
 		input:last-of-type  // message
-			width: calc(100% - 269px)
+			width: calc(100% - 280px)
 
 	i.fa-upload,
 	i.fa-plus,
