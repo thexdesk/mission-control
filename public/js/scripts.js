@@ -212,33 +212,46 @@ function updateCountdown() {
 
 	const sign = launchTime > curTime ? '-' : '+';
 
-	const hours = diff / 3600000 | 0;
+	const days = diff / 86400000 | 0;
+	const hours = diff % 86400000 / 3600000 | 0;
 	const mins = diff % 3600000 / 60000 | 0;
 	const secs = diff % 60000 / 1000 | 0;
 	const tenths = diff % 1000 / 100 | 0;
 
-	// use 61 seconds instead of 60 to make change ASAP
-	if(diff < 61000 && !window.terminalCount) {
+	if(diff < 61000 && window.countdown_interval != 100) {  // <1 minute => 0.1 second
 		clearInterval(window.countdown);
 		window.countdown = setInterval(updateCountdown, 100);
-		window.terminalCount = true;
+		window.countdown_interval = 100;
 	}
-	else if(diff >= 60000 && window.terminalCount) {
+	else if(61000 <= diff && diff < 3660000 && window.countdown_interval != 1000) {  // 1 minute to 1 hour => 1 second
 		clearInterval(window.countdown);
 		window.countdown = setInterval(updateCountdown, 1000);
-		window.terminalCount = false;
+		window.countdown_interval = 1000;
 	}
+	else if(3660000 <= diff && diff < 90000000 && window.countdown_interval != 60000) {  // 1 hour to 1 day => 1 minute
+		clearInterval(window.countdown);
+		window.countdown = setInterval(updateCountdown, 60000);
+		window.countdown_interval = 60000;
+	}
+	else if(diff >= 90000000 && window.countdown_interval != 3600000) {  // >1 day => 1 hour
+		clearInterval(window.countdown);
+		window.countdown = setInterval(updateCountdown, 3600000);
+		window.countdown_interval = 3600000;
+	}
+
 
 	let time;  // placed here for scope
 
-	if(hours > 0)
-		time = hours + 'h ' + mins + 'm';
+	if(days > 0)
+		time = `${days}d ${hours}h`;
+	else if(hours > 0)
+		time = `${hours}h ${mins}m`;
 	else if(mins > 0)
-		time = mins + ':' + pad(secs);
+		time = `${mins}:${pad(secs)}`;
 	else
-		time = secs + '.' + tenths;
+		time = `${secs}.${tenths}`;
 
-	timer.innerHTML = 'T' + sign + time;
+	timer.innerHTML = `T${sign}${time}`;
 }
 
 // popup to ask for launch time (uses <dialog>)
