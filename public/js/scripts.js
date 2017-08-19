@@ -5,9 +5,9 @@
 // remove loading modal
 document.onreadystatechange = () => {
 	if(document.readyState == 'complete') {
-		const loader = document.getElementById('loader');
-		loader.style['opacity'] = 0;
-		setTimeout(() => loader.style['display'] = 'none', 500);
+		const loader = document.getElementById('loader').style;
+		loader['opacity'] = 0;
+		setTimeout(() => loader['display'] = 'none', 500);
 
 		// show info dialog
 		if(!window.noshow)
@@ -17,8 +17,9 @@ document.onreadystatechange = () => {
 
 window.onload = () => {
 	// register dialog element with polyfill
-	for(const dialog of document.querySelectorAll('dialog'))
-		dialogPolyfill.registerDialog(dialog);
+	document.querySelectorAll('dialog').forEach(dialog => {
+		dialogPolyfill.registerDialog(dialog)
+	});
 
 	// register jQuery UI reordering
 	$('#events').sortable({
@@ -31,7 +32,7 @@ window.onload = () => {
 	});
 
 	// register textareas as Markdown editor
-	for(const obj of document.querySelectorAll('textarea')) {
+	document.querySelectorAll('textarea').forEach(obj => {
 		new SimpleMDE({
 			element: obj,
 			initialValue: obj.getAttribute('data-initial') || '',
@@ -47,11 +48,11 @@ window.onload = () => {
 			forceSync: true,
 			spellChecker: false,
 		});
-	}
+	});
 
 	// MDE animation handler
-	$('.fa-upload').each( function() {
-		$(this).on('animationend', () => $(this).removeClass('highlight'));
+	document.querySelectorAll('.fa-upload').forEach(obj => {
+		obj.animationend = () => obj.classList.remove('highlight')
 	});
 
 	// update post stats every 5 minutes
@@ -59,7 +60,7 @@ window.onload = () => {
 
 	// update countdown every second
 	window.countdown = setInterval(updateCountdown, 1000);
-	window.terminalCount = false;
+	window.countdown_interval = 1000;
 
 	// remove format in popup if <input type=datetime-local> is supported
 	const elem = document.createElement('input');
@@ -74,13 +75,10 @@ window.onload = () => {
 function save() {
 	const elem = arguments[0].element;
 
-	const id = elem.id;
-	const value = elem.value;
-
 	$.ajax({
 		method: 'POST',
 		url: 'update',
-		data: { id: id, value: value },
+		data: { id: elem.id, value: elem.value },
 		success: data => {
 			$('#' + id + ' + .editor-toolbar > a[title="Save to reddit"]').addClass('highlight');
 			$('.reddit').html(data);  // data is rendered HTML from reddit
@@ -105,11 +103,12 @@ function saveEvents() {
 	let allEvents = [];
 	for(const evnt of events) {
 		const children = evnt.children;
-		const tPM = children[3].value == '' ? '' : children[2].innerHTML + children[3].value;
-		const message = children[5].value;
 
-		if(children[1].getAttribute('data-content') == 'Posted')
+		if(children[1].getAttribute('data-content') == 'Posted') {
+			const tPM = children[3].value == '' ? '' : children[2].innerHTML + children[3].value;
+			const message = children[5].value;
 			allEvents.push([tPM, message]);
+		}
 	}
 
 	$.ajax({
@@ -134,9 +133,10 @@ function updateStats() {
 // capture tab event and redirect it to the previous row
 function _tabEvent(e, obj) {
 	if(e.keyCode == 9) {  // tab
-		e.preventDefault();
-		if(obj.parentElement !== obj.parentElement.parentElement.firstElementChild)  // if not first row
+		if(obj.parentElement !== obj.parentElement.parentElement.firstElementChild) {  // if not first row
+			e.preventDefault();
 			obj.parentElement.previousElementSibling.children[3].focus();
+		}
 	}
 }
 
@@ -158,7 +158,7 @@ function addEvent() {
 	setTimeout(() => row.classList.remove('hidden'), 0);
 	setTimeout(() => row.classList.add('reverse'), 600);  // for possible removal
 
-	// useful for emergency messages
+	// used for pre-written messages
 	return row;
 }
 
@@ -182,7 +182,9 @@ const hotSwapVals = {
 
 // swap out text with emoji on an input
 function hotSwap(obj) {
-	if(obj.constructor !== HTMLInputElement) throw 'Object must be HTMLInputElement';
+	// prevent binding on non-inputs
+	if(obj.constructor !== HTMLInputElement)
+		throw 'Object must be HTMLInputElement';
 
 	const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
 
@@ -197,7 +199,6 @@ function saveIfEnter(e) {
 }
 
 // updates the countdown timer based on launch time
-// runs every second
 function updateCountdown() {
 	if(window.time == null || window.hold_scrub == true)
 		return;
@@ -208,7 +209,7 @@ function updateCountdown() {
 
 	const curTime = new Date();
 	const launchTime = window.time;
-	const diff = Math.abs(launchTime - curTime)
+	const diff = Math.abs(launchTime - curTime);
 
 	const sign = launchTime > curTime ? '-' : '+';
 
@@ -239,7 +240,6 @@ function updateCountdown() {
 		window.countdown_interval = 3600000;
 	}
 
-
 	let time;  // placed here for scope
 
 	if(days > 0)
@@ -259,9 +259,11 @@ function setLaunchTime(launchTime) {
 	window.time = launchTime == null ? null : Date.parse(launchTime);
 	window.hold_scrub = false;
 
+	// non-strict equality matches undefined
 	if(window.time == null) {
-		document.getElementById('timer').innerHTML = 'Set launch time';
-		document.getElementById('timer').classList.add('unset');
+		const timer = document.getElementById('timer');
+		timer.innerHTML = 'Set launch time';
+		timer.classList.add('unset');
 	}
 	else {
 		document.getElementById('timer').classList.remove('unset');
@@ -281,12 +283,8 @@ function setLaunchTime(launchTime) {
 function setSign(obj) {
 	const val = obj.value;
 
-	if(val[0] == '-') {
-		obj.previousElementSibling.innerHTML = 'T-';
-		obj.value = val.substr(1);
-	}
-	else if(val[0] == '+') {
-		obj.previousElementSibling.innerHTML = 'T+';
+	if(['+', '-'].includes(val[0])) {
+		obj.previousElementSibling.innerHTML = `T${val[0]}`;
 		obj.value = val.substr(1);
 	}
 }
@@ -336,21 +334,22 @@ const std_messages = {
 function emergency(obj) {
 	const children = addEvent().children;
 	const type = obj.innerHTML;
-	let time = document.getElementById('timer').innerHTML.substr(2); // from countdown timer
+	let time = document.getElementById('timer').innerHTML;  // from countdown timer
 
 	if(['Hold', 'Scrub'].includes(type))
-		window.hold_scrub = true
+		window.hold_scrub = true;
 
 	if(time.substr(-2, 1) == '.')
 		time = time.slice(0, -2);
 
-	children[1].setAttribute('data-content', 'Posted');
+	console.log(time);
 
 	if(window.time != null) {
 		children[2].innerHTML = time.slice(0, 2);
-		children[3].value = time.includes('.') ? time.slice(2, -2) : time.slice(2);
+		children[3].value = time.substr(-2, 1) == '.' ? time.slice(2, -2) : time.slice(2);
 	}
 
+	children[1].setAttribute('data-content', 'Posted');
 	children[5].value = emergency_messages[type];
 	saveEvents();
 }
@@ -361,10 +360,7 @@ function std_message() {
 }
 
 function addEventIfNeeded() {
-	const firstChild = document.getElementById('events').firstElementChild;
-	const message = firstChild.children[5];
-
-	if(message.value.length == 1)
+	if(document.getElementById('events').firstElementChild.children[5].value.length == 1)
 		addEvent();
 }
 
@@ -372,22 +368,18 @@ function show_tab(tab) {
 	const events = document.querySelectorAll('.tab-events');
 	const sections = document.querySelectorAll('.tab-section');
 
-	const tabs = document.querySelectorAll('#tabs *');
-	tabs.forEach(obj => obj.classList.remove('current'));
+	document.querySelectorAll('#tabs > *').forEach(obj => obj.classList.remove('current'));
 	tab.classList.add('current');
 
-	if(tab.innerHTML == 'Events') {
-		events.forEach(obj => obj.style['display'] = '');
-		sections.forEach(obj => obj.style['display'] = 'none');
-	}
-	else if(tab.innerHTML == 'Sections') {
-		events.forEach(obj => obj.style['display'] = 'none');
-		sections.forEach(obj => obj.style['display'] = '');
-	}
-	else if(tab.innerHTML == 'All') {
-		events.forEach(obj => obj.style['display'] = '');
-		sections.forEach(obj => obj.style['display'] = '');
-	}
+	const val = tab.innerHTML;
+
+	const show = {
+		events: ['Events', 'All'].includes(val),
+		sections: ['Sections', 'All'].includes(val)
+	};
+
+	events.forEach(obj => obj.style['display'] = show.events ? '' : 'none');
+	sections.forEach(obj => obj.style['display'] = show.sections ? '' : 'none');
 }
 
 async function setYoutube() {
@@ -398,12 +390,13 @@ async function setYoutube() {
 		dialog.querySelector('button.update').onclick = () => {
 			const url = dialog.querySelector('input').value;
 			const id = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})/);
-			if(id) resolve(id[1]);
+			if(id)
+				resolve(id[1]);
 		};
 		dialog.querySelector('button.clear').onclick = () => resolve('');
 	});
 
-	document.querySelector('.youtube').setAttribute('src', id=='' ? '' : `https://youtube.com/embed/${id}?autoplay=0`);
+	document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');
 
 	$.ajax({
 		method: 'POST',
