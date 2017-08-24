@@ -17,10 +17,6 @@ use Redd::Middleware,
   scope:        %w[identity submit edit read],
   via:          '/auth'
 
-# session variables
-$sess_var = {}
-$sess_var.default = {}
-
 # OAuth and main page
 get '/' do
   if session[:support]

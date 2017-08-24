@@ -1,6 +1,5 @@
 GlobalVars:
   AllowedVariables:
-    - $sess_var
     - $message_symbols
 
 Style/AsciiComments:

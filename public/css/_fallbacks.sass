@@ -6,6 +6,9 @@
 		display: flow-root
 		visibility: visible
 	@supports not (display: flow-root)
+		display: block
+		visibility: visible
+
 		&::after
 			content: ''
 			display: table

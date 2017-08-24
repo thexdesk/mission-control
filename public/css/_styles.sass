@@ -84,22 +84,21 @@ body.init
 		text-align: left
 		padding: 0.5rem 0.5rem 0 0
 
-	td:first-child:last-child  // last row
-		text-align: center
-		padding-right: 0
+		&:last-child  // last row
+			text-align: center
+			padding-right: 0
 
 	input
 		background: rgba(#fff, 0.7)
 
-	input[type=submit]
-		font-size: 1rem
-		padding: 0.5rem
-		background: rgba(#fff, 0.7)
-		transition: background 100ms ease-in
+		&[type=submit]
+			font-size: 1rem
+			padding: 0.5rem
+			transition: background 100ms ease-in
 
-		&:hover
-			background: #ccf
-	
+			&:hover
+				background: #ccf
+
 	select
 		width: 100%
 		+border(1px solid #ddd 3px)
@@ -390,18 +389,16 @@ input
 		text-align: center
 
 dialog
-	h1
-		text-align: center
-
+	h1,
 	h3
 		text-align: center
-		margin-bottom: 1rem
-	
+
+	h3,
 	p
 		margin-bottom: 1rem
 
-		&:last-of-type
-			text-align: center
+	p:last-of-type
+		text-align: center
 	
 	button
 		@extend input
@@ -421,7 +418,6 @@ dialog
 
 			&:not(:last-of-type)
 				margin-right: 1rem
-
 
 // custom scrollbar in browsers that support it
 ::-webkit-scrollbar-track
