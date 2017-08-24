@@ -3,14 +3,6 @@ require 'date'
 require 'rest-client'
 require 'json'
 
-# for swapping in events if it wasn't caught by JS client-side
-$message_symbols = {
-  ':music:' => '♫',
-  ':rocket:' => '🚀',
-  ':sat:' => '🛰',
-  ':satellite:' => '🛰'
-}
-
 # take a file name, return rendered HTML from .erb file
 def render_erb(fname)
   file = File.read("#{fname}.erb")
@@ -76,9 +68,6 @@ def format_events(events)
   events.each do |event|
     event = event[1]
     if event[1] == '' then next end # only display events with message
-
-    # substitute where possible
-    $message_symbols.each { |k, v| event[1][k] &&= v }
     str += "\n| #{event[0]} | #{event[1]} |"
   end
   str

@@ -175,9 +175,25 @@ function removeEvent() {
 // if modifying ─ keep in mind these do not get escaped before passing to regex
 const hotSwapVals = {
 	':music:': '♫',
+	':tunes:': '♫',
 	':rocket:': '🚀',
 	':sat:': '🛰',
-	':satellite:': '🛰'
+	':satellite:': '🛰',
+	':sun:': '☀️',
+	':sunny:': '☀️',
+	':cloud:': '☁️',
+	':cloudy:': '☁️',
+	':fog:': '🌫️',
+	':foggy:': '🌫️',
+	':rain:': '🌧️',
+	':rainy:': '🌧️',
+	':thunder:': '⛈️',
+	':lightning:': '⛈️',
+	':yes:': '✔️',
+	':ok:': '️️️✔️',
+	':check:': '✔️',
+	':no:': '❌',
+	':x:': '❌'
 };
 
 // swap out text with emoji on an input
@@ -374,12 +390,12 @@ function show_tab(tab) {
 	const val = tab.innerHTML;
 
 	const show = {
-		events: ['Events', 'All'].includes(val),
-		sections: ['Sections', 'All'].includes(val)
+		events: ['Events', 'All'].includes(val) ? '' : 'none',
+		sections: ['Sections', 'All'].includes(val) ? '' : 'none'
 	};
 
-	events.forEach(obj => obj.style['display'] = show.events ? '' : 'none');
-	sections.forEach(obj => obj.style['display'] = show.sections ? '' : 'none');
+	events.forEach(obj => obj.style['display'] = show.events);
+	sections.forEach(obj => obj.style['display'] = show.sections);
 }
 
 async function setYoutube() {
