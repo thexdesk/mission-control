@@ -20,42 +20,44 @@
 		</h3>
 
 		<h3 class=right>
-			<%# various events %>
-			<select id=events-dropdown>
-				<option>LOX loading started</option>
-				<option>LOX loading finished</option>
-				<option>RP-1 loading started</option>
-				<option>RP-1 loading finished</option>
-				<option>Statup (T-60)</option>
-				<option>Liftoff</option>
-				<option>Max Q</option>
-				<option>MECO</option>
-				<option>Stage separation</option>
-				<option>Second stage ignition</option>
-				<option>Boostback startup</option>
-				<option>Boostback shutdown</option>
-				<option>Fairing separation</option>
-				<option>Reentry startup</option>
-				<option>Reentry shutdown</option>
-				<option>Landing startup</option>
-				<option>First stage transonic</option>
-				<option>Landing success</option>
-				<option>Landing failure</option>
-				<option>SECO</option>
-				<option>Second stage relight</option>
-				<option>SECO2</option>
-				<option>Dragon deploy</option>
-				<option>Payload deploy</option>
-				<option>Launch success</option>
-				<option>Launch failure</option>
-				<option>Launch director poll</option>
-				<option>Launch director "go"</option>
-				<option>Pressure OK</option>
-				<option>Ignition</option>
-				<option>Tower cleared</option>
-			</select>
+			<span> <%# only here for row-reverse in flex %>
+				<%# various events %>
+				<select id=events-dropdown>
+					<option>LOX loading started</option>
+					<option>LOX loading finished</option>
+					<option>RP-1 loading started</option>
+					<option>RP-1 loading finished</option>
+					<option>Statup (T-60)</option>
+					<option>Liftoff</option>
+					<option>Max Q</option>
+					<option>MECO</option>
+					<option>Stage separation</option>
+					<option>Second stage ignition</option>
+					<option>Boostback startup</option>
+					<option>Boostback shutdown</option>
+					<option>Fairing separation</option>
+					<option>Reentry startup</option>
+					<option>Reentry shutdown</option>
+					<option>Landing startup</option>
+					<option>First stage transonic</option>
+					<option>Landing success</option>
+					<option>Landing failure</option>
+					<option>SECO</option>
+					<option>Second stage relight</option>
+					<option>SECO2</option>
+					<option>Dragon deploy</option>
+					<option>Payload deploy</option>
+					<option>Launch success</option>
+					<option>Launch failure</option>
+					<option>Launch director poll</option>
+					<option>Launch director "go"</option>
+					<option>Pressure OK</option>
+					<option>Ignition</option>
+					<option>Tower cleared</option>
+				</select>
 
-			<button onclick=std_message()>Add event</button>
+				<button onclick=std_message()>Add event</button>
+			</span>
 
 			<%# the "oh fuck" panel %>
 			<span>

@@ -226,13 +226,25 @@ section.interface
 		+flow-root
 
 		.left
-			float: left
+			@media (max-width: 1649px)
+				margin-bottom: 0.5rem
+
+			@media (min-width: 1650px)
+				float: left
+
 			background: rgba(#fff, 0.7)
 			border-radius: 8px
+			+width(fit-content)
 
 		.right
-			float: right
+			@media (max-width: 1649px)
+				flex-direction: row-reverse
+
+			@media (min-width: 1650px)
+				float: right
+
 			display: flex
+			+width(fit-content)
 
 			select, button
 				background: rgba(#fff, 0.7)
@@ -244,11 +256,14 @@ section.interface
 			button:hover
 				background: $spx-blue-alpha
 
-			span
+			span:last-of-type
 				text-transform: uppercase
 				background: rgba(#fff, 0.7)
 				border-radius: 8px
 				display: flex
+
+				@media (max-width: 1649px)
+					margin-right: 0.5rem
 
 				a
 					+size(null, null, 0.5rem null 0.5rem 0.5rem, null 0.5rem)
