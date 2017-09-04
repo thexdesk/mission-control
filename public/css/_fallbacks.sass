@@ -13,10 +13,3 @@
 			content: ''
 			display: table
 			clear: both
-
-=fit-content($axis)
-	@if $axis == height or $axis == both
-		+prefix(height, fit-content, webkit moz, val)
-
-	@if $axis == width or $axis == both
-		+prefix(width, fit-content, webkit moz, val)

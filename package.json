@@ -1,0 +1,27 @@
+{
+  "name": "r-spacex-mission-control",
+  "description": "r/SpaceX launch thread interface",
+  "author": "Jacob Pratt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/r-spacex/mission-control.git"
+  },
+  "bugs": {
+    "url": "https://github.com/r-spacex/mission-control/issues"
+  },
+  "keywords": [
+    "spacex",
+    "reddit",
+    "webapp",
+    "sinatra"
+  ],
+  "devDependencies": {
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^1.0.2",
+    "rollup-stream": "^1.23.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

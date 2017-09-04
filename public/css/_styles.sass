@@ -234,7 +234,7 @@ section.interface
 
 			background: rgba(#fff, 0.7)
 			border-radius: 8px
-			+width(fit-content)
+			width: fit-content
 
 		.right
 			@media (max-width: 1649px)
@@ -244,7 +244,7 @@ section.interface
 				float: right
 
 			display: flex
-			+width(fit-content)
+			width: fit-content
 
 			select, button
 				background: rgba(#fff, 0.7)
@@ -295,10 +295,10 @@ section.interface
 				display: inline-block
 				background: url('../images/sort.svg') center no-repeat
 				+size(2rem, 60%)
-				+prefix(cursor, grab, webkit, val)
+				cursor: grab
 
 				&:active
-					+prefix(cursor, grabbing, webkit, val)
+					cursor: grabbing
 
 			&:first-child .sort-icon
 				background: url('../images/sort-first.svg') center no-repeat

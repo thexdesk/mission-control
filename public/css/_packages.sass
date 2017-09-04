@@ -202,7 +202,7 @@ dialog.fixed
 			z-index: 4
 			background: 0 0 !important
 			border: none !important
-			+no-select
+			user-select: none
 
 		&-background
 			+position(absolute, 0, null, 0, null)
@@ -231,7 +231,7 @@ dialog.fixed
 		z-index: 2
 		position: relative
 		overflow: visible
-		+supports(-webkit-tap-highlight-color, transparent)
+		-webkit-tap-highlight-color: transparent
 		font-variant-ligatures: none
 
 	&-wrap pre
@@ -286,14 +286,11 @@ dialog.fixed
 		background: #d7d4f0
 
 	&-line
-		+selection
+		::selection
 			background: #d7d4f0
 
 		> span
-			+selection
-			> span::-moz-selection,
-				background: #d7d4f0
-
+			::selection,
 			> span::selection
 				background: #d7d4f0
 
@@ -333,7 +330,7 @@ span.CodeMirror-selectedtext
 .editor-toolbar
 	position: relative
 	opacity: 1
-	+no-select
+	user-select: none
 	padding: 0
 	+border(1px solid #ddd 4px 4px 0 0)
 	border-bottom: none

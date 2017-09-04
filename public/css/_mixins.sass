@@ -15,22 +15,6 @@
 	+large
 		#{$prop}: $large
 
-// prefixes made easy
-=prefix($property, $value, $prefixes: (), $prop-val: prop)
-	@if $prop-val == prop or $prop-val == property
-		@each $prefix in $prefixes
-			+supports(#{'-' + $prefix + '-' + $property}, $value)
-
-	@else if $prop-val == val or $prop-val == value
-		@each $prefix in $prefixes
-			+supports(#{$property}, #{'-' + $prefix + '-' + $value})
-
-	+supports(#{$property}, $value)
-
-=supports($prop, $val)
-	@supports ($prop: $val)
-		#{$prop}: $val
-
 =fonts
 	font-family: Arial, "Liberation Sans", sans-serif
 	font-size: 1rem
@@ -41,36 +25,14 @@
 	align-items: center
 
 =width($width, $min: null, $max: null)
-	@if $width == fit-content
-		+fit-content(width)
-	@else
-		width: $width
-
-	@if $min == fit-content
-		+fit-content(min-width)
-	@else
-		min-width: $min
-
-	@if $max == fit-content
-		+fit-content(max-width)
-	@else
-		max-width: $max
+	width: $width
+	min-width: $min
+	max-width: $max
 
 =height($height, $min: null, $max: null)
-	@if $height == fit-content
-		+fit-content(height)
-	@else
-		height: $height
-
-	@if $min == fit-content
-		+fit-content(min-height)
-	@else
-		min-height: $min
-
-	@if $max == fit-content
-		+fit-content(max-height)
-	@else
-		max-height: $max
+	height: $height
+	min-height: $min
+	max-height: $max
 
 =padding($top: null, $right: $top, $bottom: $top, $left: $right)
 	$list: $top, $right, $bottom, $left
@@ -137,17 +99,3 @@
 	right: $right
 	bottom: $bottom
 	left: $left
-
-=antialias
-	+supports(-moz-osx-font-smoothing, grayscale)
-	+prefix(font-smoothing, antialiased, webkit)
-
-=selection
-	::-moz-selection
-		@content
-
-	::selection
-		@content
-
-=no-select
-	+prefix(user-select, none, webkit moz ms)
