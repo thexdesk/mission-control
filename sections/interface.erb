@@ -1,114 +1,114 @@
 <ul id=tabs>
-	<li onclick=showTab(this) class=current>All</li>
-	<li onclick=showTab(this)>Events</li>
-	<li onclick=showTab(this)>Sections</li>
+    <li onclick=showTab(this) class=current>All</li>
+    <li onclick=showTab(this)>Events</li>
+    <li onclick=showTab(this)>Sections</li>
 </ul>
 
 
 <section class=tab-section>
-	<textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
-	<textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
+    <textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else '### Watching the launch live' end %>'></textarea>
 </section>
 
 <section class=tab-events>
-	<div class=headers>
-		<h3 class=left>
-			<i class='fa fa-upload' title='Save to reddit' onclick='saveEvents()'></i>
-			### Live Updates
-			<i class='fa fa-minus' title='Remove top event' onclick='removeEvent()'></i>
-			<i class='fa fa-plus' title='Add event at top' onclick='addEvent()'></i>
-		</h3>
+    <div class=headers>
+        <h3 class=left>
+            <i class='fa fa-upload' title='Save to reddit' onclick='saveEvents()'></i>
+            ### Live Updates
+            <i class='fa fa-minus' title='Remove top event' onclick='removeEvent()'></i>
+            <i class='fa fa-plus' title='Add event at top' onclick='addEvent()'></i>
+        </h3>
 
-		<h3 class=right>
-			<span> <%# only here for row-reverse in flex %>
-				<%# various events %>
-				<select id=events-dropdown>
-					<option>LOX loading started</option>
-					<option>LOX loading finished</option>
-					<option>RP-1 loading started</option>
-					<option>RP-1 loading finished</option>
-					<option>Statup (T-60)</option>
-					<option>Liftoff</option>
-					<option>Max Q</option>
-					<option>MECO</option>
-					<option>Stage separation</option>
-					<option>Second stage ignition</option>
-					<option>Boostback startup</option>
-					<option>Boostback shutdown</option>
-					<option>Fairing separation</option>
-					<option>Reentry startup</option>
-					<option>Reentry shutdown</option>
-					<option>Landing startup</option>
-					<option>First stage transonic</option>
-					<option>Landing success</option>
-					<option>Landing failure</option>
-					<option>SECO</option>
-					<option>Second stage relight</option>
-					<option>SECO2</option>
-					<option>Dragon deploy</option>
-					<option>Payload deploy</option>
-					<option>Launch success</option>
-					<option>Launch failure</option>
-					<option>Launch director poll</option>
-					<option>Launch director "go"</option>
-					<option>Pressure OK</option>
-					<option>Ignition</option>
-					<option>Tower cleared</option>
-				</select>
+        <h3 class=right>
+            <span> <%# only here for row-reverse in flex %>
+                <%# various events %>
+                <select id=events-dropdown>
+                    <option>LOX loading started</option>
+                    <option>LOX loading finished</option>
+                    <option>RP-1 loading started</option>
+                    <option>RP-1 loading finished</option>
+                    <option>Statup (T-60)</option>
+                    <option>Liftoff</option>
+                    <option>Max Q</option>
+                    <option>MECO</option>
+                    <option>Stage separation</option>
+                    <option>Second stage ignition</option>
+                    <option>Boostback startup</option>
+                    <option>Boostback shutdown</option>
+                    <option>Fairing separation</option>
+                    <option>Reentry startup</option>
+                    <option>Reentry shutdown</option>
+                    <option>Landing startup</option>
+                    <option>First stage transonic</option>
+                    <option>Landing success</option>
+                    <option>Landing failure</option>
+                    <option>SECO</option>
+                    <option>Second stage relight</option>
+                    <option>SECO2</option>
+                    <option>Dragon deploy</option>
+                    <option>Payload deploy</option>
+                    <option>Launch success</option>
+                    <option>Launch failure</option>
+                    <option>Launch director poll</option>
+                    <option>Launch director "go"</option>
+                    <option>Pressure OK</option>
+                    <option>Ignition</option>
+                    <option>Tower cleared</option>
+                </select>
 
-				<button onclick=std_message()>Add event</button>
-			</span>
+                <button onclick=std_message()>Add event</button>
+            </span>
 
-			<%# the "oh fuck" panel %>
-			<span>
-				<a href=# onclick=emergency(this)>RUD</a>
-				<a href=# onclick=emergency(this)>Hold</a>
-				<a href=# onclick=emergency(this)>Scrub</a>
-			</span>
-		</h3>
-	</div>
+            <%# the "oh fuck" panel %>
+            <span>
+                <a href=# onclick=emergency(this)>RUD</a>
+                <a href=# onclick=emergency(this)>Hold</a>
+                <a href=# onclick=emergency(this)>Scrub</a>
+            </span>
+        </h3>
+    </div>
 
-	<ul id=events>
-		<%# fetch from server if possible  %>
-		<% if session[:events] %>
-			<% events = session[:events] %>
-			<% if events != nil %>
-				<% events.each do |event| %>
-					<% event = event[1] %>
-					<% if event[1] == '' then next end %>
-					<% $message_symbols.each do |k,v| event[1][k] &&= v end %>
-					<li class=reverse><i class=sort-icon></i>
-						<span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
-						<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[0][0..1] %></span><input value='<%= event[0][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
-						<i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-						Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
-				<% end %>
-			<% end %>
-		<% else %>
-		<%# nothing stored on server, give a single blank event %>
-			<li class=reverse><i class=sort-icon></i>
-				<span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
-				<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
-				<i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-				Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
-			</li>
-		<% end %>
-	</ul>
+    <ul id=events>
+        <%# fetch from server if possible  %>
+        <% if session[:events] %>
+            <% events = session[:events] %>
+            <% if events != nil %>
+                <% events.each do |event| %>
+                    <% event = event[1] %>
+                    <% if event[1] == '' then next end %>
+                    <% $message_symbols.each do |k,v| event[1][k] &&= v end %>
+                    <li class=reverse><i class=sort-icon></i>
+                        <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
+                        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[0][0..1] %></span><input value='<%= event[0][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
+                        <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
+                        Message: <input value='<%= event[1].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+                <% end %>
+            <% end %>
+        <% else %>
+        <%# nothing stored on server, give a single blank event %>
+            <li class=reverse><i class=sort-icon></i>
+                <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
+                <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
+                <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
+                Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+            </li>
+        <% end %>
+    </ul>
 </section>
 
 <section class=tab-section>
-	<textarea id=stats data-initial='<%= if session[:stats] then session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
-	<textarea id=mission data-initial='<%= if session[:mission] then session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
-	<textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
-	<textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
-	<textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
+    <textarea id=stats data-initial='<%= if session[:stats] then session[:stats].gsub("'", "&apos;") else '### Stats' end %>'></textarea>
+    <textarea id=mission data-initial='<%= if session[:mission] then session[:mission].gsub("'", "&apos;") else '### Mission' end %>'></textarea>
+    <textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else '### Landing Attempt' end %>'></textarea>
+    <textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else '### Resources' end %>'></textarea>
+    <textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else '### Participate in the discussion!' end %>'></textarea>
 </section>
 
 <template id=event-template>
-	<li class=hidden><i class=sort-icon></i>
-		<span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Hidden'></span>
-		<span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
-		<i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-		Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
-	</li>
+    <li class=hidden><i class=sort-icon></i>
+        <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Hidden'></span>
+        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
+        <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
+        Message: <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
+    </li>
 </template>

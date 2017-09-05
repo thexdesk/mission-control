@@ -2,14 +2,14 @@
 // it should be regularly updated to match browser support
 
 =flow-root
-	@supports (display: flow-root)
-		display: flow-root
-		visibility: visible
-	@supports not (display: flow-root)
-		display: block
-		visibility: visible
+    @supports (display: flow-root)
+        display: flow-root
+        visibility: visible
+    @supports not (display: flow-root)
+        display: block
+        visibility: visible
 
-		&::after
-			content: ''
-			display: table
-			clear: both
+        &::after
+            content: ''
+            display: table
+            clear: both

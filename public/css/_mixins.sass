@@ -1,101 +1,101 @@
 // 1500px breakpoint
 =small
-	@media (max-width: 1499px)
-		@content
+    @media (max-width: 1499px)
+        @content
 
 =large
-	@media (min-width: 1500px)
-		@content
+    @media (min-width: 1500px)
+        @content
 
 // single declaration for small and large screens
 =responsive($prop, $small, $large)
-	+small
-		#{$prop}: $small
+    +small
+        #{$prop}: $small
 
-	+large
-		#{$prop}: $large
+    +large
+        #{$prop}: $large
 
 =fonts
-	font-family: Arial, "Liberation Sans", sans-serif
-	font-size: 1rem
+    font-family: Arial, "Liberation Sans", sans-serif
+    font-size: 1rem
 
 =flex-center
-	display: flex
-	justify-content: center
-	align-items: center
+    display: flex
+    justify-content: center
+    align-items: center
 
 =width($width, $min: null, $max: null)
-	width: $width
-	min-width: $min
-	max-width: $max
+    width: $width
+    min-width: $min
+    max-width: $max
 
 =height($height, $min: null, $max: null)
-	height: $height
-	min-height: $min
-	max-height: $max
+    height: $height
+    min-height: $min
+    max-height: $max
 
 =padding($top: null, $right: $top, $bottom: $top, $left: $right)
-	$list: $top, $right, $bottom, $left
-	$num-null: num-null($list)
+    $list: $top, $right, $bottom, $left
+    $num-null: num-null($list)
 
-	@if $num-null != 0
-		padding-top: $top
-		padding-right: $right
-		padding-bottom: $bottom
-		padding-left: $left
+    @if $num-null != 0
+        padding-top: $top
+        padding-right: $right
+        padding-bottom: $bottom
+        padding-left: $left
 
-	@else if $top == $right and $right == $bottom and $bottom == $left
-		padding: $top
+    @else if $top == $right and $right == $bottom and $bottom == $left
+        padding: $top
 
-	@else if $top == $bottom and $left == $right
-		padding: $top $right
+    @else if $top == $bottom and $left == $right
+        padding: $top $right
 
-	@else if $top != $bottom and $left == $right
-		padding: $top $right $bottom
+    @else if $top != $bottom and $left == $right
+        padding: $top $right $bottom
 
-	@else
-		padding: $top $right $bottom $left
+    @else
+        padding: $top $right $bottom $left
 
 =margin($top: null, $right: $top, $bottom: $top, $left: $right)
-	$list: $top, $right, $bottom, $left
-	$num-null: num-null($list)
+    $list: $top, $right, $bottom, $left
+    $num-null: num-null($list)
 
-	@if $num-null != 0
-		margin-top: $top
-		margin-right: $right
-		margin-bottom: $bottom
-		margin-left: $left
+    @if $num-null != 0
+        margin-top: $top
+        margin-right: $right
+        margin-bottom: $bottom
+        margin-left: $left
 
-	@else if $top == $right and $right == $bottom and $bottom == $left
-		margin: $top
+    @else if $top == $right and $right == $bottom and $bottom == $left
+        margin: $top
 
-	@else if $top == $bottom and $left == $right
-		margin: $top $right
+    @else if $top == $bottom and $left == $right
+        margin: $top $right
 
-	@else if $top != $bottom and $left == $right
-		margin: $top $right $bottom
+    @else if $top != $bottom and $left == $right
+        margin: $top $right $bottom
 
-	@else
-		margin: $top $right $bottom $left
+    @else
+        margin: $top $right $bottom $left
 
 =size($width, $height: $width, $padding: null, $margin: null)
-	+width($width...)
-	+height($height...)
-	+padding($padding...)
-	+margin($margin...)
+    +width($width...)
+    +height($height...)
+    +padding($padding...)
+    +margin($margin...)
 
 =border($list)
-	@if length($list) >= 4
-		border: slice($list, 1, 3)
-		border-radius: slice($list, 4)
+    @if length($list) >= 4
+        border: slice($list, 1, 3)
+        border-radius: slice($list, 4)
 
-	@else
-		border: $list
+    @else
+        border: $list
 
 // can use `null` to skip a certain value
 =position($val, $top: 0, $right: 0, $bottom: 0, $left: 0)
-	position: $val
-	top: $top
-	right: $right
-	bottom: $bottom
-	left: $left
+    position: $val
+    top: $top
+    right: $right
+    bottom: $bottom
+    left: $left

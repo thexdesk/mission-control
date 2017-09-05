@@ -44,29 +44,29 @@ const messages = {
 
 // messages from emergency panel
 export function emergency(obj) {
-	const children = addEvent().children;
-	const type = obj.innerHTML;
-	let time = document.getElementById('timer').innerHTML;  // from countdown timer
+    const children = addEvent().children;
+    const type = obj.innerHTML;
+    let time = document.getElementById('timer').innerHTML;  // from countdown timer
 
-	if(['Hold', 'Scrub'].includes(type))
-		window.hold_scrub = true;
+    if(['Hold', 'Scrub'].includes(type))
+        window.hold_scrub = true;
 
-	if(time.substr(-2, 1) == '.')
-		time = time.slice(0, -2);
+    if(time.substr(-2, 1) == '.')
+        time = time.slice(0, -2);
 
-	if(window.time != null) {
-		children[2].innerHTML = time.slice(0, 2);
-		children[3].value = time.substr(-2, 1) == '.' ? time.slice(2, -2) : time.slice(2);
-	}
+    if(window.time != null) {
+        children[2].innerHTML = time.slice(0, 2);
+        children[3].value = time.substr(-2, 1) == '.' ? time.slice(2, -2) : time.slice(2);
+    }
 
-	children[1].setAttribute('data-content', 'Posted');
-	children[5].value = messages.emergency[type];
-	saveEvents();
+    children[1].setAttribute('data-content', 'Posted');
+    children[5].value = messages.emergency[type];
+    saveEvents();
 }
 
 // messages from standard panel
 export function std_message() {
     const child = addEvent().children[5];
     const key = document.getElementById('events-dropdown').value;
-	child.value = messages.standard[key];
+    child.value = messages.standard[key];
 }

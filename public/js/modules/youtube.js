@@ -1,24 +1,24 @@
 export async function setYoutube() {
-	const dialog = document.getElementById('yt-dialog');
-	dialog.showModal();
+    const dialog = document.getElementById('yt-dialog');
+    dialog.showModal();
 
-	const id = await new Promise(resolve => {
-		dialog.querySelector('button.update').onclick = () => {
-			const url = dialog.querySelector('input').value;
-			const id = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})/);
-			if(id)
-				resolve(id[1]);
-		};
-		dialog.querySelector('button.clear').onclick = () => resolve('');
-	});
+    const id = await new Promise(resolve => {
+        dialog.querySelector('button.update').onclick = () => {
+            const url = dialog.querySelector('input').value;
+            const id = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})/);
+            if(id)
+                resolve(id[1]);
+        };
+        dialog.querySelector('button.clear').onclick = () => resolve('');
+    });
 
-	document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');
+    document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');
 
-	$.ajax({
-		method: 'POST',
-		url: 'update',
-		data: { id: 'video', value: id }
-	});
+    $.ajax({
+        method: 'POST',
+        url: 'update',
+        data: { id: 'video', value: id }
+    });
 
-	dialog.close();
+    dialog.close();
 }
