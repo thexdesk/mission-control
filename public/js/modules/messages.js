@@ -51,7 +51,7 @@ export function emergency(obj) {
     if(['Hold', 'Scrub'].includes(type))
         window.hold_scrub = true;
 
-    if(time.substr(-2, 1) == '.')
+    if(time.substr(-2, 1) === '.')
         time = time.slice(0, -2);
 
     if(window.time != null) {

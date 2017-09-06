@@ -37,3 +37,13 @@ export function datetimeSupport() {
         removing.parentElement.removeChild(removing);
     }
 }
+
+export function removeLoadingModal() {
+    const loader = document.getElementById('loader');
+    loader.style['opacity'] = 0;
+    setTimeout(() => loader.parentNode.removeChild(loader), 500);
+
+    // show info dialog
+    if(!window.noshow)
+        document.getElementById('info').showModal();
+}

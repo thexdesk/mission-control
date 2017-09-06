@@ -21,7 +21,5 @@ export function registerMDEs() {
     });
 
     // MDE animation handler
-    document.querySelectorAll('.fa-upload').forEach(obj => {
-        obj.animationend = () => obj.classList.remove('highlight');
-    });
+    document.querySelectorAll('.fa-upload').forEach(obj => obj.animationend = () => obj.classList.remove('highlight'));
 }

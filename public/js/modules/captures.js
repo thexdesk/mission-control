@@ -2,13 +2,13 @@ import { saveEvents } from './reddit';
 
 // bound on event inputs
 export function saveIfEnter(e) {
-    if(e.keyCode == 13)  // enter
+    if(e.keyCode === 13)  // enter
         saveEvents()
 }
 
 // capture tab event and redirect it to the previous row
 export function _tabEvent(e, obj) {
-    if(e.keyCode == 9) {  // tab
+    if(e.keyCode === 9) {  // tab
         if(obj.parentElement !== obj.parentElement.parentElement.firstElementChild) {  // if not first row
             e.preventDefault();
             obj.parentElement.previousElementSibling.children[3].focus();
