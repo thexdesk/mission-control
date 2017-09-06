@@ -12,6 +12,9 @@ dialog
         display: block
 
     &::backdrop,
+        +position(fixed)
+        background: rgba(#000, 0.8)
+
     + .backdrop
         +position(fixed)
         background: rgba(#000, 0.8)
