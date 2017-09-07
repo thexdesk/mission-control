@@ -50,7 +50,6 @@ Mission Control uses [Sass](http://sass-lang.com/), which is located in the [`/p
 
 All packages are located in the [`/public/js/packages`](https://github.com/r-spacex/mission-control/tree/master/public/js/packages). Mission Control currently uses the following packages.
 
-- [jQuery](https://jquery.com/)
 - [Sortable](https://github.com/RubaXa/Sortable)
 - [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
 - [Dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill)
@@ -59,6 +58,11 @@ All packages are located in the [`/public/js/packages`](https://github.com/r-spa
 
 All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules). The following modules currently exist, with the relevent exports.
 
+- [`ajax`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/ajax.js)
+    - `ajax.timeout` (on POST and GET requests)
+    - `ajax.get()`
+    - `ajax.post()`
+    - `ajax._request()` (helper function)
 - [`auto-register`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/auto-register.js)
     - `autoRegisterDialog()`
 - [`captues`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/captures.js)
@@ -85,10 +89,10 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
     - `emergency()`,
     - `std_message()`
 - [`reddit`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/reddit.js)
-    - `save()`
-    - `saveEvents()`
-    - `createPost()`
-    - `updateStats()`
+    - `async save()`
+    - `async saveEvents()`
+    - `async createPost()`
+    - `async updateStats()`
 - [`ui`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/ui.js)
     - `showTab()`
     - `createSortable()`

@@ -5,7 +5,7 @@ import { updateCountdown, setLaunchTime, insertTime } from './modules/countdown'
 import { showTab, createSortable, datetimeSupport, removeLoadingModal } from './modules/ui';
 import { emergency, std_message } from './modules/messages';
 import { saveIfEnter, _tabEvent, setSign } from './modules/captures';
-import { hotSwap } from './modules/hotswap.js';
+import { hotSwap } from './modules/hotswap';
 import { createIntervals } from './modules/intervals';
 import { registerMDEs } from './modules/mde';
 import { setYoutube } from './modules/youtube';

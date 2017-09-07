@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# show stdout in logs
+$stdout.sync = true
+
 require 'sinatra'
 require 'redd/middleware'
 require './helper_functions'
@@ -94,6 +97,9 @@ end
 
 # receive updates
 post '/update' do
+  params = JSON.parse(request.body.read, symbolize_names: true)
+  puts params
+
   session[params[:id].to_sym] = params[:value]
   update_post unless %w[time launch video].include? params[:id]
 end

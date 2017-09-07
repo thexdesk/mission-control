@@ -1,3 +1,5 @@
+import { ajax } from './ajax';
+
 // updates the countdown timer based on launch time
 export function updateCountdown() {
     if(window.time == null || window.hold_scrub == true)
@@ -72,10 +74,10 @@ export function setLaunchTime(launchTime) {
 
     document.getElementById('launchTime').close();
 
-    $.ajax({
-        method: 'POST',
-        url: 'update',
-        data: { id: 'time', value: window.time }
+    // not awaiting anything
+    ajax.post('update', {
+        id: 'time',
+        value: window.time
     });
 }
 

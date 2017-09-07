@@ -30,6 +30,6 @@ export function removeEvent() {
 }
 
 export function addEventIfNeeded() {
-    if(document.getElementById('events').firstElementChild.children[5].value.length > 0)
+    if(document.getElementById('events').firstElementChild.children[6].value.length > 0)
         addEvent();
 }

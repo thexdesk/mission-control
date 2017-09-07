@@ -66,7 +66,6 @@ def format_events(events)
   return if events.nil?
   str = "| Time | Update |\n| --- | --- |"
   events.each do |event|
-    event = event[1]
     if event[1] == '' then next end # only display events with message
     str += "\n| #{event[0]} | #{event[1]} |"
   end
