@@ -17,14 +17,11 @@ export function showTab(tab) {
 }
 
 export function createSortable() {
-    // register jQuery UI reordering
-    $('#events').sortable({
-        placeholder: 'ui-state-highlight',
+    // create reorderable events
+    Sortable.create(document.getElementById('events'), {
         handle: '.sort-icon',
-        axis: 'y',
-        revert: 300,
-        containment: 'parent',
-        tolerance: 'pointer'
+        ghostClass: 'ui-state-highlight',
+        fallbackTolerance: 3
     });
 }
 

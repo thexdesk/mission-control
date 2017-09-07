@@ -51,7 +51,7 @@ Mission Control uses [Sass](http://sass-lang.com/), which is located in the [`/p
 All packages are located in the [`/public/js/packages`](https://github.com/r-spacex/mission-control/tree/master/public/js/packages). Mission Control currently uses the following packages.
 
 - [jQuery](https://jquery.com/)
-- [jQuery UI (custom download)](https://jqueryui.com/download/)
+- [Sortable](https://github.com/RubaXa/Sortable)
 - [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
 - [Dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill)
 

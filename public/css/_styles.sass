@@ -187,7 +187,7 @@ section.interface
             &#info-button
                 cursor: help
 
-            &#youtube-button,
+            &#youtube-button
                 cursor: pointer
 
         a
@@ -338,14 +338,20 @@ section.interface
                             display: inline-block
                             content: '\f096'
 
-                &:last-of-type
+                &:nth-last-of-type(2)
                     +size(20px, null, null, null 2px null null)
                     color: #22c
+
+                &:last-of-type
+                    cursor: auto
 
             &.ui-state-highlight
                 height: calc(1rem + 8px)
                 background: rgba(#99f, 0.4)
                 border: 1px solid rgba(#99f, 0.4)
+
+                > *
+                    visibility: hidden
 
         input:first-of-type  // T±
             width: 53px

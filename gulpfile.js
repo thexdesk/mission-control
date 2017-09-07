@@ -89,8 +89,8 @@ gulp.task('js-modules', ['rollup-modules'], cb => {
 gulp.task('watch', () => {
     gulp.watch(`${config.css_dir}/**/*.sass`, ['sass']);
     gulp.watch(`${config.css_dir}/**/*.scss`, ['sass']);
-    gulp.watch(`${config.js_dir.modules}/**/*.js`, ['js-modules']);
-    gulp.watch(`${config.js_dir.packages}/**/*.js`, ['rollup-packages']);
+    gulp.watch([`${config.js_dir.modules}/**/*.js`, config.js.modules.entry], ['js-modules']);
+    gulp.watch([`${config.js_dir.packages}/**/*.js`, config.js.packages.entry], ['rollup-packages']);
 });
 
 gulp.task('default', ['sass', 'rollup-packages', 'js-modules', 'watch']);
