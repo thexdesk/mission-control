@@ -55,18 +55,18 @@ export function emergency(obj) {
         time = time.slice(0, -2);
 
     if(window.time != null) {
-        children[2].innerHTML = time.slice(0, 2);
-        children[3].value = time.substr(-2, 1) == '.' ? time.slice(2, -2) : time.slice(2);
+        children[3].innerHTML = time.slice(0, 2);
+        children[4].value = time.substr(-2, 1) == '.' ? time.slice(2, -2) : time.slice(2);
     }
 
     children[1].setAttribute('data-content', 'Posted');
-    children[5].value = messages.emergency[type];
+    children[6].value = messages.emergency[type];
     saveEvents();
 }
 
 // messages from standard panel
 export function std_message() {
-    const child = addEvent().children[5];
+    const child = addEvent().children[6];
     const key = document.getElementById('events-dropdown').value;
     child.value = messages.standard[key];
 }

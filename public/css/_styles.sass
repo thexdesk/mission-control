@@ -181,7 +181,7 @@ section.interface
             opacity: 0.3
             transition: opacity 200ms
 
-            &:hover
+            &:not(#mic):hover
                 opacity: 1
 
             &#info-button
@@ -189,6 +189,16 @@ section.interface
 
             &#youtube-button
                 cursor: pointer
+
+            &#mic
+                cursor: not-allowed
+                width: 16px
+                text-align: center
+
+                &.fa-microphone
+                    opacity: 1
+                    transition: color
+                    animation: pulse 1s infinite
 
         a
             color: #000
@@ -316,7 +326,7 @@ section.interface
                 display: inline-block
 
                 &:first-of-type
-                    +size(58px, null, null, null 2px null null)
+                    +size(59px, null, null, null 2px null null)
 
                     &::before
                         content: 'Posted'
@@ -368,7 +378,7 @@ section.interface
                 opacity: 1
 
         input:last-of-type  // message
-            width: calc(100% - 280px)
+            width: calc(100% - 281px)
 
     i.fa-upload,
     i.fa-plus,
@@ -463,3 +473,10 @@ dialog
         background: #9f9
     100%
         background: none
+
+@keyframes pulse
+    0%,
+    100%
+        color: #acacac
+    50%
+        color: $spx-blue

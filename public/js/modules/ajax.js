@@ -37,7 +37,7 @@ export const ajax = {
             if(method === 'post')
                 req.send(JSON.stringify(data));
             else
-                req.send((method === 'get' ? '?' : '') + query.join('&'));
+                req.send(`'?${query.join('&')}`);
         });
     },
 

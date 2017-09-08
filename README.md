@@ -48,21 +48,22 @@ Mission Control uses [Sass](http://sass-lang.com/), which is located in the [`/p
 
 #### Packages
 
-All packages are located in the [`/public/js/packages`](https://github.com/r-spacex/mission-control/tree/master/public/js/packages). Mission Control currently uses the following packages.
+All packages are located in the [`/public/js/packages`](https://github.com/r-spacex/mission-control/tree/master/public/js/packages) directory. Mission Control currently uses the following packages.
 
-- [Sortable](https://github.com/RubaXa/Sortable)
-- [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
+- [annyang](https://github.com/TalAter/annyang)
 - [Dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill)
+- [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
+- [Sortable](https://github.com/RubaXa/Sortable)
 
 #### Modules
 
 All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules). The following modules currently exist, with the relevent exports.
 
 - [`ajax`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/ajax.js)
-    - `ajax.timeout` (on POST and GET requests)
     - `ajax.get()`
     - `ajax.post()`
-    - `ajax._request()` (helper function)
+- [`annyang`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/annyang.js)
+    - `speechRecognition()`
 - [`auto-register`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/auto-register.js)
     - `autoRegisterDialog()`
 - [`captues`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/captures.js)
