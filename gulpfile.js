@@ -7,6 +7,7 @@ const rollup = require('rollup-stream');
 const sass = require('gulp-sass');
 const source = require('vinyl-source-stream');
 const uglifyjs = require('uglify-es');
+const runSequence = require('run-sequence');
 
 const minify = composer(uglifyjs, console);
 
@@ -77,7 +78,7 @@ const config = {
 gulp.task('sass', () => {
     return gulp.src(`${config.css_dir}/all.sass`)
         .pipe(sass(config.sass).on('error', sass.logError))
-        .pipe(purify(config.purifycss.content, config.purifycss.options))
+        //.pipe(purify(config.purifycss.content, config.purifycss.options))
         .pipe(autoprefixer(config.autoprefixer))
         .pipe(gulp.dest(config.css_dir));
 });
@@ -94,14 +95,12 @@ gulp.task('rollup-packages', () => {
         .pipe(gulp.dest(config.js_dir.all));
 });
 
-gulp.task('js-modules', ['rollup-modules'], cb => {
-    pump([
-            gulp.src(`${config.js_dir.all}/${config.js_output.modules}`),
-            minify(config.uglify),
-            gulp.dest(config.js_dir.all)
-        ],
-        cb
-    );
+gulp.task('js-modules', ['rollup-modules'], () => {
+    return pump([
+		gulp.src(`${config.js_dir.all}/${config.js_output.modules}`),
+		minify(config.uglify),
+		gulp.dest(config.js_dir.all)
+    ]);
 });
 
 gulp.task('watch', () => {
@@ -113,4 +112,9 @@ gulp.task('watch', () => {
     gulp.watch([`${config.js_dir.packages}/**/*.js`, config.js.packages.entry], ['rollup-packages']);
 });
 
-gulp.task('default', ['sass', 'rollup-packages', 'js-modules', 'watch']);
+gulp.task('build', () => {
+    // make sure Sass compilation runs after JS is done
+    return runSequence(['rollup-packages', 'js-modules'], 'sass');
+});
+
+gulp.task('default', ['build', 'watch']);
