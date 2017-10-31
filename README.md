@@ -7,7 +7,7 @@ To setup [Mission Control](https://github.com/r-spacex/mission-control/), run th
 ```bash
 git clone git@github.com:r-spacex/mission-control.git
 cd mission-control
-make install
+./install
 ```
 
 ## Environment variables
@@ -24,7 +24,7 @@ The following environment variables are expected to be set for ruby.
 
 ## Running the server
 
-To run the server, go to the repo directory and run `ruby endpoints.rb`.
+To run the server, go to the repo directory and run `ruby src/endpoints.rb`.
 
 ## Development
 
@@ -42,13 +42,13 @@ To run [gulp](https://github.com/r-spacex/mission-control/blob/master/gulpfile.j
 
 ### CSS
 
-Mission Control uses [Sass](http://sass-lang.com/), which is located in the [`/public/css`](https://github.com/r-spacex/mission-control/tree/master/public/css) directory. All CSS should be split into relevant files, and pulled together in [`all.sass`](https://github.com/r-spacex/mission-control/tree/master/public/css/all.sass).
+Mission Control uses [Sass](http://sass-lang.com/), which is located in the [`/src/public/css`](https://github.com/r-spacex/mission-control/tree/master/src/public/css) directory. All CSS should be split into relevant files, and pulled together in [`all.sass`](https://github.com/r-spacex/mission-control/tree/master/src/public/css/all.sass).
 
 ### JavaScript
 
 #### Packages
 
-All packages are located in the [`/public/js/packages`](https://github.com/r-spacex/mission-control/tree/master/public/js/packages) directory. Mission Control currently uses the following packages.
+All packages are located in the [`/src/public/js/packages`](https://github.com/r-spacex/mission-control/tree/master/src/public/js/packages) directory. Mission Control currently uses the following packages.
 
 - [annyang](https://github.com/TalAter/annyang)
 - [Dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill)
@@ -57,45 +57,45 @@ All packages are located in the [`/public/js/packages`](https://github.com/r-spa
 
 #### Modules
 
-All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules). The following modules currently exist, with the relevent exports.
+All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/src/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/src/public/js/modules). The following modules currently exist, with the relevent exports.
 
-- [`ajax`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/ajax.js)
+- [`ajax`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/ajax.js)
     - `ajax.get(url, data)`
     - `ajax.post(url, data)`
-- [`annyang`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/annyang.js)
+- [`annyang`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/annyang.js)
     - `speechRecognition()`
-- [`auto-register`](https://github.com/r-spacex/mission-control/tree/master/public/js/modules/auto-register.js)
-- [`captues`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/captures.js)
+- [`auto-register`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/auto-register.js)
+- [`captues`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/captures.js)
     - `saveIfEnter(event)`
     - `_tabEvent(event, object)`
     - `setSign(object)`
-- [`countdown`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/countdown.js)
+- [`countdown`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/countdown.js)
     - `updateCountdown()`
     - `setLaunchTime(launchTime)`
     - `insertTime(object)`
-- [`events`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/events.js)
+- [`events`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/events.js)
     - `addEvent()`
     - `removeEvent()`
     - `addEventIfNeeded()`
-- [`hotswap`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/hotswap.js)
+- [`hotswap`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/hotswap.js)
     - `hotSwap(object)`
-- [`intervals`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/intervals.js)
-- [`mde`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/mde.js)
+- [`intervals`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/intervals.js)
+- [`mde`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/mde.js)
     - `registerMDEs()`
-- [`messages`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/messages.js)
+- [`messages`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/messages.js)
     - `emergency(object)`
     - `std_message()`
-- [`reddit`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/reddit.js)
+- [`reddit`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/reddit.js)
     - `async save()`
     - `async saveEvents()`
     - `async createPost()`
     - `async updateStats()`
-- [`ui`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/ui.js)
+- [`ui`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/ui.js)
     - `showTab(object)`
     - `createSortable()`
     - `datetimeSupport()`
     - `removeLoadingModal()`
-- [`youtube`](https://github.com/r-spacex/mission-control/blob/master/public/js/modules/youtube.js)
+- [`youtube`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/youtube.js)
     - `async setYoutube()`
 
 ## Browser support

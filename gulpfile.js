@@ -16,30 +16,35 @@ const minify = composer(uglifyjs, console);
 
 const config = {
     // user configuration
-    css_dir: 'public/css',
+    css_dir: 'src/public/css',
     js_dir: {
-        all: 'public/js',
-        modules: 'public/js/modules',
-        packages: 'public/js/packages'
+        all: 'src/public/js',
+        modules: 'src/public/js/modules',
+        packages: 'src/public/js/packages'
     },
     js_output: {
         modules: 'all-modules.js',
         packages: 'all-packages.js'
     },
-    html_dir: 'pages',
-    section_dir: 'sections',
+    html_dir: 'src/pages',
+    section_dir: 'src/sections',
 
     // plugin configuration
     autoprefixer: {
-        browsers: ['ie 11'],  // added to later
+        browsers: ['last 2 chrome versions',
+                   'last 2 ff     versions',
+                   'last 2 safari versions',
+                   'last 2 opera  versions',
+                   'last 2 edge   versions',
+                  ],
         remove: false,  // we don't have legacy CSS
     },
     purifycss: {
         content: [
-            'public/js/all-modules.js',
-            'public/js/all-packages.js',
-            'pages/**/*.erb',
-            'sections/**/*.erb',
+            'src/public/js/all-modules.js',
+            'src/public/js/all-packages.js',
+            'src/pages/**/*.erb',
+            'src/sections/**/*.erb',
         ],
         options: {
             minify: true,
@@ -50,12 +55,12 @@ const config = {
     },
     js: {
         modules: {
-            entry: 'public/js/modules.js',
+            entry: 'src/public/js/modules.js',
             format: 'cjs',
             treeshake: false  // breaks some things
         },
         packages: {
-            entry: 'public/js/packages.js',
+            entry: 'src/public/js/packages.js',
             format: 'cjs'
         },
     },
@@ -64,9 +69,6 @@ const config = {
         compress: true
     },
 };
-
-// more readable than listing them all out in full
-['chrome', 'ff', 'safari', 'opera', 'edge'].forEach(browser => config.autoprefixer.browsers.push(`last 2 ${browser} versions`));
 
 //=============================================//
 //                    TASKS                    //

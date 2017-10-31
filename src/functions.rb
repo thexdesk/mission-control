@@ -5,7 +5,7 @@ require 'json'
 
 # take a file name, return rendered HTML from .erb file
 def render_erb(fname)
-  file = File.read("#{fname}.erb")
+  file = File.read("src/#{fname}.erb")
   ERB.new(file).result(binding)
 end
 
