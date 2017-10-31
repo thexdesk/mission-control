@@ -1,4 +1,4 @@
-import { request } from './fetch';
+import { ajax } from './ajax';
 
 export async function setYoutube() {
     const dialog = document.getElementById('yt-dialog');
@@ -16,7 +16,7 @@ export async function setYoutube() {
 
     document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');
 
-    await request.post('update', {
+    await ajax.post('update', {
         id: 'video',
         value: id
     });
