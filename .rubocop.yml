@@ -12,7 +12,7 @@ Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
 
 AllCops:
   Exclude:
