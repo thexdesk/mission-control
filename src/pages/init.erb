@@ -16,7 +16,7 @@
                 <td>Launch</td>
                 <td>
                     <% launches = upcoming_launches %>
-                    <% if launches.keys.include? 'error' %>
+                    <% if launches.empty? %>
                         <input name=launch required placeholder='Required, not changeable'>
                     <% else %>
                         <select name=launch required>

@@ -85,16 +85,12 @@ def upcoming_launches
 
   params = { params: { start: today, final: one_week } }
   resp = RestClient.get 'https://api.spacexdata.com/v1/launches/upcoming', params
-  body = JSON.parse(resp.body)
-  return body unless body.is_a? Array # error (success is array)
 
   launches = {}
-  body.each do |obj|
-    date = DateTime.parse(obj['launch_date_utc']).strftime('%s')
-
+  JSON.parse(resp.body).each do |obj|
     payload = obj['payloads'][0]['payload_id']
     payload = payload[7..-1] if payload.start_with? 'SpaceX ' # CRS missions
-    launches[payload] = date
+    launches[payload] = DateTime.parse(obj['launch_date_utc']).strftime('%s')
   end
   launches
 end
