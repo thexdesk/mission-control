@@ -14,11 +14,6 @@ Layout/AlignParameters:
 Metrics/MethodLength:
   Max: 25
 
-Metrics/LineLength:
-  # for helper_functions.rb
-  # some lines have to be longer than 85 due to URLs
-  Max: 85
-
 AllCops:
   Exclude:
     - 'node_modules/**/*'

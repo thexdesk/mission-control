@@ -1,3 +1,5 @@
+<%# gsub on some strings isn't necessary now, but would be if text is added later %>
+
 <ul id=tabs>
     <li onclick=showTab(this) class=current>All</li>
     <li onclick=showTab(this)>Events</li>
@@ -5,7 +7,27 @@
 </ul>
 
 <section class=tab-section>
-    <textarea id=intro data-initial='<%= if session[:intro] then session[:intro].gsub("'", "&apos;") else "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!\n| Liftoff currently scheduled for | |\n| --- | --- |\n| Weather | |\n| Static fire | |\n| Payload | |\n| Payload mass | |\n| Destination orbit | |\n| Vehicle | |\n| Core | |\n| Flights of this core | |\n| Launch site | |\n| Landing | |\n| Landing site | |".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=intro data-initial='<%=
+        if session[:intro]
+            session[:intro].gsub("'", "&apos;")
+        else
+            "# Welcome to the r/SpaceX #{session[:launch]} Official Launch Discussion & Updates Thread!\n" \
+            "| Liftoff currently scheduled for | |\n" \
+            "| --- | --- |\n" \
+            "| Weather | |\n" \
+            "| Static fire | |\n" \
+            "| Payload | |\n" \
+            "| Payload mass | |\n" \
+            "| Destination orbit | |\n" \
+            "| Launch vehicle | |\n" \
+            "| Core | |\n" \
+            "| Flights of this core | |\n" \
+            "| Launch site | |\n" \
+            "| Landing attempt | |\n" \
+            "| Landing site | |"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
 </section>
 
 <section class=tab-events>
@@ -20,7 +42,7 @@
         <h3 class=right>
             <span> <%# only here for row-reverse in flex %>
                 <%# various events %>
-                <select id=events-dropdown aria-label='Preset messages'>
+                <select id=events-dropdown>
                     <option>LOX loading started</option>
                     <option>LOX loading finished</option>
                     <option>RP-1 loading started</option>
@@ -73,36 +95,93 @@
                 <% next if event[2] == '' %>
                 <li class=reverse><i class=sort-icon></i>
                     <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='<%= event[0] ? "Posted" : "Hidden" %>'></span>
-                    <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);' aria-label=countdown>
+                    <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
                     <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                    <span>Message:</span> <input value='<%= event[2].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' aria-label=message>
+                    <span>Message:</span> <input value='<%= event[2].gsub("'", "&apos;") %>' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
             <% end %>
         <% else %>
         <%# nothing stored on server, give a single blank event %>
             <li class=reverse><i class=sort-icon></i>
                 <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
-                <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);' aria-label=countdown>
+                <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
                 <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' aria-label=message>
+                <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
             </li>
         <% end %>
     </ul>
 </section>
 
 <section class=tab-section>
-    <textarea id=viewing data-initial='<%= if session[:viewing] then session[:viewing].gsub("'", "&apos;") else "### Watch the launch live\n| Stream | Courtesy |\n| --- | --- |".gsub("'", "&apos;") end %>'></textarea>
-    <textarea id=stats data-initial='<%= if session[:stats] then session[:stats].gsub("'", "&apos;") else "### Stats".gsub("'", "&apos;") end %>'></textarea>
-    <textarea id=mission data-initial='<%= if session[:mission] then session[:mission].gsub("'", "&apos;") else "### Primary Mission: Deployment of payload into correct orbit".gsub("'", "&apos;") end %>'></textarea>
-    <textarea id=landing data-initial='<%= if session[:landing] then session[:landing].gsub("'", "&apos;") else "### Secondary Mission: Landing Attempt".gsub("'", "&apos;") end %>'></textarea>
-    <textarea id=resources data-initial='<%= if session[:resources] then session[:resources].gsub("'", "&apos;") else "### Resources\n| Link | Source |\n| --- | --- |\n| [Official press kit](https://spacex.com/) | SpaceX |".gsub("'", "&apos;") end %>'></textarea>
-    <textarea id=participate data-initial='<%= if session[:participate] then session[:participate].gsub("'", "&apos;") else "### Participate in the discussion!\n- First of all, launch threads are party threads! We understand everyone is excited, so we relax the rules in these venues. The most important thing is that everyone enjoy themselves\n -Please constrain the launch party to this thread alone. We will remove low effort comments elsewhere!\n- Real-time chat on our official Internet Relay Chat (IRC) [#spacex on Snoonet](https://kiwiirc.com/client/irc.snoonet.org/?nick=SpaceX_guest%7C?#SpaceX)\n- Please post small launch updates, discussions, and questions here, rather than as a separate post. Thanks!\n- Wanna talk about other SpaceX stuff in a more relaxed atmosphere? Head over to r/SpaceXLounge".gsub("'", "&apos;") end %>'></textarea>
+    <textarea id=viewing data-initial='<%=
+        if session[:viewing]
+            session[:viewing].gsub("'", "&apos;")
+        else
+            "### Watch the launch live\n" \
+            "| Stream | Courtesy |\n" \
+            "| --- | --- |"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
+
+    <textarea id=stats data-initial='<%=
+        if session[:stats]
+            session[:stats].gsub("'", "&apos;")
+        else
+            "### Stats"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
+
+    <textarea id=mission data-initial='<%=
+        if session[:mission]
+            session[:mission].gsub("'", "&apos;")
+        else
+            "### Primary Mission: Deployment of payload into correct orbit"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
+
+    <textarea id=landing data-initial='<%=
+        if session[:landing]
+            session[:landing].gsub("'", "&apos;")
+        else
+            "### Secondary Mission: Landing Attempt"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
+
+    <textarea id=resources data-initial='<%=
+        if session[:resources]
+            session[:resources].gsub("'", "&apos;")
+        else
+            "### Resources\n" \
+            "| Link | Source |\n" \
+            "| --- | --- |\n" \
+            "| [Official press kit](https://spacex.com/) | SpaceX |"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
+
+    <textarea id=participate data-initial='<%=
+        if session[:participate]
+            session[:participate].gsub("'", "&apos;")
+        else
+            "### Participate in the discussion!\n" \
+            "- First of all, launch threads are party threads! We understand everyone is excited, so we relax the rules in these venues. The most important thing is that everyone enjoy themselves\n" \
+            "- Please constrain the launch party to this thread alone. We will remove low effort comments elsewhere!\n" \
+            "- Real-time chat on our official Internet Relay Chat (IRC) [#spacex on Snoonet](https://kiwiirc.com/client/irc.snoonet.org/?nick=SpaceX_guest%7C?#SpaceX)\n" \
+            "- Please post small launch updates, discussions, and questions here, rather than as a separate post. Thanks!" \
+            "\n- Wanna talk about other SpaceX stuff in a more relaxed atmosphere? Head over to r/SpaceXLounge"
+            .gsub("'", "&apos;")
+        end
+    %>'></textarea>
 </section>
 
 <template id=event-template>
     <li class=hidden><i class=sort-icon></i>
         <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Hidden'></span>
-        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);' aria-label=countdown>
+        <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
         <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-        <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' aria-label=message>
+        <span>Message:</span> <input onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();'>
     </li>
 </template>

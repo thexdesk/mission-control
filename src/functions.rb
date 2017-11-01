@@ -5,8 +5,9 @@ require 'json'
 
 # take a file name, return rendered HTML from .erb file
 def render_erb(fname)
-  file = File.read("src/#{fname}.erb")
-  ERB.new(file).result(binding)
+  ERB.new(
+    File.read("src/#{fname}.erb")
+  ).result(binding)
 end
 
 # fully formatted markdown post
@@ -14,17 +15,17 @@ def reddit_post
   str = "#{session[:intro]}\n\n"
 
   if session[:events]
-    str += "### Live Updates\n\n#{format_events session[:events]}\n\n"
+    str += "### Live Updates\n\n" \
+           "#{format_events session[:events]}\n\n"
   end
 
-  str += "#{session[:viewing]}\n\n"
-  str += "#{session[:stats]}\n\n"
-  str += "#{session[:mission]}\n\n"
-  str += "#{session[:landing]}\n\n"
-  str += "#{session[:resources]}\n\n"
-  str += "#{session[:participate]}\n\n"
-
-  str
+  str +
+    "#{session[:viewing]}\n\n" \
+    "#{session[:stats]}\n\n" \
+    "#{session[:mission]}\n\n" \
+    "#{session[:landing]}\n\n" \
+    "#{session[:resources]}\n\n" \
+    "#{session[:participate]}\n\n"
 end
 
 # get score, number of comments, and html from reddit post id
@@ -46,22 +47,26 @@ def make_post(title, text = '')
     .submit title, text: text, sendreplies: false
 end
 
-# creates a post if it doesn't exist
-# edits post if it exists
 def update_post(create_only = false)
   title = "r/SpaceX #{session[:launch]} Official Launch Discussion & " \
           'Updates Thread'
 
+  # post doesn't exist, create with no content
   if create_only && session[:post].nil?
     post = make_post title
     session[:post] = post.id
+
+  # post doesn't exist, create with content
   elsif session[:post].nil?
     post = make_post title, reddit_post
     session[:post] = post.id
+
+  # post exists, update content
   else
     post = request.env['redd.session'].from_ids ["t3_#{session[:post]}"]
     post[0].edit reddit_post
   end
+
   post_info(session[:post])['html']
 end
 
@@ -83,9 +88,16 @@ def upcoming_launches
   today = d.to_s
   one_week = (d + 7).to_s
 
-  params = { params: { start: today, final: one_week } }
-  resp = RestClient.get 'https://api.spacexdata.com/v1/launches/upcoming', params
+  params = {
+    params: {
+      start: today,
+      final: one_week
+    }
+  }
+  api_endpoint = 'https://api.spacexdata.com/v1/launches/upcoming'
+  resp = RestClient.get api_endpoint, params
 
+  # read data from API, reformat to hash of mission -> launch time
   launches = {}
   JSON.parse(resp.body).each do |obj|
     payload = obj['payloads'][0]['payload_id']
