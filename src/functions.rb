@@ -12,10 +12,17 @@ end
 
 # fully formatted markdown post
 def reddit_post
-  str = "[](/# MC // INTRO)\n" \
+  str = \
+    "[](/# MC // let time = #{session[:time] || 'null'})\n" \
+    "[](/# MC // let launch = #{session[:launch] || 'null'})\n" \
+    "[](/# MC // let video = #{session[:video] || 'null'})\n" \
+    "[](/# MC // END VARS)\n\n" \
+    \
+    "[](/# MC // INTRO)\n" \
     "#{session[:intro]}\n\n" \
     \
-    "[](/# MC // EVENTS)\n"
+    "[](/# MC // EVENTS)\n" \
+
   if session[:events]
     str += "### Live Updates\n" \
            "#{format_events session[:events]}\n\n"
