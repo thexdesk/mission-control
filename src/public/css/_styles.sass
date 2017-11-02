@@ -266,6 +266,10 @@ section.interface
             button:hover
                 background: $spx-blue-alpha
 
+            @supports (display: contents)
+                span:first-of-type
+                    display: contents
+
             span:last-of-type
                 text-transform: uppercase
                 background: rgba(#fff, 0.7)
@@ -354,6 +358,9 @@ section.interface
 
                 &:last-of-type
                     cursor: auto
+
+                    @supports (display: contents)
+                        display: contents
 
             &.ui-state-highlight
                 height: calc(1rem + 8px)
