@@ -8,6 +8,9 @@ Style/AsciiComments:
 Metrics/AbcSize:
   Enabled: false
 
+Style/CommentAnnotation:
+  Enabled: false
+
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
