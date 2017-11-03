@@ -133,8 +133,13 @@ get '/update/create' do
   update_post true
 end
 
+# initialization form for recovery
+get '/recover' do
+  render_erb 'pages/recover'
+end
+
 # recover old post
 post '/recover' do
-  params = JSON.parse(request.body.read, symbolize_names: true)
-  recover_post params[:url]
+  params = Rack::Utils.parse_query request.body.read
+  redirect to '/' if recover_post params['url']
 end

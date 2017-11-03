@@ -1,6 +1,6 @@
 # TODO allow recovery of unposted events
-# TODO second form on initialization page for recovering old post
 
+require 'rack'
 require './src/functions'
 
 # @precondition -> variables do not exist in header
