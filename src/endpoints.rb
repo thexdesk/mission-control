@@ -6,6 +6,7 @@ $stdout.sync = true
 require 'sinatra'
 require 'redd/middleware'
 require './src/functions'
+require './src/recovery'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 
@@ -130,4 +131,10 @@ end
 # creates blank reddit post
 get '/update/create' do
   update_post true
+end
+
+# recover old post
+post '/recover' do
+  params = JSON.parse(request.body.read, symbolize_names: true)
+  recover_post params[:url]
 end

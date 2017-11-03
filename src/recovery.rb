@@ -1,17 +1,7 @@
-# optional prompt on initialization page for recovering old post
-
-# get post ID from user (parse link)
-# get all info from post
-# if OAuth'd user isn't OP, throw error
-# otherwise, set session post id to one provided
-# parse using parse_sections() and parse_vars()
-
 # TODO allow recovery of unposted events
+# TODO second form on initialization page for recovering old post
 
-# modify functions::post_info to return title and OP
-# used for verifying OAuth & getting launch name (for window title)
-
-########
+require './src/functions'
 
 # @precondition -> variables do not exist in header
 # @param text -> text to be parsed
@@ -34,8 +24,8 @@ def parse_sections(text)
     sections[:events][49..-1].scan(/\| (.*) \| (.*) \|/) do |time, message|
       events.push [true, time, message]
     end
-    sections[:events] = events
   end
+  sections[:events] = events
 
   # set session variables with parsed values
   sections.each do |key, value|
@@ -53,6 +43,8 @@ def parse_vars(text)
   # isolate the variables string
   raw_vars, sections = text.split('[](/# MC // END VARS)', 2)
 
+  puts raw_vars
+
   # parse the variables into a hash
   vars = {}
   raw_vars.scan(%r{\[\]\(\/# MC // let (.*) = (.*)\)}) do |name, value|
@@ -65,4 +57,25 @@ def parse_vars(text)
   end
 
   [vars, sections.strip]
+end
+
+# @param url -> valid URL to reddit post
+# @return -> boolean if recovery succeeded
+# @postcondition -> session variables are set if recovery succeeded
+def recover_post(url)
+  id = %r{(?:www).reddit.com/r/(?:.*?)/comments/([0-9a-z]{6})}.match(url)
+  post = (request.env['redd.session'].from_ids ["t3_#{id[1]}"].to_ary)[0]
+
+  # require self post
+  return false unless post.is_self
+
+  # require OP to be current user
+  return false unless request.env['redd.session'].me.name != post.author
+
+  # set everything into session variables
+  _, sections_raw = parse_vars post.selftext
+  parse_sections sections_raw
+  session[:post] = post.id
+
+  true
 end
