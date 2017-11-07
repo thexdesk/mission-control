@@ -61,12 +61,14 @@ def post_info(id)
 end
 
 # create a self post with a given title and text
-# specified subreddit can be swapped out easily
+# subreddit should be set in environment variables
 def make_post(title, text = '')
   request
     .env['redd.session']
     .subreddit(ENV['SUBREDDIT'])
-    .submit title, text: text, sendreplies: false
+    .submit title,
+      text: text,
+      sendreplies: false
 end
 
 def update_post(create_only = false)
@@ -95,10 +97,10 @@ end
 # get list of events and return a formatted table
 def format_events(events)
   return if events.nil?
-  str = "| Time | Update |\n| --- | --- |"
+  str = "| Time | Update |\n" \
+        '| --- | --- |'
   events.each do |event|
-    # only display events with message and that are designated as posted
-    next if event[2] == '' || !event[0]
+    next if event[2] == '' || !event[0] # must have message and be "posted"
     str += "\n| #{event[1]} | #{event[2]} |"
   end
   str

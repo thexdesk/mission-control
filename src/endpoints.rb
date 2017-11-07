@@ -29,23 +29,22 @@ use Redd::Middleware,
 
 # browser support, authentication, main display
 get '/' do
-  if session[:support]
-
-    # browser supported, logged in -> show interface
-    if request.env['redd.session']
-      # need to render before setting noshow
-      page = render_erb 'pages/mission_control'
-      session[:noshow] = true # hide info dialog on future pageloads
-      page
-
-    # browser supported, not logged in -> authentication prompt
-    else
-      render_erb 'pages/authenticate'
-    end
-
-  # check if browser is supported
-  else
+  # are requisite features supported?
+  # automatic check, nearly invisible to user
+  if !session[:support]
     render_erb 'pages/support_check'
+
+  # are we logged in?
+  # yes -> show interface
+  elsif request.env['redd.session']
+    # need to render before setting noshow
+    page = render_erb 'pages/mission_control'
+    session[:noshow] = true # hide info dialog on future pageloads
+    page
+
+  # not logged in -> authentication prompt
+  else
+    render_erb 'pages/authenticate'
   end
 end
 
@@ -61,13 +60,13 @@ get '/auth/callback' do
   if request.env['redd.error']
     "Error: #{request.env['redd.error'].message} (<a href='/'>Back</a>)"
 
-  # launch and/or video are not set, let's initialize it
-  elsif !session[:launch] || !session[:video]
-    redirect to 'init'
-
   # launch and video are both set, go to interface
-  else
+  elsif session[:launch] && session[:video]
     redirect to '/'
+
+  # launch and/or video are not set, let's initialize it
+  else
+    redirect to 'init'
   end
 end
 
@@ -78,12 +77,12 @@ get '/logout' do
   redirect to '/'
 end
 
-# partial for interface
+# status section for interface
 get '/status' do
   render_erb 'sections/status'
 end
 
-# partial for interface
+# live rendering of post for interface
 get '/post' do
   render_erb 'sections/live_post'
 end
@@ -114,8 +113,8 @@ post '/init' do
   # get video id from url
   # blank input doesn't set anything ─ nil or '' displays nothing to client
   if params[:video] != ''
-    session[:video] = params[:video].match(%r{^(?:https?:\/\/)?(?:www\.)?
-    youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})}x)[1]
+    session[:video] = params[:video].match(%r{^(?:https?://)?(?:www\.)?
+    youtu(?:\.be|be\.com)/(?:watch\?v=)?([\w-]{11,})}x)[1]
   end
   redirect to '/'
 end

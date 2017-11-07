@@ -12,8 +12,9 @@ def parse_sections(text)
 
   # parse the full post into individual sections
   text.scan(
-    %r{\[\]\(\/# MC // (.*)\)\n((?:.*\n)*?)(?=\[\]\(\/# MC //.*\))}
+    %r{\[\]\(/# MC // (.*)\)\n((?:.*\n)*?)(?=\[\]\(/# MC //.*\))}
   ).each do |name, content|
+    # don't combine this and setting session variables, as events need parsing
     sections[name.downcase.to_sym] = content.strip
   end
 
@@ -41,22 +42,14 @@ end
 # @postcondition -> session variables are set
 def parse_vars(text)
   # isolate the variables string
-  raw_vars, sections = text.split('[](/# MC // END VARS)', 2)
+  vars, sections = text.split('[](/# MC // END VARS)', 2)
 
-  puts raw_vars
-
-  # parse the variables into a hash
-  vars = {}
-  raw_vars.scan(%r{\[\]\(\/# MC // let (.*) = (.*)\)}) do |name, value|
-    vars[name.downcase.to_sym] = value == 'null' ? nil : value
+  # parse the variables & set in session variables
+  vars.scan(%r{\[\]\(\/# MC // let (.*) = (.*)\)}) do |name, value|
+    session[name.downcase.to_sym] = value == 'null' ? nil : value
   end
 
-  # set session variables with parsed values
-  vars.each do |key, value|
-    session[key] = value
-  end
-
-  [vars, sections.strip]
+  sections.strip
 end
 
 # @param url -> valid URL to reddit post
@@ -73,8 +66,7 @@ def recover_post(url)
   return false unless request.env['redd.session'].me.name != post.author
 
   # set everything into session variables
-  _, sections_raw = parse_vars post.selftext
-  parse_sections sections_raw
+  parse_sections parse_vars post.selftext
   session[:post] = post.id
 
   true
