@@ -3,54 +3,55 @@ require 'date'
 require 'rest-client'
 require 'json'
 
-# take a file name, return rendered HTML from .erb file
+# being logged in is unstated precondition for many functions
+
+# @param fname -> valid erb file located in src/ directory
+# @return      -> rendered HTML from file
 def render_erb(fname)
   ERB.new(
     File.read("src/#{fname}.erb")
   ).result(binding)
 end
 
-# fully formatted markdown post
+# @return -> fully formatted markdown post
 def reddit_post
-  str = \
-    "[](/# MC // let time = #{session[:time] || 'null'})\n" \
-    "[](/# MC // let launch = #{session[:launch] || 'null'})\n" \
-    "[](/# MC // let video = #{session[:video] || 'null'})\n" \
-    "[](/# MC // END VARS)\n\n" \
-    \
-    "[](/# MC // INTRO)\n" \
-    "#{session[:intro]}\n\n" \
-    \
-    "[](/# MC // EVENTS)\n" \
-
-  if session[:events]
-    str += "### Live Updates\n" \
-           "#{format_events session[:events]}\n\n"
-  end
-
-  str +
-    "[](/# MC // VIEWING)\n" \
-    "#{session[:viewing]}\n\n" \
-    \
-    "[](/# MC // STATS)\n" \
-    "#{session[:stats]}\n\n" \
-    \
-    "[](/# MC // MISSION)\n" \
-    "#{session[:mission]}\n\n" \
-    \
-    "[](/# MC // LANDING)\n" \
-    "#{session[:landing]}\n\n" \
-    \
-    "[](/# MC // RESOURCES)\n" \
-    "#{session[:resources]}\n\n" \
-    \
-    "[](/# MC // PARTICIPATE)\n" \
-    "#{session[:participate]}\n\n" \
-    \
-    '[](/# MC // END)'
+  "[](/# MC // let time = #{session[:time] || 'null'})\n" \
+  "[](/# MC // let launch = #{session[:launch] || 'null'})\n" \
+  "[](/# MC // let video = #{session[:video] || 'null'})\n" \
+  "[](/# MC // END VARS)\n\n" \
+  \
+  "[](/# MC // INTRO)\n" \
+  "#{session[:intro]}\n\n" \
+  \
+  "[](/# MC // EVENTS)\n" \
+  "#{if session[:events]
+       "### Live Updates\n" \
+       "#{format_events session[:events]}"
+     end}" \
+  \
+  "[](/# MC // VIEWING)\n" \
+  "#{session[:viewing]}\n\n" \
+  \
+  "[](/# MC // STATS)\n" \
+  "#{session[:stats]}\n\n" \
+  \
+  "[](/# MC // MISSION)\n" \
+  "#{session[:mission]}\n\n" \
+  \
+  "[](/# MC // LANDING)\n" \
+  "#{session[:landing]}\n\n" \
+  \
+  "[](/# MC // RESOURCES)\n" \
+  "#{session[:resources]}\n\n" \
+  \
+  "[](/# MC // PARTICIPATE)\n" \
+  "#{session[:participate]}\n\n" \
+  \
+  '[](/# MC // END)'
 end
 
-# get score, number of comments, and html from reddit post id
+# @param id -> id of reddit post
+# @return   -> hash of post score, number of comments, HTML
 def post_info(id)
   submission = request.env['redd.session'].from_ids ["t3_#{id}"].to_ary
   {
@@ -60,8 +61,10 @@ def post_info(id)
   }
 end
 
-# create a self post with a given title and text
-# subreddit should be set in environment variables
+# @precondition  -> subreddit is set in environment variable
+# @param title   -> title of the post
+# @param text    -> content of the post (default empty)
+# @postcondition -> self post is created in given subreddit
 def make_post(title, text = '')
   request
     .env['redd.session']
@@ -71,6 +74,10 @@ def make_post(title, text = '')
       sendreplies: false
 end
 
+# @precondition      -> post exists and is set in session variable
+# @param create_only -> are we just creating the post, or do we have content?
+# @postcondition     -> post created if it didn't exist
+# @postcondition     -> content inserted into post if create_only == false
 def update_post(create_only = false)
   title = "r/SpaceX #{session[:launch]} Official Launch Discussion & " \
           'Updates Thread'
@@ -94,7 +101,8 @@ def update_post(create_only = false)
   post_info(session[:post])['html']
 end
 
-# get list of events and return a formatted table
+# @param events -> array of all events (is_posted, T± time, message)
+# @return       -> formatted markdown table of events
 def format_events(events)
   return if events.nil?
   str = "| Time | Update |\n" \
@@ -106,7 +114,8 @@ def format_events(events)
   str
 end
 
-# get all launches within 7 days
+# @precondition -> Jake doesn't break the API
+# @return       -> hash of all launches (with time) within the next 7 days
 def upcoming_launches
   d = Date.today
   today = d.to_s

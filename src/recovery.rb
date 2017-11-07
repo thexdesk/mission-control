@@ -3,9 +3,9 @@
 require 'rack'
 require './src/functions'
 
-# @precondition -> variables do not exist in header
-# @param text -> text to be parsed
-# @return -> undefined (not important)
+# @precondition  -> variables do not exist in header
+# @param text    -> text to be parsed
+# @return        -> undefined (not important)
 # @postcondition -> session variables are set
 def parse_sections(text)
   sections = {}
@@ -36,9 +36,9 @@ def parse_sections(text)
   sections
 end
 
-# @precondition -> variables exist in header
-# @param text -> the full text to be parsed, including unimportant sections
-# @return -> [{variables}, initial text with variables stripped]
+# @precondition  -> variables exist in header
+# @param text    -> the full text to be parsed, including unimportant sections
+# @return        -> [{variables}, initial text with variables stripped]
 # @postcondition -> session variables are set
 def parse_vars(text)
   # isolate the variables string
@@ -52,8 +52,8 @@ def parse_vars(text)
   sections.strip
 end
 
-# @param url -> valid URL to reddit post
-# @return -> boolean if recovery succeeded
+# @param url     -> valid URL to reddit post
+# @return        -> boolean if recovery succeeded
 # @postcondition -> session variables are set if recovery succeeded
 def recover_post(url)
   id = %r{(?:www).reddit.com/r/(?:.*?)/comments/([0-9a-z]{6})}.match(url)

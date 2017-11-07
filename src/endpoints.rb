@@ -15,16 +15,16 @@ use Rack::Session::Pool, # identifier that points to session data
   expire_after: 60 * 60 * 24 * 7 # one week
 
 # permissions:
-# identity  know your username
-# submit    make the post from your account
 # edit      edit the post after it's made
+# identity  know your username
 # read      let us display the post in the corner
+# submit    make the post from your account
 use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
   client_id:    ENV['CLIENT_ID'],
   secret:       ENV['SECRET'],
   redirect_uri: ENV['REDIRECT_URI'], # this lets us have production and tetsing
-  scope:        %w[identity submit edit read],
+  scope:        %w[edit identity read submit],
   via:          '/auth'
 
 # browser support, authentication, main display
