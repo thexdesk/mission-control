@@ -1,1 +1,6 @@
+.env
 .vscode/
+node_modules/
+src/public/css/all.css
+src/public/js/all-modules.js
+src/public/js/all-packages.js
