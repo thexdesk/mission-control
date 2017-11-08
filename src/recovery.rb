@@ -1,39 +1,44 @@
-# TODO allow recovery of unposted events
-
 require 'rack'
 require './src/functions'
 
 # @precondition  -> variables do not exist in header
 # @param text    -> text to be parsed
-# @return        -> undefined (not important)
+# @return        -> undefined
 # @postcondition -> session variables are set
 def parse_sections(text)
-  sections = {}
-
   # parse the full post into individual sections
   text.scan(
-    %r{\[\]\(/# MC // (.*)\)\n((?:.*\n)*?)(?=\[\]\(/# MC //.*\))}
+    %r{\[\]\(/# MC // sec (.*)\)\n((?:.*\n)*?)(?=\[\]\(/# MC // sec .*\))}
   ).each do |name, content|
-    # don't combine this and setting session variables, as events need parsing
-    sections[name.downcase.to_sym] = content.strip
+    # events get parsed later on
+    session[name.downcase.to_sym] = content.strip
   end
 
-  # parse the events section (if it exists)
-  if sections.key?(:events) && sections[:events].length > 49
-    events = []
-    # [49..-1] strips header
-    sections[:events][49..-1].scan(/\| (.*) \| (.*) \|/) do |time, message|
-      events.push [true, time, message]
-    end
-  end
-  sections[:events] = events
+  parse_events session[:events] if session.key?(:events) \
+                                && session[:events].length > 49
+end
 
-  # set session variables with parsed values
-  sections.each do |key, value|
-    session[key] = value
+# @param events  -> raw text of events section
+# @return        -> undefined
+# @postcondition -> session[:events] is set properly
+def parse_events(events)
+  unposted, posted = events.split('### Live Updates', 2)
+
+  session[:events] = []
+
+  # parse unposted events
+  unposted.scan(%r{\[\]\(\/# MC // row (\d+) \| (.*) \| (.*) \|\)}) \
+  do |row, time, message|
+    session[:events][row.to_i] = [false, time.gsub('\)', ')'),
+                                  message.gsub('\)', ')')]
   end
 
-  sections
+  # parse posted events
+  # [33..-1] strips header
+  posted[33..-1].scan(%r{\| \[\]\(/# MC // row (\d+)\) (.*) \| (.*) \|}) \
+  do |row, time, message|
+    session[:events][row.to_i] = [true, time, message]
+  end
 end
 
 # @precondition  -> variables exist in header

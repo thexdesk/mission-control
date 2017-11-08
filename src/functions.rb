@@ -20,31 +20,32 @@ def reddit_post
   "[](/# MC // let video = #{session[:video] || 'null'})\n" \
   "[](/# MC // END VARS)\n\n" \
   \
-  "[](/# MC // INTRO)\n" \
+  "[](/# MC // sec INTRO)\n" \
   "#{session[:intro]}\n\n" \
   \
-  "[](/# MC // EVENTS)\n" \
+  '[](/# MC // sec EVENTS)' \
   "#{if session[:events]
+       "#{format_unposted_events session[:events]}\n" \
        "### Live Updates\n" \
-       "#{format_events session[:events]}"
-     end}" \
+       "#{format_posted_events session[:events]}"
+     end}\n\n" \
   \
-  "[](/# MC // VIEWING)\n" \
+  "[](/# MC // sec VIEWING)\n" \
   "#{session[:viewing]}\n\n" \
   \
-  "[](/# MC // STATS)\n" \
+  "[](/# MC // sec STATS)\n" \
   "#{session[:stats]}\n\n" \
   \
-  "[](/# MC // MISSION)\n" \
+  "[](/# MC // sec MISSION)\n" \
   "#{session[:mission]}\n\n" \
   \
-  "[](/# MC // LANDING)\n" \
+  "[](/# MC // sec LANDING)\n" \
   "#{session[:landing]}\n\n" \
   \
-  "[](/# MC // RESOURCES)\n" \
+  "[](/# MC // sec RESOURCES)\n" \
   "#{session[:resources]}\n\n" \
   \
-  "[](/# MC // PARTICIPATE)\n" \
+  "[](/# MC // sec PARTICIPATE)\n" \
   "#{session[:participate]}\n\n" \
   \
   '[](/# MC // END)'
@@ -102,14 +103,35 @@ def update_post(create_only = false)
 end
 
 # @param events -> array of all events (is_posted, T± time, message)
-# @return       -> formatted markdown table of events
-def format_events(events)
+# @return       -> formatted markdown table of posted events
+def format_posted_events(events)
   return if events.nil?
   str = "| Time | Update |\n" \
         '| --- | --- |'
-  events.each do |event|
-    next if event[2] == '' || !event[0] # must have message and be "posted"
-    str += "\n| #{event[1]} | #{event[2]} |"
+
+  row = -1
+  events.each do |posted, time, message|
+    next if message == '' # must have message to count as row
+    row += 1
+    next unless posted # must be posted
+    str += "\n| [](/# MC // row #{row}) #{time} | #{message} |"
+  end
+  str
+end
+
+# @param events -> array of all events (is_posted, T± time, message)
+# @return       -> formatted comments of unposted events
+def format_unposted_events(events)
+  return if events.nil?
+  str = ''
+
+  row = -1
+  events.each do |posted, time, message|
+    next if message == '' # must have message to count as row
+    row += 1
+    next if posted # must be unposted
+    str += "\n[](/# MC // row #{row} | #{time.gsub(')', '\)')} | " \
+           "#{message.gsub(')', '\)')} |)"
   end
   str
 end
