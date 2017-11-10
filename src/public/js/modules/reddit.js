@@ -24,7 +24,7 @@ export async function saveEvents() {
 
         const posted = children[1].getAttribute('data-content') === 'Posted';
         const tPM = children[3].value === '' ? '' : children[2].innerHTML + children[3].value.trim();
-        const message = children[6].value.trim();
+        const message = children[6].innerHTML.trim();  // not actually an input, so we need innerHTML
 
         if(message === '')
             continue;

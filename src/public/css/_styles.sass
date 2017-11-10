@@ -297,21 +297,21 @@ section.interface
             position: relative  // this allows arrows to be positioned absolutely
             background: rgba(#fff, 0.7) // make things pretty when reordering rows
             +border(1px solid #ddd 4px)
-            +size(null, 21px, 0.4rem, null null 0.6rem) // height is what it works out to be (needed for transition)
-            transition: height 300ms ease-in-out, border-width 300ms ease-in-out, padding 300ms ease-in-out, margin-bottom 300ms ease-in-out, opacity 300ms ease-in-out 300ms
+            +size(null, null null 500px, 0.4rem, null null 0.6rem) // max-height is used for transition
+            transition: max-height 300ms ease-in-out, border-width 300ms ease-in-out, padding 300ms ease-in-out, margin-bottom 300ms ease-in-out, opacity 300ms ease-in-out 300ms
 
             &.reverse
-                transition: height 300ms ease-in-out 300ms, border-width 300ms ease-in-out 300ms, padding 300ms ease-in-out 300ms, margin-bottom 300ms ease-in-out 300ms, opacity 300ms ease-in-out
+                transition: max-height 300ms ease-in-out 300ms, border-width 300ms ease-in-out 300ms, padding 300ms ease-in-out 300ms, margin-bottom 300ms ease-in-out 300ms, opacity 300ms ease-in-out
 
             &.hidden
                 border-width: 0
-                +size(null, 0, 0, null null 0)
+                +size(null, null null 0, 0, null null 0)
                 opacity: 0
 
             .sort-icon
                 +position(absolute, 20%, 0.5rem, null, null)
                 display: inline-block
-                background: url('../images/sort.svg') center no-repeat
+                background: url('../images/sort.svg') center / 1rem no-repeat
                 +size(2rem, 60%)
                 cursor: grab
 
@@ -319,10 +319,10 @@ section.interface
                     cursor: grabbing
 
             &:first-child .sort-icon
-                background: url('../images/sort-first.svg') center no-repeat
+                background: url('../images/sort-first.svg') center / 1rem no-repeat
 
             &:last-child .sort-icon
-                background: url('../images/sort-last.svg') center no-repeat
+                background: url('../images/sort-last.svg') center / 1rem no-repeat
 
             &:first-child:last-child .sort-icon
                 background: none
@@ -374,6 +374,7 @@ section.interface
                 > *
                     visibility: hidden
 
+        input.tpm
         input:first-of-type  // T±
             width: 53px
 
@@ -388,8 +389,18 @@ section.interface
             &:hover
                 opacity: 1
 
-        input:last-of-type  // message
+        div.message
+            display: inline-block
             width: calc(100% - 281px)
+            +border(1px solid #ddd 3px)
+            font-size: 1rem
+            min-height: calc(1rem + 2px)
+            padding: 2px
+            vertical-align: middle
+
+        @at-root input:focus, [contenteditable]:focus
+            outline: none
+            box-shadow: 0 0 1px 0 rgba($spx-blue, 0.8)
 
     i.fa-upload,
     i.fa-plus,

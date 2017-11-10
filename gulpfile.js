@@ -78,7 +78,7 @@ const config = {
 gulp.task('sass', () => {
     return gulp.src(`${config.css_dir}/all.sass`)
         .pipe(sass(config.sass).on('error', sass.logError))
-        //.pipe(purify(config.purifycss.content, config.purifycss.options))
+        .pipe(purify(config.purifycss.content, config.purifycss.options))
         .pipe(autoprefixer(config.autoprefixer))
         .pipe(gulp.dest(config.css_dir));
 });
