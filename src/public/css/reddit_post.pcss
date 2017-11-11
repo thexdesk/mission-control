@@ -1,0 +1,75 @@
+/* copied these values from a post on reddit */
+/* not guaranteed to be accurate, but it looks close enough */
+
+.md {
+  direction: ltr;
+  overflow-x: hidden;
+  font-size: 13px / 1.4em;
+  size: * * 70em / * / 5px 10px;
+  font-weight: 400;
+  font-family: Verdana, Geneva, sans-serif;
+  color: #222f;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  * {
+    margin: * 0;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  h1,
+  h2 {
+    font-size: calc(9em/7) / calc(25em/18);
+    margin: calc(5em/6) *;
+  }
+
+  h3,
+  h4 {
+    font-size: calc(8em/7) / 1.25em;
+    font-weight: 600;
+    font-style: inherit;
+    font-smooth: always;
+    size: * / * / 0 / 0.625em 0;
+  }
+
+  p {
+    size: * / * / 0 / calc(5em/14) 0;
+    font-size: 1em / calc(10em/7);
+  }
+
+  table {
+    size: * / * / 0 / calc(5em/14) 0;
+    border-collapse: collapse;
+
+    > :first-child { margin-top:    0; }
+    > :last-child  { margin-bottom: 0; }
+  }
+
+  tr {
+    size: * / * / 0 / 0;
+  }
+
+  td,
+  th {
+    font-size: 13px / calc(10em/7);
+    padding: 4px 9px;
+    border: 1px solid #e5e3daff;
+    text-align: left;
+
+    > :first-child { margin-top:    0; }
+    > :last-child  { margin-bottom: 0; }
+  }
+
+  a {
+    color: #0079d3ff;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 1em;
+  }
+}

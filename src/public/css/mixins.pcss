@@ -1,0 +1,45 @@
+$spx-blue: #005288ff;
+$spx-blue-alpha: #00528866;
+$spx-blue-weak-alpha: #00528833;
+$spx-blue-strong-alpha: #005288cc;
+
+$yt-width: 600px;
+$yt-height: 338px;
+$twitter-width: 320px;
+$gutter: 4px;
+
+$yt-1366-width: 460px;
+$yt-1366-height: 259px;
+$twitter-1366-width: 270px;
+
+/* usage: @mixin small {} */
+@define-mixin small {
+  @media (width < 1500px) {
+    @mixin-content;
+  }
+}
+
+/* usage: @mixin large {} */
+@define-mixin large {
+  @media (width >= 1500px) {
+    @mixin-content;
+  }
+}
+
+/* single declaration for small and large screens */
+/* usage: @mixin responsive property, small, large */
+@define-mixin responsive $prop, $small, $large {
+  @media (width < 1500px) {
+    $(prop): $small;
+  }
+
+  @media (width >= 1500px) {
+    $(prop): $large;
+  }
+}
+
+/* usage: @mixin fonts */
+@define-mixin fonts {
+  font-family: Arial, 'Liberation Sans', sans-serif;
+  font-size: 1rem;
+}

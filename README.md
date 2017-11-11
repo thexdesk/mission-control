@@ -34,7 +34,7 @@ To run [gulp](https://github.com/r-spacex/mission-control/blob/master/gulpfile.j
 
 | task name | what it does |
 | --- | --- |
-| sass | transpile and minify all CSS |
+| postcss | transpile and minify all CSS |
 | rollup-modules | combine all modules into a single file |
 | rollup-packages | combine all packages into a single file |
 | js-modules | minify js modules |
@@ -42,7 +42,7 @@ To run [gulp](https://github.com/r-spacex/mission-control/blob/master/gulpfile.j
 
 ### CSS
 
-Mission Control uses [Sass](http://sass-lang.com/), which is located in the [`/src/public/css`](https://github.com/r-spacex/mission-control/tree/master/src/public/css) directory. All CSS should be split into relevant files, and pulled together in [`all.sass`](https://github.com/r-spacex/mission-control/tree/master/src/public/css/all.sass).
+Mission Control uses [PostCSS](http://postcss.org/), which is located in the [`/src/public/css`](https://github.com/r-spacex/mission-control/tree/master/src/public/css) directory. All CSS should be split into relevant files, and pulled together in [`all.pcss`](https://github.com/r-spacex/mission-control/tree/master/src/public/css/all.pcss). Documentation for the plugins is avilable in [CSS.md](https://github.com/r-spacex/mission-control/tree/master/CSS.md).
 
 ### JavaScript
 
