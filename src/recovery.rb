@@ -1,21 +1,20 @@
 require 'rack'
 require './src/functions'
 
-# @precondition  -> variables do not exist in header
 # @param text    -> text to be parsed
 # @return        -> undefined
 # @postcondition -> session variables are set
 def parse_sections(text)
   # parse the full post into individual sections
   text.scan(
-    %r{\[\]\(/# MC // sec (.*)\)\n((?:.*\n)*?)(?=\[\]\(/# MC // sec .*\))}
+    %r{\[\]\(/# MC // section (.*)\)\n((?:.*\n)*?)(?=\[\]\(/# MC // section .*\))}
   ).each do |name, content|
     # events get parsed later on
-    session[name.downcase.to_sym] = content.strip
+    session[name.downcase.to_sym] = content.strip if content
   end
 
   parse_events session[:events] if session.key?(:events) \
-                                && session[:events].length > 49
+                                && session[:events].length > 33
 end
 
 # @param events  -> raw text of events section
@@ -41,20 +40,14 @@ def parse_events(events)
   end
 end
 
-# @precondition  -> variables exist in header
-# @param text    -> the full text to be parsed, including unimportant sections
-# @return        -> [{variables}, initial text with variables stripped]
+# @param text    -> text to be parsed
+# @return        -> undefined
 # @postcondition -> session variables are set
 def parse_vars(text)
-  # isolate the variables string
-  vars, sections = text.split('[](/# MC // END VARS)', 2)
-
   # parse the variables & set in session variables
-  vars.scan(%r{\[\]\(\/# MC // let (.*) = (.*)\)}) do |name, value|
+  text.scan(%r{\[\]\(\/# MC // let (.*) = (.*)\)}) do |name, value|
     session[name.downcase.to_sym] = value == 'null' ? nil : value
   end
-
-  sections.strip
 end
 
 # @param url     -> valid URL to reddit post
@@ -71,7 +64,8 @@ def recover_post(url)
   return false unless request.env['redd.session'].me.name != post.author
 
   # set everything into session variables
-  parse_sections parse_vars post.selftext
+  parse_vars post.selftext
+  parse_sections post.selftext
   session[:post] = post.id
 
   true

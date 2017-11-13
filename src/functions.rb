@@ -14,41 +14,40 @@ def render_erb(fname)
 end
 
 # @return -> fully formatted markdown post
-def reddit_post
+def reddit_post # rubocop:disable MethodLength
   "[](/# MC // let time = #{session[:time] || 'null'})\n" \
   "[](/# MC // let launch = #{session[:launch] || 'null'})\n" \
-  "[](/# MC // let video = #{session[:video] || 'null'})\n" \
-  "[](/# MC // END VARS)\n\n" \
+  "[](/# MC // let video = #{session[:video] || 'null'})\n\n" \
   \
-  "[](/# MC // sec INTRO)\n" \
+  "[](/# MC // section intro)\n" \
   "#{session[:intro]}\n\n" \
   \
-  '[](/# MC // sec EVENTS)' \
+  '[](/# MC // section events)' \
   "#{if session[:events]
        "#{format_unposted_events session[:events]}\n" \
        "### Live Updates\n" \
        "#{format_posted_events session[:events]}"
      end}\n\n" \
   \
-  "[](/# MC // sec VIEWING)\n" \
+  "[](/# MC // section viewing)\n" \
   "#{session[:viewing]}\n\n" \
   \
-  "[](/# MC // sec STATS)\n" \
+  "[](/# MC // section stats)\n" \
   "#{session[:stats]}\n\n" \
   \
-  "[](/# MC // sec MISSION)\n" \
+  "[](/# MC // section mission)\n" \
   "#{session[:mission]}\n\n" \
   \
-  "[](/# MC // sec LANDING)\n" \
+  "[](/# MC // section landing)\n" \
   "#{session[:landing]}\n\n" \
   \
-  "[](/# MC // sec RESOURCES)\n" \
+  "[](/# MC // section resources)\n" \
   "#{session[:resources]}\n\n" \
   \
-  "[](/# MC // sec PARTICIPATE)\n" \
+  "[](/# MC // section participate)\n" \
   "#{session[:participate]}\n\n" \
   \
-  '[](/# MC // END)'
+  '[](/# MC // section END)'
 end
 
 # @param id -> id of reddit post
