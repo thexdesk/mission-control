@@ -97,7 +97,7 @@
                     <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='<%= event[0] ? "Posted" : "Hidden" %>'></span>
                     <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'><%= event[1][0..1] %></span><input value='<%= event[1][2..-1].gsub("'", "&apos;") %>' onkeyup='saveIfEnter(event); setSign(this);'>
                     <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                    <span>Message:</span> <div class='message' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' contenteditable><%= event[2] %></div>
+                    <span>Message:</span> <div class='message' onkeydown='_tabEvent(event,this); saveIfEnter(event);' oninput='hotSwap(this); addEventIfNeeded();' contenteditable><%= event[2] %></div>
             <% end %>
         <% else %>
         <%# nothing stored on server, give a single blank event %>
@@ -105,7 +105,7 @@
                 <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Posted'></span>
                 <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
                 <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-                <span>Message:</span> <div class='message' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' contenteditable></div>
+                <span>Message:</span> <div class='message' onkeydown='_tabEvent(event,this); saveIfEnter(event);' oninput='hotSwap(this); addEventIfNeeded();' contenteditable></div>
             </li>
         <% end %>
     </ul>
@@ -182,6 +182,6 @@
         <span onclick='this.setAttribute("data-content", this.getAttribute("data-content") == "Posted" ? "Hidden" : "Posted");' data-content='Hidden'></span>
         <span onclick='this.innerHTML = this.innerHTML == "T+" ? "T-" : "T+";'>T+</span><input onkeyup='saveIfEnter(event); setSign(this);'>
         <i class='fa fa-clock-o fa-fw' onclick=insertTime(this)></i>
-        <span>Message:</span> <div class='message' onkeyup=saveIfEnter(event) onkeydown=_tabEvent(event,this) oninput='hotSwap(this); addEventIfNeeded();' contenteditable></div>
+        <span>Message:</span> <div class='message' onkeydown='_tabEvent(event,this); saveIfEnter(event);' oninput='hotSwap(this); addEventIfNeeded();' contenteditable></div>
     </li>
 </template>

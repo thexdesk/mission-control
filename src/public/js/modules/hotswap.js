@@ -25,14 +25,9 @@ const hotSwapVals = {
 
 // swap out text with emoji on an input
 export function hotSwap(obj) {
-    // prevent binding on non-inputs
-    if(!(obj instanceof HTMLInputElement))
-        throw 'Object must be HTMLInputElement';
-
     const regex = new RegExp(Object.keys(hotSwapVals).join('|'), 'g');  // nothing needs to be escaped here
 
-    const val = obj.value.replace(regex, key => hotSwapVals[key]);
-    if(obj.value !== val)
-        // prevents moving cursor to end if not needed
-        obj.value = val;
+	const val = obj.innerHTML.replace(regex, key => hotSwapVals[key]);
+	if(obj.innerHTML !== val)
+		obj.innerHTML = val;
 }

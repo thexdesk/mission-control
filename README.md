@@ -102,14 +102,14 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
 
 ### Confirmed working
 ![Chrome 59+](https://img.shields.io/badge/Chrome-59+-green.svg)
-![Firefox 55+](https://img.shields.io/badge/Firefox-55+-green.svg)
+![Firefox 52+](https://img.shields.io/badge/Firefox-52+-green.svg)
 ![Opera 46+](https://img.shields.io/badge/Opera-46+-green.svg)
 ![Safari 10.1+](https://img.shields.io/badge/Safari-10.1+-green.svg)
 
 ### Not checked
 ![Edge 16](https://img.shields.io/badge/Edge-16-lightgrey.svg)
 ![Chrome 58-](https://img.shields.io/badge/Chrome-58---lightgrey.svg)
-![Firefox 54-](https://img.shields.io/badge/Firefox-54---lightgrey.svg)
+![Firefox 51-](https://img.shields.io/badge/Firefox-51---lightgrey.svg)
 ![Opera 45-](https://img.shields.io/badge/Opera-45---lightgrey.svg)
 
 ### Confirmed broken

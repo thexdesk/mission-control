@@ -1,3 +1,5 @@
+import { get_hide_info } from './local_storage';
+
 export function showTab(tab) {
     const events = document.querySelectorAll('.tab-events');
     const sections = document.querySelectorAll('.tab-section');
@@ -6,6 +8,7 @@ export function showTab(tab) {
     tab.classList.add('current');
 
     const val = tab.innerHTML;
+    sessionStorage.setItem('tab', val);
 
     const show = {
         events: ['Events', 'All'].includes(val) ? '' : 'none',
@@ -41,6 +44,6 @@ export function removeLoadingModal() {
     setTimeout(() => loader.parentNode.removeChild(loader), 500);
 
     // show info dialog
-    if(!window.noshow)
+    if(!get_hide_info())
         document.getElementById('info').showModal();
 }

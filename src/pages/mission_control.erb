@@ -9,7 +9,6 @@
     <script defer src=js/all-packages.js></script>
     <script defer src=js/all-modules.js></script>
     <%= if session[:time] then "<script async>window.time = #{session[:time]}</script>" end %>
-    <%= if session[:noshow] then "<script async>window.noshow = true</script>" end %>
 </head>
 <body>
     <div id=loader class=loader>
@@ -25,7 +24,7 @@
     <% end %>
 
     <section class=status>
-        <a href=# onclick='document.body.classList.toggle("interface-left")'>
+        <a href=# onclick='document.body.classList.toggle("interface-left"); set_interface_side();'>
             <img id=interface-right src=https://img.shields.io/badge/interface-right-grey.svg alt='interface right'>
             <img id=interface-left src=https://img.shields.io/badge/interface-left-grey.svg alt='interface left'>
         </a>
@@ -55,19 +54,19 @@
 
     <section class='timer unset' id=timer onclick='document.getElementById("launchTime").showModal()'>Set launch time</section>
 
-	<section class=twitter>
-		<a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true	data-link-color=#005288 rel=noopener href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
-	</section>
+    <section class=twitter>
+        <a class=twitter-timeline data-aria-polite=rude data-chrome='noheader nofooter noborders transparent' data-dnt=true data-link-color=#005288 rel=noopener href=https://twitter.com/theZcuber/lists/r-spacex-mission-control></a>
+    </section>
 
     <dialog id=info><%= render_erb 'sections/info' %></dialog>
 
     <dialog id=launchTime>
         <h2>Enter the launch time</h2>
-        <div id=datetime-format>(YYYY-MM-DD HH:MM:SS)</div> <%# only gets rendered if browser doesn't support datetime-local %>
+        <div id=datetime-format>(YYYY-MM-DDTHH:MM:SS)</div> <%# only gets rendered if browser doesn't support datetime-local %>
         (in your timezone)
 
-        <input type=datetime-local id=datetime step=1> <%# step=1 displays seconds %>
-        <button onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
+        <input type=datetime-local required pattern='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}' id=datetime step=1> <%# step=1 displays seconds %>
+        <button class=disableable onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
         <button onclick='setLaunchTime(null)'>Clear timer</button>
     </dialog>
 
@@ -75,7 +74,7 @@
         <h2>Enter YouTube link to webcast</h2>
         <input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'>
         <button class=clear>Clear</button>
-        <button class=update>Update</button>
+        <button class='update disableable'>Update</button>
     </dialog>
 </body>
 </html>

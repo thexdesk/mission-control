@@ -2,8 +2,10 @@ import { saveEvents } from './reddit';
 
 // bound on event inputs
 export function saveIfEnter(e) {
-    if(e.keyCode === 13)  // enter
-        saveEvents()
+    if(e.keyCode === 13) {  // enter
+        e.preventDefault();
+        saveEvents();
+    }
 }
 
 // capture tab event and redirect it to the previous row

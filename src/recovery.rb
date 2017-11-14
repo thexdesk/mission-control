@@ -9,8 +9,9 @@ def parse_sections(text)
   text.scan(
     %r{\[\]\(/# MC // section (.*)\)\n((?:.*\n)*?)(?=\[\]\(/# MC // section .*\))}
   ).each do |name, content|
+    break if name == 'END'
     # events get parsed later on
-    session[name.downcase.to_sym] = content.strip if content
+    session[name.downcase.to_sym] = content.strip
   end
 
   parse_events session[:events] if session.key?(:events) \
@@ -33,8 +34,7 @@ def parse_events(events)
   end
 
   # parse posted events
-  # [33..-1] strips header
-  posted[33..-1].scan(%r{\| \[\]\(/# MC // row (\d+)\) (.*) \| (.*) \|}) \
+  posted.scan(%r{\| \[\]\(/# MC // row (\d+)\) (.*) \| (.*) \|}) \
   do |row, time, message|
     session[:events][row.to_i] = [true, time, message]
   end
