@@ -8,7 +8,7 @@ import './modules/intervals';
 import { get_interface_side, get_tab_shown, get_hide_info } from './modules/local_storage';
 import './modules/mde';
 import { emergency, std_message } from './modules/messages';
-import { save, saveEvents, createPost, updateStats } from './modules/reddit';
+import { save, saveEvents, createPost } from './modules/reddit';
 import { showTab, createSortable, datetimeSupport, removeLoadingModal } from './modules/ui';
 import { setYoutube } from './modules/youtube';
 

@@ -74,11 +74,6 @@ get '/logout' do
   redirect to '/'
 end
 
-# status section for interface
-get '/status' do
-  render_erb 'sections/status'
-end
-
 # live rendering of post for interface
 get '/post' do
   render_erb 'sections/live_post'

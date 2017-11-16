@@ -33,8 +33,13 @@ export function datetimeSupport() {
     const elem = document.createElement('input');
     elem.setAttribute('type', 'datetime-local');
     if(elem.type === 'datetime-local') {
-        const removing = document.getElementById('datetime-format');
-        removing.parentElement.removeChild(removing);
+        document.getElementById('datetime-format').innerHTML = '(in your timezone)';
+        //const removing = document.getElementById('datetime-format');
+        //removing.parentElement.removeChild(removing);
+    } else {
+        document.getElementById('datetime-format').innerHTML = 'Format: YYYY-MM-DDTHH:MM:SS<br>(in your timezone)';
+        //const removing = document.getElementById('timezone-format');
+        //removing.parentElement.removeChild(removing);
     }
 }
 

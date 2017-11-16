@@ -23,17 +23,6 @@
         <iframe class=youtube title=YouTube src=''></iframe>
     <% end %>
 
-    <section class=status>
-        <a href=# onclick='document.body.classList.toggle("interface-left"); set_interface_side();'>
-            <img id=interface-right src=https://img.shields.io/badge/interface-right-grey.svg alt='interface right'>
-            <img id=interface-left src=https://img.shields.io/badge/interface-left-grey.svg alt='interface left'>
-        </a>
-
-        <span id=status-liveupdate> <%# allow updates via AJAX later %>
-            <%= render_erb 'sections/status' %>
-        </span>
-    </section>
-
     <section class=reddit>
         <%= render_erb 'sections/live_post' %>
     </section>
@@ -41,8 +30,9 @@
     <section class=interface>
         <span class=icons>
             <i id=info-button class='fa fa-info-circle' onclick='document.getElementById("info").showModal()' title='Show intro message'></i>
+            <i class='fa fa-exchange' onclick='document.body.classList.toggle("interface-left"); set_interface_side();' title='Flip interface'></i>
             <i id=mic class='fa fa-microphone-slash' title='Voice control status'></i>
-            <i id=youtube-button class='fa fa-youtube-play' onclick='setYoutube()' title='Set YouTube video'></i>
+            <i class='fa fa-youtube-play' onclick='setYoutube()' title='Set YouTube video'></i>
             <a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control/issues id=bugs><i class='fa fa-bug' title='Report a bug'></i></a>
             <a target=_blank rel=noopener href=https://github.com/r-spacex/mission-control id=github><i class='fa fa-github' title='GitHub'></i></a>
             <a href=logout id=logout><i class='fa fa-sign-out' title='Sign out'></i></a>
@@ -62,8 +52,7 @@
 
     <dialog id=launchTime>
         <h2>Enter the launch time</h2>
-        <div id=datetime-format>(YYYY-MM-DDTHH:MM:SS)</div> <%# only gets rendered if browser doesn't support datetime-local %>
-        (in your timezone)
+        <div id=datetime-format></div>
 
         <input type=datetime-local required pattern='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}' id=datetime step=1> <%# step=1 displays seconds %>
         <button class=disableable onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>

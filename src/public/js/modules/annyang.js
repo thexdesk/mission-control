@@ -1,5 +1,5 @@
 import { addEvent, removeEvent } from './events';
-import { save, saveEvents, createPost, updateStats } from './reddit';
+import { save, saveEvents, createPost } from './reddit';
 
 export function speechRecognition() {
     if(annyang === null) {
@@ -65,7 +65,6 @@ export function speechRecognition() {
         'next (event)': _nextEvent,
         'post (event)': _postEvent,
         'create (a) (new) post': createPost,
-        'update (the) stats': updateStats,
         '(add) (create) (a) new event': addEvent,
         'remove (the) (first) (top) event': removeEvent,
         '(set) (update) launch time': () => document.getElementById('launchTime').showModal(),

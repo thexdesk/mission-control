@@ -89,7 +89,6 @@ All JS written must be modular, as it makes maintenance more feasible. The modul
     - `async save()`
     - `async saveEvents()`
     - `async createPost()`
-    - `async updateStats()`
 - [`ui`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/ui.js)
     - `showTab(object)`
     - `createSortable()`

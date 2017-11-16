@@ -24,7 +24,6 @@ body:not(.auth, .init) {
   grid-template: ' youtube interface logo    ' 61px
                  ' youtube interface timer   ' 60px
                  ' youtube interface twitter ' calc($yt-height - 61px - 60px)
-                 ' status  interface twitter ' 20px
                  ' reddit  interface twitter ' 1fr
                  / $yt-width 1fr $twitter-width;
   grid-gap: $gutter;
@@ -41,7 +40,6 @@ body:not(.auth, .init) {
     grid-template: ' logo    interface youtube ' 61px
                    ' timer   interface youtube ' 60px
                    ' twitter interface youtube ' calc($yt-height - 61px - 60px)
-                   ' twitter interface status  ' 20px
                    ' twitter interface reddit  ' 1fr
                    / $twitter-width 1fr $yt-width;
 
@@ -110,9 +108,9 @@ body:matches(.auth, .init) {
 
     @at-root {
       input[pattern] {
-        transition: background 250ms ease;
-        &:valid   { background: #cfcf; }
-        &:invalid { background: #fccf; }
+        transition: border-color 200ms ease;
+        &:valid   { border-color: #7f7f; }
+        &:invalid { border-color: #f00f; }
       }
     }
 
@@ -224,6 +222,7 @@ section.interface {
     i {
       opacity: 0.3;
       transition: opacity 200ms;
+      cursor: pointer;
 
       &:not(#mic):hover {
         opacity: 1;
@@ -231,10 +230,6 @@ section.interface {
 
       &#info-button {
         cursor: help;
-      }
-
-      &#youtube-button {
-        cursor: pointer;
       }
 
       &#mic {
@@ -259,7 +254,7 @@ section.interface {
     list-style-type: none;
     font-size: 0;
     border-bottom: 1px solid #dddf;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 
     li {
       display: inline-block;
@@ -299,7 +294,7 @@ section.interface {
       }
 
       background: #fffb;
-      border-radius: 3px;
+      border: 1px solid #dddf 3px;
       width: fit-content;
     }
 
@@ -334,7 +329,7 @@ section.interface {
       span:last-of-type {
         text-transform: uppercase;
         background: #fffb;
-        border-radius: 3px;
+        border: 1px solid #dddf 3px;
         display: flex;
 
         @media (width < 1650px) {
@@ -360,7 +355,7 @@ section.interface {
       position: relative;
       background: #fffb;
       border: 1px solid #dddf 4px;
-      size: * / * * 500px / 0.4rem / * * 0.6rem;
+      size: * / * * 500px / 0.4rem / * * 0.5rem;
       transition: max-height    300ms ease-in-out,
                   border-width  300ms ease-in-out,
                   padding       300ms ease-in-out,

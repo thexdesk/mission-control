@@ -47,8 +47,3 @@ export async function createPost() {
     // blank post, let's show this
     document.querySelector('.reddit').innerHTML = '<div class=flex><span class=greyed-out>[empty post]</span></div>';
 }
-
-// gets status page and updates section
-export async function updateStats() {
-    document.getElementById('status-liveupdate').innerHTML = await ajax.get('status');
-}
