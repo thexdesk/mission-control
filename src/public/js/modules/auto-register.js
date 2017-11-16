@@ -1,3 +1,6 @@
+/**
+ * automatically registers all existing and future `<dialog>` elements with a polyfill
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const scope = document.body;
     const tag = 'dialog';

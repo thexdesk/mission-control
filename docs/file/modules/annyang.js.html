@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">modules/annyang.js | r-spacex-mission-control</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="r/SpaceX launch thread interface"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="r-spacex-mission-control"><meta property="twitter:description" content="r/SpaceX launch thread interface"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/r-spacex/mission-control.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-speechRecognition">speechRecognition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveIfEnter">saveIfEnter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setSign">setSign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tabEvent">tabEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-insertTime">insertTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setLaunchTime">setLaunchTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateCountdown">updateCountdown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEvent">addEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventIfNeeded">addEventIfNeeded</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeEvent">removeEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hotSwap">hotSwap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_hide_info">get_hide_info</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_interface_side">get_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_tab_shown">get_tab_shown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-set_interface_side">set_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-emergency">emergency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-std_message">std_message</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createPost">createPost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-save">save</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveEvents">saveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSortable">createSortable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-datetimeSupport">datetimeSupport</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeLoadingModal">removeLoadingModal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-showTab">showTab</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setYoutube">setYoutube</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ajax">ajax</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">modules/annyang.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { addEvent, removeEvent } from &apos;./events&apos;;
+import { save, saveEvents, createPost } from &apos;./reddit&apos;;
+
+/**
+ * provides voice commands conditional on browser support
+ */
+export function speechRecognition() {
+    // feature detection - remove mic icon if not supported
+    if(annyang === null) {
+        const mic = document.getElementById(&apos;mic&apos;);
+        mic.parentElement.removeChild(mic);
+        return;
+    }
+
+    /**
+     * save the current section
+     */
+    function _saveSection() {
+        try {
+            const elem = document.activeElement.parentNode.parentNode.previousElementSibling.children[0];
+            if(elem.classList.contains(&apos;fa&apos;))
+                // markdown editor, click upload button
+                elem.click();
+            else if(elem.children[0].classList.contains(&apos;fa&apos;))
+                // events section, click upload button
+                elem.children[0].click();
+        }
+        catch(err) {}
+    }
+
+    /**
+     * move cursor to next event
+     */
+    function _nextEvent() {
+        const parent = document.activeElement.parentNode;
+        if(!parent.classList.contains(&apos;reverse&apos;))
+            return;
+
+        if(parent.previousElementSibling) {
+            console.log(parent.previousElementSibling.children[3]);
+            parent.previousElementSibling.children[3].focus();
+        }
+    }
+
+    /**
+     * post event, move cursor to next
+     */
+    function _postEvent() {
+        const elem = document.activeElement;
+        if(!elem.parentNode.classList.contains(&apos;reverse&apos;))
+            return;
+
+        // click on &quot;Posted&quot; if not already
+        const posted = elem.parentNode.children[1];
+        if(posted.getAttribute(&apos;data-content&apos;) !== &apos;Posted&apos;)
+            posted.click();
+
+        _nextEvent();
+        saveEvents();
+    }
+
+    /**
+     * set which mic icon is shown
+     * @param {boolean} slash - are we putting a slash through the mic?
+     */
+    function _mic(slash=true) {
+        document.getElementById(&apos;mic&apos;).classList.remove(slash ? &apos;fa-microphone&apos; : &apos;fa-microphone-slash&apos;);
+        document.getElementById(&apos;mic&apos;).classList.add(slash ? &apos;fa-microphone-slash&apos; : &apos;fa-microphone&apos;);
+    }
+
+    // trigger the mic icon
+    annyang.addCallback(&apos;soundstart&apos;, () =&gt; _mic(false));
+    annyang.addCallback(&apos;result&apos;, () =&gt; _mic(true));
+    annyang.addCallback(&apos;error&apos;, () =&gt; _mic(true));
+    annyang.addCallback(&apos;end&apos;, () =&gt; _mic(true));
+
+    // here&apos;s all the commands
+    // anything in parenthesis is optional (used here as an OR, basically)
+    annyang.addCommands({
+        &apos;show all&apos;: () =&gt; document.getElementById(&apos;tabs&apos;).children[0].click(),
+        &apos;show events&apos;: () =&gt; document.getElementById(&apos;tabs&apos;).children[1].click(),
+        &apos;show section&apos;: () =&gt; document.getElementById(&apos;tabs&apos;).children[2].click(),
+        &apos;show sections&apos;: () =&gt; document.getElementById(&apos;tabs&apos;).children[2].click(),
+        &apos;save (this) (section)&apos;: _saveSection,
+        &apos;next (event)&apos;: _nextEvent,
+        &apos;post (event)&apos;: _postEvent,
+        &apos;create (a) (new) post&apos;: createPost,
+        &apos;(add) (create) (a) new event&apos;: addEvent,
+        &apos;remove (the) (first) (top) event&apos;: removeEvent,
+        &apos;(set) (update) launch time&apos;: () =&gt; document.getElementById(&apos;launchTime&apos;).showModal(),
+        &apos;(set) (update) countdown&apos;: () =&gt; document.getElementById(&apos;launchTime&apos;).showModal(),
+        &apos;(change) (set) youtube (video)&apos;: () =&gt; document.getElementById(&apos;yt-dialog&apos;).showModal(),
+        &apos;(show) (display) info&apos;: () =&gt; document.getElementById(&apos;info&apos;).showModal(),
+        &apos;report (a) bug&apos;: () =&gt; window.open(&apos;https://github.com/r-spacex/mission-control/issues/new&apos;),
+        &apos;(open) github&apos;: () =&gt; window.open(&apos;https://github.com/r-spacex/mission-control/&apos;),
+        &apos;(show) source (code)&apos;: () =&gt; window.open(&apos;https://github.com/r-spacex/mission-control/&apos;),
+        &apos;logout&apos;: () =&gt; window.location = &apos;/logout&apos;,
+        &apos;sign out&apos;: () =&gt; window.location = &apos;/logout&apos;,
+        &apos;(switch) (flip) interface&apos;: () =&gt; document.body.classList.toggle(&apos;interface-left&apos;)
+    });
+    annyang.start();
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

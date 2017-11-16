@@ -1,5 +1,11 @@
 # r/SpaceX Mission Control
 
+JavaScript ![documentation %](https://r-spacex.github.io/image/badge.svg)
+
+## Servers
+
+Mission Control is currently running on two servers: production and testing. The production server is located at [spacex-mission-control.herokuapp.com](https://spacex-mission-control.herokuapp.com), while the testing server is at [spx-mc-testing.herokuapp.com](https://spx-mc-testing.herokuapp.com). The production server should be stable and (mostly) bug-free, while the testing server may be unstable and (though unlikely) possible not functional. However, the testing server will likely be a step or two ahead of production, feature-wise.
+
 ## Installation
 
 To setup [Mission Control](https://github.com/r-spacex/mission-control/), run the following commands. This will copy the repo locally and install the requisite packages. You may need to enter your password to authenticate the installation.
@@ -56,46 +62,7 @@ All packages are located in the [`/src/public/js/packages`](https://github.com/r
 - [Sortable](https://github.com/RubaXa/Sortable)
 
 #### Modules
-
-All JS written must be modular, as it makes maintenance more feasible. The modules are located in [`/src/public/js/modules`](https://github.com/r-spacex/mission-control/tree/master/src/public/js/modules). The following modules currently exist, with the relevent exports.
-
-- [`ajax`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/ajax.js)
-    - `ajax.get(url, data)`
-    - `ajax.post(url, data)`
-- [`annyang`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/annyang.js)
-    - `speechRecognition()`
-- [`auto-register`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/auto-register.js)
-- [`captues`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/captures.js)
-    - `saveIfEnter(event)`
-    - `_tabEvent(event, object)`
-    - `setSign(object)`
-- [`countdown`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/countdown.js)
-    - `updateCountdown()`
-    - `setLaunchTime(launchTime)`
-    - `insertTime(object)`
-- [`events`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/events.js)
-    - `addEvent()`
-    - `removeEvent()`
-    - `addEventIfNeeded()`
-- [`hotswap`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/hotswap.js)
-    - `hotSwap(object)`
-- [`intervals`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/intervals.js)
-- [`mde`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/mde.js)
-    - `registerMDEs()`
-- [`messages`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/messages.js)
-    - `emergency(object)`
-    - `std_message()`
-- [`reddit`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/reddit.js)
-    - `async save()`
-    - `async saveEvents()`
-    - `async createPost()`
-- [`ui`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/ui.js)
-    - `showTab(object)`
-    - `createSortable()`
-    - `datetimeSupport()`
-    - `removeLoadingModal()`
-- [`youtube`](https://github.com/r-spacex/mission-control/blob/master/src/public/js/modules/youtube.js)
-    - `async setYoutube()`
+See [full documentation](https://r-spacex.github.io/mission-control).
 
 ## Browser support
 

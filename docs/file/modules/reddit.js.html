@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">modules/reddit.js | r-spacex-mission-control</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="r/SpaceX launch thread interface"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="r-spacex-mission-control"><meta property="twitter:description" content="r/SpaceX launch thread interface"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/r-spacex/mission-control.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-speechRecognition">speechRecognition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveIfEnter">saveIfEnter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setSign">setSign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tabEvent">tabEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-insertTime">insertTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setLaunchTime">setLaunchTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateCountdown">updateCountdown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEvent">addEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventIfNeeded">addEventIfNeeded</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeEvent">removeEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hotSwap">hotSwap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_hide_info">get_hide_info</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_interface_side">get_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_tab_shown">get_tab_shown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-set_interface_side">set_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-emergency">emergency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-std_message">std_message</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createPost">createPost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-save">save</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveEvents">saveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSortable">createSortable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-datetimeSupport">datetimeSupport</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeLoadingModal">removeLoadingModal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-showTab">showTab</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setYoutube">setYoutube</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ajax">ajax</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">modules/reddit.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { ajax } from &apos;./ajax&apos;;
+
+/**
+ * save a certain section to reddit
+ *
+ * triggered when an &quot;upload&quot; button is clicked
+ */
+export async function save() {
+    const elem = arguments[0].element;
+
+    const data = await ajax.post(&apos;update&apos;, {
+        id: elem.id,
+        value: elem.value
+    });
+
+    document.querySelector(`#${elem.id} + .editor-toolbar &gt; a.fa-upload`).classList.add(&apos;highlight&apos;);
+    document.querySelector(&apos;.reddit&apos;).innerHTML = data;
+}
+
+/**
+ * save events section
+ *
+ * needs to be handled differently because it needs parsing
+ */
+export async function saveEvents() {
+    const events = document.getElementById(&apos;events&apos;).children;
+
+    let allEvents = [];
+
+    // go through all rows
+    for(const evnt of events) {
+        const children = evnt.children;
+
+        // we need to tell if it&apos;s posted or not
+        const posted = children[1].getAttribute(&apos;data-content&apos;) === &apos;Posted&apos;;
+
+        // T&#xB1;time (left column)
+        const tPM = children[3].value === &apos;&apos; ? &apos;&apos; : children[2].innerHTML + children[3].value.trim();
+
+        // message in right column
+        const message = children[6].innerHTML.trim();  // not actually an input, so we need innerHTML
+
+        // we don&apos;t care about empty rows
+        if(message === &apos;&apos;)
+            continue;
+
+        // this is the format the server expects it in
+        allEvents.push([posted, tPM, message]);
+    }
+
+    // save it!
+    document.querySelector(&apos;.reddit&apos;).innerHTML = await ajax.post(&apos;update&apos;, {
+        id: &apos;events&apos;,
+        value: allEvents
+    });
+
+    // indicate successful save
+    document.querySelector(&apos;.tab-events .fa-upload&apos;).classList.add(&apos;highlight&apos;);
+}
+
+/**
+ * create empty post
+ */
+export async function createPost() {
+    await ajax.get(&apos;update/create&apos;);
+
+    // blank post, let&apos;s show this
+    document.querySelector(&apos;.reddit&apos;).innerHTML = &apos;&lt;div class=flex&gt;&lt;span class=greyed-out&gt;[empty post]&lt;/span&gt;&lt;/div&gt;&apos;;
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

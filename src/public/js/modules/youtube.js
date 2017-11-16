@@ -1,5 +1,10 @@
 import { ajax } from './ajax';
 
+/**
+ * dialog popup, prompting for new YouTube video
+ *
+ * sets (or clears) variable, saves to server, and updates the display
+ */
 export async function setYoutube() {
     const dialog = document.getElementById('yt-dialog');
     dialog.showModal();

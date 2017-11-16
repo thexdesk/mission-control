@@ -1,6 +1,9 @@
 import { saveEvents } from './reddit';
 
-// bound on event inputs
+/**
+ * bound on event inputs
+ * @param {event} e - keypress event
+ */
 export function saveIfEnter(e) {
     if(e.keyCode === 13) {  // enter
         e.preventDefault();
@@ -8,8 +11,12 @@ export function saveIfEnter(e) {
     }
 }
 
-// capture tab event and redirect it to the previous row
-export function _tabEvent(e, obj) {
+/**
+ * capture tab event and redirect it to the previous row
+ * @param {event} e - keypress event
+ * @param {HTMLElement} obj - the current node with focus
+ */
+export function tabEvent(e, obj) {
     if(e.keyCode === 9) {  // tab
         if(obj.parentElement !== obj.parentElement.parentElement.firstElementChild) {  // if not first row
             e.preventDefault();
@@ -18,7 +25,10 @@ export function _tabEvent(e, obj) {
     }
 }
 
-// set sign if input starts with it
+/**
+ * set sign if input starts with it
+ * @param {HTMLInputElement} obj - the T± input to get the value of
+ */
 export function setSign(obj) {
     const val = obj.value;
 

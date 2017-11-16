@@ -1,6 +1,8 @@
 import { ajax } from './ajax';
 
-// updates the countdown timer based on launch time
+/**
+ * updates the countdown timer based on launch time
+ */
 export function updateCountdown() {
     // non-strict null check
     if(window.time == null || window.hold_scrub === true)
@@ -8,6 +10,7 @@ export function updateCountdown() {
 
     const timer = document.getElementById('timer');
 
+    // how long until the launch?
     const curTime = new Date();
     const diff = Math.abs(window.time - curTime);
     const sign = window.time > curTime ? '-' : '+';
@@ -18,22 +21,29 @@ export function updateCountdown() {
     const secs   = diff %    60000 /     1000 | 0;
     const tenths = diff %     1000 /      100 | 0;
 
-    if(diff < 61000 && window.countdown_interval !== 100) {  // <1 minute => 0.1 second
+    // <1m => 0.1s interval
+    if(diff < 61000 && window.countdown_interval !== 100) {
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 100);
         window.countdown_interval = 100;
     }
-    else if(61000 <= diff && diff < 3660000 && window.countdown_interval !== 1000) {  // 1 minute to 1 hour => 1 second
+
+    // 1m to 1h => 1s interval
+    else if(61000 <= diff && diff < 3660000 && window.countdown_interval !== 1000) {
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 1000);
         window.countdown_interval = 1000;
     }
-    else if(3660000 <= diff && diff < 90000000 && window.countdown_interval !== 60000) {  // 1 hour to 1 day => 1 minute
+
+    // 1h to 1d => 1m interval
+    else if(3660000 <= diff && diff < 90000000 && window.countdown_interval !== 60000) {
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 60000);
         window.countdown_interval = 60000;
     }
-    else if(diff >= 90000000 && window.countdown_interval !== 3600000) {  // >1 day => 1 hour
+
+    // >1d => 1h interval
+    else if(diff >= 90000000 && window.countdown_interval !== 3600000) {
         clearInterval(window.countdown);
         window.countdown = setInterval(updateCountdown, 3600000);
         window.countdown_interval = 3600000;
@@ -41,6 +51,7 @@ export function updateCountdown() {
 
     let time;  // placed here for scope
 
+    // format the output
     if(days > 0)
         time = `${days}d ${hours}h`;
     else if(hours > 0)
@@ -54,7 +65,11 @@ export function updateCountdown() {
     timer.innerHTML = `T${sign}${time}`;
 }
 
-// popup to ask for launch time (uses <dialog>)
+/**
+ * popup to ask for launch time (uses `<dialog>`)
+ * @param {string} launchTime - ISO-formatted string of the updates launch time
+ * @see https://en.wikipedia.org/wiki/ISO_8601
+ */
 export function setLaunchTime(launchTime) {
     // non-strict null check
     window.time = launchTime == null ? null : Date.parse(launchTime);
@@ -80,6 +95,10 @@ export function setLaunchTime(launchTime) {
     });
 }
 
+/**
+ * sets T± when an input starts with a sign (+ or -)
+ * @param {HTMLInputElement} obj - element to get the value from
+ */
 export function insertTime(obj) {
     // non-strict null check
     if(window.time != null) {

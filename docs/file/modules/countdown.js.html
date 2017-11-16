@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">modules/countdown.js | r-spacex-mission-control</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="r/SpaceX launch thread interface"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="r-spacex-mission-control"><meta property="twitter:description" content="r/SpaceX launch thread interface"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/r-spacex/mission-control.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-speechRecognition">speechRecognition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveIfEnter">saveIfEnter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setSign">setSign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tabEvent">tabEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-insertTime">insertTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setLaunchTime">setLaunchTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateCountdown">updateCountdown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEvent">addEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventIfNeeded">addEventIfNeeded</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeEvent">removeEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hotSwap">hotSwap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_hide_info">get_hide_info</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_interface_side">get_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_tab_shown">get_tab_shown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-set_interface_side">set_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-emergency">emergency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-std_message">std_message</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createPost">createPost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-save">save</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveEvents">saveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSortable">createSortable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-datetimeSupport">datetimeSupport</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeLoadingModal">removeLoadingModal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-showTab">showTab</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setYoutube">setYoutube</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ajax">ajax</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">modules/countdown.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { ajax } from &apos;./ajax&apos;;
+
+/**
+ * updates the countdown timer based on launch time
+ */
+export function updateCountdown() {
+    // non-strict null check
+    if(window.time == null || window.hold_scrub === true)
+        return;
+
+    const timer = document.getElementById(&apos;timer&apos;);
+
+    // how long until the launch?
+    const curTime = new Date();
+    const diff = Math.abs(window.time - curTime);
+    const sign = window.time &gt; curTime ? &apos;-&apos; : &apos;+&apos;;
+
+    const days   = diff            / 86400000 | 0;
+    const hours  = diff % 86400000 /  3600000 | 0;
+    const mins   = diff %  3600000 /    60000 | 0;
+    const secs   = diff %    60000 /     1000 | 0;
+    const tenths = diff %     1000 /      100 | 0;
+
+    // &lt;1m =&gt; 0.1s interval
+    if(diff &lt; 61000 &amp;&amp; window.countdown_interval !== 100) {
+        clearInterval(window.countdown);
+        window.countdown = setInterval(updateCountdown, 100);
+        window.countdown_interval = 100;
+    }
+
+    // 1m to 1h =&gt; 1s interval
+    else if(61000 &lt;= diff &amp;&amp; diff &lt; 3660000 &amp;&amp; window.countdown_interval !== 1000) {
+        clearInterval(window.countdown);
+        window.countdown = setInterval(updateCountdown, 1000);
+        window.countdown_interval = 1000;
+    }
+
+    // 1h to 1d =&gt; 1m interval
+    else if(3660000 &lt;= diff &amp;&amp; diff &lt; 90000000 &amp;&amp; window.countdown_interval !== 60000) {
+        clearInterval(window.countdown);
+        window.countdown = setInterval(updateCountdown, 60000);
+        window.countdown_interval = 60000;
+    }
+
+    // &gt;1d =&gt; 1h interval
+    else if(diff &gt;= 90000000 &amp;&amp; window.countdown_interval !== 3600000) {
+        clearInterval(window.countdown);
+        window.countdown = setInterval(updateCountdown, 3600000);
+        window.countdown_interval = 3600000;
+    }
+
+    let time;  // placed here for scope
+
+    // format the output
+    if(days &gt; 0)
+        time = `${days}d ${hours}h`;
+    else if(hours &gt; 0)
+        time = `${hours}h ${mins}m`;
+    else if(mins &gt; 0)
+        time = `${mins}:${secs.toString().padStart(2, &apos;0&apos;)}`;
+    else
+        time = `${secs}.${tenths}`;
+
+    timer.classList.remove(&apos;unset&apos;);
+    timer.innerHTML = `T${sign}${time}`;
+}
+
+/**
+ * popup to ask for launch time (uses `&lt;dialog&gt;`)
+ * @param {string} launchTime - ISO-formatted string of the updates launch time
+ * @see https://en.wikipedia.org/wiki/ISO_8601
+ */
+export function setLaunchTime(launchTime) {
+    // non-strict null check
+    window.time = launchTime == null ? null : Date.parse(launchTime);
+    window.hold_scrub = false;
+
+    // non-strict null check
+    if(window.time == null) {
+        const timer = document.getElementById(&apos;timer&apos;);
+        timer.innerHTML = &apos;Set launch time&apos;;
+        timer.classList.add(&apos;unset&apos;);
+    }
+    else {
+        document.getElementById(&apos;timer&apos;).classList.remove(&apos;unset&apos;);
+        updateCountdown();
+    }
+
+    document.getElementById(&apos;launchTime&apos;).close();
+
+    // not awaiting anything
+    ajax.post(&apos;update&apos;, {
+        id: &apos;time&apos;,
+        value: window.time
+    });
+}
+
+/**
+ * sets T&#xB1; when an input starts with a sign (+ or -)
+ * @param {HTMLInputElement} obj - element to get the value from
+ */
+export function insertTime(obj) {
+    // non-strict null check
+    if(window.time != null) {
+        const children = obj.parentElement.children;
+        const time = document.getElementById(&apos;timer&apos;).innerHTML;
+
+        children[2].innerHTML = time.slice(0, 2);
+        children[3].value = time.includes(&apos;.&apos;) ? time.slice(2, -2) : time.slice(2);
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

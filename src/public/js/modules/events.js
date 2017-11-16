@@ -1,4 +1,7 @@
-// add an event at the top of the list
+/**
+ * add an event at the top of the table
+ * @return {HTMLElement} the node that was added
+ */
 export function addEvent() {
     const events = document.getElementById('events');
 
@@ -21,7 +24,10 @@ export function addEvent() {
     return row;
 }
 
-// remove event at top of list
+/**
+ * remove event at top of list.
+ * will not remove last row
+ */
 export function removeEvent() {
     const events = document.getElementById('events');
     if(events.children.length > 1) {  // don't allow removing last event
@@ -30,6 +36,9 @@ export function removeEvent() {
     }
 }
 
+/**
+ * call {@link addEvent} if the top row has a non-empty message
+ */
 export function addEventIfNeeded() {
     if(document.getElementById('events').firstElementChild.children[6].innerHTML.length > 0)
         addEvent();

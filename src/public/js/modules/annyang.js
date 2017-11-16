@@ -1,13 +1,20 @@
 import { addEvent, removeEvent } from './events';
 import { save, saveEvents, createPost } from './reddit';
 
+/**
+ * provides voice commands conditional on browser support
+ */
 export function speechRecognition() {
+    // feature detection - remove mic icon if not supported
     if(annyang === null) {
         const mic = document.getElementById('mic');
         mic.parentElement.removeChild(mic);
         return;
     }
 
+    /**
+     * save the current section
+     */
     function _saveSection() {
         try {
             const elem = document.activeElement.parentNode.parentNode.previousElementSibling.children[0];
@@ -21,6 +28,9 @@ export function speechRecognition() {
         catch(err) {}
     }
 
+    /**
+     * move cursor to next event
+     */
     function _nextEvent() {
         const parent = document.activeElement.parentNode;
         if(!parent.classList.contains('reverse'))
@@ -32,6 +42,9 @@ export function speechRecognition() {
         }
     }
 
+    /**
+     * post event, move cursor to next
+     */
     function _postEvent() {
         const elem = document.activeElement;
         if(!elem.parentNode.classList.contains('reverse'))
@@ -46,16 +59,23 @@ export function speechRecognition() {
         saveEvents();
     }
 
+    /**
+     * set which mic icon is shown
+     * @param {boolean} slash - are we putting a slash through the mic?
+     */
     function _mic(slash=true) {
         document.getElementById('mic').classList.remove(slash ? 'fa-microphone' : 'fa-microphone-slash');
         document.getElementById('mic').classList.add(slash ? 'fa-microphone-slash' : 'fa-microphone');
     }
 
+    // trigger the mic icon
     annyang.addCallback('soundstart', () => _mic(false));
     annyang.addCallback('result', () => _mic(true));
     annyang.addCallback('error', () => _mic(true));
     annyang.addCallback('end', () => _mic(true));
 
+    // here's all the commands
+    // anything in parenthesis is optional (used here as an OR, basically)
     annyang.addCommands({
         'show all': () => document.getElementById('tabs').children[0].click(),
         'show events': () => document.getElementById('tabs').children[1].click(),

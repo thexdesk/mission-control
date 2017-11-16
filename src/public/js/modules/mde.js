@@ -1,5 +1,8 @@
 import { save } from './reddit';
 
+/**
+ * register all `textarea`s with SimpleMDE, creating markdown editors
+ */
 window.addEventListener('load', () => {
     // register textareas as Markdown editor
     document.querySelectorAll('textarea').forEach(obj => {

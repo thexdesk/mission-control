@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">modules/ui.js | r-spacex-mission-control</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="r/SpaceX launch thread interface"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="r-spacex-mission-control"><meta property="twitter:description" content="r/SpaceX launch thread interface"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/r-spacex/mission-control.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-speechRecognition">speechRecognition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveIfEnter">saveIfEnter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setSign">setSign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tabEvent">tabEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-insertTime">insertTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setLaunchTime">setLaunchTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateCountdown">updateCountdown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEvent">addEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventIfNeeded">addEventIfNeeded</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeEvent">removeEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hotSwap">hotSwap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_hide_info">get_hide_info</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_interface_side">get_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_tab_shown">get_tab_shown</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-set_interface_side">set_interface_side</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-emergency">emergency</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-std_message">std_message</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createPost">createPost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-save">save</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveEvents">saveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSortable">createSortable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-datetimeSupport">datetimeSupport</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeLoadingModal">removeLoadingModal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-showTab">showTab</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setYoutube">setYoutube</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ajax">ajax</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">modules/ui.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { get_hide_info } from &apos;./local_storage&apos;;
+
+/**
+ * show contents of a tab in the interface
+ * @param {HTMLElement} tab - which tab to show
+ */
+export function showTab(tab) {
+    const events = document.querySelectorAll(&apos;.tab-events&apos;);
+    const sections = document.querySelectorAll(&apos;.tab-section&apos;);
+
+    document.querySelectorAll(&apos;#tabs &gt; *&apos;).forEach(obj =&gt; obj.classList.remove(&apos;current&apos;));
+    tab.classList.add(&apos;current&apos;);
+
+    // get which tab to show and store it for later
+    const val = tab.innerHTML;
+    sessionStorage.setItem(&apos;tab&apos;, val);
+
+    // array is the tabs each type is shown for
+    const show = {
+        events: [&apos;Events&apos;, &apos;All&apos;].includes(val) ? &apos;&apos; : &apos;none&apos;,
+        sections: [&apos;Sections&apos;, &apos;All&apos;].includes(val) ? &apos;&apos; : &apos;none&apos;
+    };
+
+    // show or hide each section
+    events.forEach(obj =&gt; obj.style[&apos;display&apos;] = show.events);
+    sections.forEach(obj =&gt; obj.style[&apos;display&apos;] = show.sections);
+}
+
+/**
+ * create reorderable events
+ */
+export function createSortable() {
+    Sortable.create(document.getElementById(&apos;events&apos;), {
+        handle: &apos;.sort-icon&apos;,
+        ghostClass: &apos;ui-state-highlight&apos;,
+        fallbackTolerance: 3
+    });
+}
+
+/**
+ * feature detection for `&lt;input type=&apos;datetime-local&apos;&gt;`
+ *
+ * change displayed text in popup (show format if not supported)
+ */
+export function datetimeSupport() {
+    // create test case
+    const elem = document.createElement(&apos;input&apos;);
+    elem.setAttribute(&apos;type&apos;, &apos;datetime-local&apos;);
+
+    // supported, don&apos;t need to show format
+    if(elem.type === &apos;datetime-local&apos;)
+        document.getElementById(&apos;datetime-format&apos;).innerHTML = &apos;(in your timezone)&apos;;
+
+    // not supported, show format
+    else
+        document.getElementById(&apos;datetime-format&apos;).innerHTML = &apos;YYYY-MM-DDTHH:MM:SS&lt;br&gt;(in your timezone)&apos;;
+}
+
+/**
+ * when the page is done loading, we can remove
+ * the modal and show the interface
+ */
+export function removeLoadingModal() {
+    const loader = document.getElementById(&apos;loader&apos;);
+
+    // fade out
+    loader.style[&apos;opacity&apos;] = 0;
+
+    // we don&apos;t need it anymore, so remove it from the DOM
+    setTimeout(() =&gt; loader.parentNode.removeChild(loader), 500);
+
+    // show info dialog if necessary
+    if(!get_hide_info())
+        document.getElementById(&apos;info&apos;).showModal();
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

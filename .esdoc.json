@@ -1,0 +1,17 @@
+{
+  "source": "./src/public/js/modules",
+  "destination": "./doc",
+  "plugins": [
+    {"name": "esdoc-standard-plugin"},
+    {
+      "name": "esdoc-importpath-plugin",
+      "option": {
+        "stripPackageName": true,
+        "replaces": [
+          {"from": "^modules/", "to": "./"},
+          {"from": ".js$", "to": ""}
+        ]
+      }
+    }
+  ]
+}
