@@ -1,4 +1,4 @@
-# r/SpaceX Mission Control
+# [r/SpaceX Mission Control](https://github.com/r-spacex/mission-control)
 
 JavaScript ![documentation %](https://r-spacex.github.io/image/badge.svg)
 
@@ -8,7 +8,9 @@ Mission Control is currently running on two servers: production and testing. The
 
 ## Installation
 
-To setup [Mission Control](https://github.com/r-spacex/mission-control/), run the following commands. This will copy the repo locally and install the requisite packages. You may need to enter your password to authenticate the installation.
+**NB: The `./install` file is only confirmed to work on Debian-based Linux. It *may* work on OSX, and likely will not work on Windows.**
+
+To setup Mission Control, run the following commands. This will copy the repo locally and install the requisite packages. You may need to enter your password to authenticate the installation.
 
 ```bash
 git clone git@github.com:r-spacex/mission-control.git
@@ -16,9 +18,11 @@ cd mission-control
 ./install
 ```
 
+You'll still need to configure the `.env` file, setting your client ID and secret from the reddit app you can create [here](https://reddit.com/prefs/apps/).
+
 ## Environment variables
 
-The following environment variables are expected to be set for ruby.
+The following environment variables are expected to be set for ruby. If you used the `./install` file, the only ones you'll need to set are `CLIENT_ID` and `SECRET`.
 
 | variable | example value | purpose |
 | --- | --- | --- |
@@ -30,7 +34,7 @@ The following environment variables are expected to be set for ruby.
 
 ## Running the server
 
-To run the server, go to the repo directory and run `ruby src/endpoints.rb`.
+To run the server, go to the repo directory and run `heroku local`. If you need to run on a specific port, use the `-p` flag.
 
 ## Development
 
@@ -62,25 +66,11 @@ All packages are located in the [`/src/public/js/packages`](https://github.com/r
 - [Sortable](https://github.com/RubaXa/Sortable)
 
 #### Modules
-See [full documentation](https://r-spacex.github.io/mission-control).
+See [full documentation](https://r-spacex.github.io/mission-control) for detailed documentation.
 
 ## Browser support
 
-### Confirmed working
-![Chrome 59+](https://img.shields.io/badge/Chrome-59+-green.svg)
-![Firefox 52+](https://img.shields.io/badge/Firefox-52+-green.svg)
-![Opera 46+](https://img.shields.io/badge/Opera-46+-green.svg)
-![Safari 10.1+](https://img.shields.io/badge/Safari-10.1+-green.svg)
-
-### Not checked
-![Edge 16](https://img.shields.io/badge/Edge-16-lightgrey.svg)
-![Chrome 58-](https://img.shields.io/badge/Chrome-58---lightgrey.svg)
-![Firefox 51-](https://img.shields.io/badge/Firefox-51---lightgrey.svg)
-![Opera 45-](https://img.shields.io/badge/Opera-45---lightgrey.svg)
-
-### Confirmed broken
-![Edge 15](https://img.shields.io/badge/Edge-15-red.svg)
-![Safari 10.0](https://img.shields.io/badge/Safari-10.0-red.svg)
+Mission Control should work in the current version of all major browsers. Progressive enhancement exists, with the primary example being voice commands if speech recognition is supported (currently only Chrome). Graceful degredation is minimal, with `<input type='datetime-local'>` being a useful example.
 
 ## License
 
@@ -89,5 +79,3 @@ See [full documentation](https://r-spacex.github.io/mission-control).
 ## Contributing
 
 Feel free to [fork](https://github.com/r-spacex/mission-control/fork) and [create a PR](https://github.com/r-spacex/mission-control/compare). Creating a PR implies you are releasing the code under the [MIT license](https://github.com/r-spacex/mission-control/blob/master/LICENSE).
-
-Please verify everything still works after you modify code ─ I haven't bothered to set up headless testing in Chrome or Firefox.

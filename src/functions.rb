@@ -80,7 +80,7 @@ end
 # @postcondition     -> content inserted into post if create_only == false
 def update_post(create_only = false)
   title = "r/SpaceX #{session[:launch]} Official Launch Discussion & " \
-          'Updates Thread'
+          "Updates Thread#{", Take #{session[:take]}" if session[:take]}"
 
   # post doesn't exist, create with no content
   if create_only && session[:post].nil?

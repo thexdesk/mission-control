@@ -1,6 +1,6 @@
 import { speechRecognition } from './modules/annyang';
 import './modules/auto-register';
-import { saveIfEnter, _tabEvent, setSign } from './modules/captures';
+import { saveIfEnter, tabEvent, setSign } from './modules/captures';
 import { updateCountdown, setLaunchTime, insertTime } from './modules/countdown';
 import { addEvent, removeEvent, addEventIfNeeded } from './modules/events';
 import { hotSwap } from './modules/hotswap';
