@@ -1,20 +1,43 @@
 #/bin/bash
 
 # install npm
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt install -y nodejs
+read -p "Install npm and node? (Y/n) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    sudo apt install -y nodejs
+fi
 
 # install ruby
-sudo apt install -y ruby-full
+read -p "Install ruby? (Y/n) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    sudo apt install -y ruby-full
+fi
 
 # install gulp packages
-npm install
+read -p "Install gulp packages? (Y/n) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    npm install
+fi
 
 # install ruby packages
-bundle install
+read -p "Install ruby packages? (Y/n) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    bundle install
+fi
+
+# install Heroku CLI
+read -p "Install Heroku CLI? (Y/n) " -n 1 -r; echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+fi
+
+# create .env file
+printf "CLIENT_ID=\nLANG='en_US.UTF-8'\nRACK_ENV=development\nREDIRECT_URI='http://localhost:5000/auth/callback'\nSECRET=\nSUBREDDIT=spacextesting" > .env
 
 # have git ignore deletion of this file
 git update-index --assume-unchanged install
 
 # delete this file
 rm install
+
+printf "\nInstallation complete. Run 'heroku local' to start the server.\n"
