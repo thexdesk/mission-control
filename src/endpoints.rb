@@ -79,7 +79,7 @@ get '/post' do
   render_erb 'sections/live_post'
 end
 
-# prompt for setting launch and YT video
+# prompt for setting launch and YT video OR recovery of existing thread
 get '/init' do
   render_erb 'pages/init'
 end
@@ -122,11 +122,6 @@ end
 # creates blank reddit post
 get '/update/create' do
   update_post true
-end
-
-# initialization form for recovery
-get '/recover' do
-  render_erb 'pages/recover'
 end
 
 # recover old post

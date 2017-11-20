@@ -39,7 +39,6 @@ $twitter-1366-width: 270px;
 }
 
 /* usage: @mixin fonts */
-@define-mixin fonts {
-  font-family: Arial, 'Liberation Sans', sans-serif;
-  font-size: 1rem;
+@define-mixin fonts $size {
+  font: $size 'Muli';
 }

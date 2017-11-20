@@ -50,7 +50,7 @@ export function emergency(obj) {
 
     // make it posted, set the value, and post
     children[1].setAttribute('data-content', 'Posted');
-    children[6].value = messages[type];
+    children[6].innerHTML = messages[type];
     saveEvents();
 }
 
@@ -61,5 +61,5 @@ export function emergency(obj) {
  */
 export function std_message() {
     const child = addEvent().children[6];
-    child.value = document.getElementById('events-dropdown').value;
+    child.innerHTML = document.getElementById('events-dropdown').value;
 }

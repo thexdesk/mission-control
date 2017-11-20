@@ -8,7 +8,7 @@
 
 body {
   background: #f7f7f7ff;
-  max-height: 100vh;
+  height: * 100vh 100vh;
 
   &::before {
     content: '';
@@ -19,7 +19,7 @@ body {
   }
 }
 
-body:not(.auth, .init) {
+body:not(.auth, .init, .initnew) {
   display: grid;
   grid-template: ' youtube interface logo    ' 61px
                  ' youtube interface timer   ' 60px
@@ -34,7 +34,7 @@ body:not(.auth, .init) {
   }
 
   overflow: hidden;
-  @mixin fonts;
+  @mixin fonts 1rem;
 
   &.interface-left {
     grid-template: ' logo    interface youtube ' 61px
@@ -71,11 +71,70 @@ body:not(.auth, .init) {
   }
 }
 
+body.initnew {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  section {
+    size: * 65rem / * / 1.5rem 0 / 1.5rem * *;
+    display: flex;
+    background: #fffb;
+    border-radius: 1rem;
+    box-shadow: 0 3px 7px #0004;
+  }
+
+  select {
+    appearance: none;
+    background: #eeef url('/images/select-arrow.svg') no-repeat calc(100% - 15px);
+    @mixin fonts 1.5rem;
+  }
+
+  input, button {
+    background: #eeef;
+
+  }
+
+  input, button, select {
+    box-sizing: border-box;
+    size: 23rem / 3rem / * 1.5rem;
+    border: 0;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+  }
+
+  button {
+    color: #ffff #005288ff;
+    font-weight: 300;
+    width: fit-content;
+    cursor: pointer;
+  }
+
+  form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    size: * / * / 1rem / * * 0;
+    @mixin fonts 1.5rem;
+    font-variant: small-caps;
+
+    &:not(:last-child) {
+      border-right: 2px solid #dddf;
+    }
+
+    > * {
+      margin-top: 1rem;
+    }
+  }
+}
+
 body:matches(.auth, .init) {
   @extend %flex-center;
   flex-direction: column;
-  height: 100vh;
-  @mixin fonts;
+  @mixin fonts 1rem;
 
   a {
     size: * / * / 0.5rem / 0.5rem * *;
@@ -108,9 +167,9 @@ body:matches(.auth, .init) {
 
     @at-root {
       input[pattern] {
-        transition: border-color 200ms ease;
-        &:valid   { border-color: #7f7f; }
-        &:invalid { border-color: #f00f; }
+        transition: box-shadow 200ms ease;
+        &:valid   { box-shadow: 0 0 2px 1px #5c5f; }
+        &:invalid { box-shadow: 0 0 2px 1px #f00f; }
       }
     }
 
@@ -314,12 +373,19 @@ section.interface {
         background: #fffb;
         border: 1px solid #dddf 3px;
         size: * / * / 0.5rem / * 0.5rem * *;
-        transition: background 100ms ease-in;
+        transition: background 100ms ease-in,
+                    color      100ms ease-in;
         outline-color: $spx-blue-alpha;
       }
 
+      select {
+        appearance: none;
+        padding-right: 20px;
+        background: #fffb url('/images/select-arrow.svg') no-repeat calc(100% - 8px);
+      }
+
       button:hover {
-        background: $spx-blue-alpha;
+        color: white $spx-blue;
       }
 
       span:first-of-type {
@@ -485,7 +551,7 @@ section.interface {
     @at-root {
       :matches(input, button, [contenteditable]):focus {
         outline: none;
-        box-shadow: 0 0 1px 0 $spx-blue-strong-alpha;
+        box-shadow: 0 0 2px 0 $spx-blue-strong-alpha;
       }
     }
   }
@@ -529,7 +595,7 @@ input {
   border: 1px solid #dddf 3px;
   padding: 2px;
   outline-color: $spx-blue-alpha;
-  @mixin fonts;
+  @mixin fonts 1rem;
 
   &[type=datetime-local] {
     text-align: center;
@@ -558,7 +624,7 @@ dialog {
     display: block;
     size: * / * / 0.5rem / 0 auto;
     transition: background 100ms ease-in;
-    @mixin fonts;
+    @mixin fonts 1rem;
 
     &:hover {
       background: #ccff;
@@ -585,11 +651,11 @@ dialog {
         .disableable {
           transition: opacity 250ms ease;
         }
-      }
 
-      &[pattern]:invalid ~ .disableable {
-        opacity: 0.6;
-        pointer-events: none;
+        [pattern]:invalid ~ .disableable {
+          opacity: 0.6;
+          pointer-events: none;
+        }
       }
     }
   }

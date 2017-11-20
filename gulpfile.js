@@ -40,7 +40,9 @@ const config = {
             'border': false,
         }),
         require('postcss-modern-properties'),
-        require('postcss-font-magician'),
+        require('postcss-font-magician')({
+            'protocol': 'https:',
+        }),
         require('postcss-hexrgba'),
         require('postcss-calc'),
         require('postcss-color-hex-alpha'),
