@@ -79,6 +79,8 @@ end
 # @postcondition     -> post created if it didn't exist
 # @postcondition     -> content inserted into post if create_only == false
 def update_post(create_only = false)
+  puts session[:take]
+
   title = "r/SpaceX #{session[:launch]} Official Launch Discussion & " \
           "Updates Thread#{", Take #{session[:take]}" if session[:take]}"
 

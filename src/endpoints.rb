@@ -108,6 +108,12 @@ post '/init' do
     session[:video] = params[:video].match(%r{^(?:https?://)?(?:www\.)?
     youtu(?:\.be|be\.com)/(?:watch\?v=)?([\w-]{11,})}x)[1]
   end
+
+  puts params[:take]
+
+  # set 'take' if it's passed
+  session[:take] = params[:take] if params[:take] != ''
+
   redirect to '/'
 end
 
