@@ -1,9 +1,15 @@
+$gutter: 4px;
+
 * {
   size: * / * / 0 / 0;
 }
 
 :root {
   font-size: 13px;
+
+  @mixin responsive --yt-width, 460px, 600px;
+  @mixin responsive --yt-height, 259px, 320px;
+  @mixin responsive --twitter-width, 270px, 320px;
 }
 
 body {
@@ -19,33 +25,24 @@ body {
   }
 }
 
-body:not(.auth, .init, .initnew) {
+body:not(.auth, .init) {
   display: grid;
   grid-template: ' youtube interface logo    ' 61px
                  ' youtube interface timer   ' 60px
-                 ' youtube interface twitter ' calc($yt-height - 61px - 60px)
+                 ' youtube interface twitter ' calc(var(--yt-height) - 61px - 60px)
                  ' reddit  interface twitter ' 1fr
-                 / $yt-width 1fr $twitter-width;
+                 / var(--yt-width) 1fr var(--twitter-width);
   grid-gap: $gutter;
-
-  @mixin small {
-    grid-template-rows: 52px 60px calc($yt-1366-height - 52px - 60px) 20px 1fr;
-    grid-template-columns: $yt-1366-width 1fr $twitter-1366-width;
-  }
 
   overflow: hidden;
   @mixin fonts 1rem;
 
   &.interface-left {
-    grid-template: ' logo    interface youtube ' 61px
-                   ' timer   interface youtube ' 60px
-                   ' twitter interface youtube ' calc($yt-height - 61px - 60px)
-                   ' twitter interface reddit  ' 1fr
-                   / $twitter-width 1fr $yt-width;
-
-    @mixin small {
-      grid-template-columns: $twitter-1366-width 1fr $yt-1366-width;
-    }
+    grid-template-areas: ' logo    interface youtube '
+                         ' timer   interface youtube '
+                         ' twitter interface youtube '
+                         ' twitter interface reddit  ';
+    grid-template-columns: var(--twitter-width) 1fr var(--yt-width);
 
     section.reddit {
       direction: ltr;
@@ -71,7 +68,7 @@ body:not(.auth, .init, .initnew) {
   }
 }
 
-body.initnew {
+body.init {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -94,7 +91,6 @@ body.initnew {
 
   input, button {
     background: #eeef;
-
   }
 
   input, button, select {
@@ -123,6 +119,10 @@ body.initnew {
 
     &:not(:last-child) {
       border-right: 2px solid #dddf;
+
+      @media (min-device-pixel-ratio: 1.5) {
+        border-right-width: 1px;
+      }
     }
 
     > * {
@@ -131,7 +131,7 @@ body.initnew {
   }
 }
 
-body:matches(.auth, .init) {
+body.auth {
   @extend %flex-center;
   flex-direction: column;
   @mixin fonts 1rem;
@@ -196,7 +196,7 @@ iframe.youtube {
   grid-area: youtube;
   background: url('/images/youtube.svg') 50% 50% / 50% no-repeat, #000f;
   border: none;
-  @mixin responsive height, calc($yt-1366-height + $gutter * 2), calc($yt-height + $gutter * 2);
+  height: calc(var(--yt-height) + $gutter * 2);
   width: 100%;
 }
 

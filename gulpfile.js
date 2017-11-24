@@ -33,7 +33,9 @@ const config = {
 
     // plugin configuration
     postcss: [
-        require('precss'),
+        require('precss')({
+            'properties': { 'disable': true }
+        }),
         require('postcss-short')({
             'size': false,
             'color': false,
