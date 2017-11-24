@@ -18,7 +18,7 @@
             <% else %>
                 <select name='launch' required>
                     <% launches.each do |launch, time| %>
-                        <%= "<option value='#{launch.gsub("'", '&apos;')}|#{time}>#{launch}</option>" %>
+                        <%= "<option value='#{launch.gsub("'", '&apos;')}|#{time}'>#{launch}</option>" %>
                     <% end %>
                 </select>
             <% end %>

@@ -3,6 +3,8 @@ require 'date'
 require 'rest-client'
 require 'json'
 
+require 'pp'
+
 # being logged in is unstated precondition for many functions
 
 # @param fname -> valid erb file located in src/ directory
@@ -150,15 +152,15 @@ def upcoming_launches
       final: one_week
     }
   }
-  api_endpoint = 'https://api.spacexdata.com/v1/launches/upcoming'
+  api_endpoint = 'https://api.spacexdata.com/v2/launches/upcoming'
   resp = RestClient.get api_endpoint, params
 
   # read data from API, reformat to hash of mission -> launch time
   launches = {}
   JSON.parse(resp.body).each do |obj|
-    payload = obj['payloads'][0]['payload_id']
+    payload = obj['rocket']['second_stage']['payloads'][0]['payload_id']
     payload = payload[7..-1] if payload.start_with? 'SpaceX ' # CRS missions
-    launches[payload] = DateTime.parse(obj['launch_date_utc']).strftime('%s')
+    launches[payload] = obj['launch_date_unix']
   end
   launches
 end
