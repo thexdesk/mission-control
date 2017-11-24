@@ -120,8 +120,12 @@ body.init {
     &:not(:last-child) {
       border-right: 2px solid #dddf;
 
-      @media (min-device-pixel-ratio: 1.5) {
-        border-right-width: 1px;
+      @media (min-resolution: 1.5dppx) {
+        border-right-width: 0.75px;
+      }
+
+      @media (min-resolution: 2.0dppx) {
+        border-right-width: 0.5px;
       }
     }
 
