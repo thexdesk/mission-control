@@ -1,4 +1,6 @@
-import { ajax } from './ajax';
+import {
+    post
+    } from './fetchival_wrapper';
 
 /**
  * updates the countdown timer based on launch time
@@ -89,7 +91,7 @@ export function setLaunchTime(launchTime) {
     document.getElementById('launchTime').close();
 
     // not awaiting anything
-    ajax.post('update', {
+    post('update', {
         id: 'time',
         value: window.time
     });

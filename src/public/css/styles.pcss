@@ -2,6 +2,7 @@ $gutter: 4px;
 
 * {
   size: * / * / 0 / 0;
+  font-family: Muli;
 }
 
 :root {
@@ -133,6 +134,10 @@ body.init {
       margin-top: 1rem;
     }
   }
+
+  #error {
+    margin-top: 2rem;
+  }
 }
 
 body.auth {
@@ -170,7 +175,7 @@ body.auth {
     background: #fffb;
 
     @at-root {
-      input[pattern] {
+      input:matches([pattern], [required]) {
         transition: box-shadow 200ms ease;
         &:valid   { box-shadow: 0 0 2px 1px #5c5f; }
         &:invalid { box-shadow: 0 0 2px 1px #f00f; }
@@ -657,7 +662,7 @@ dialog {
           transition: opacity 250ms ease;
         }
 
-        [pattern]:invalid ~ .disableable {
+        :matches([pattern], [required]):invalid ~ .disableable {
           opacity: 0.6;
           pointer-events: none;
         }

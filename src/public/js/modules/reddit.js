@@ -1,4 +1,7 @@
-import { ajax } from './ajax';
+import {
+    get,
+    post
+    } from './fetchival_wrapper';
 
 /**
  * save a certain section to reddit
@@ -8,7 +11,7 @@ import { ajax } from './ajax';
 export async function save() {
     const elem = arguments[0].element;
 
-    const data = await ajax.post('update', {
+    const data = await post('update', {
         id: elem.id,
         value: elem.value
     });
@@ -49,9 +52,11 @@ export async function saveEvents() {
     }
 
     // save it!
-    document.querySelector('.reddit').innerHTML = await ajax.post('update', {
+    document.querySelector('.reddit').innerHTML = await post('update', {
         id: 'events',
         value: allEvents
+    }, {
+        responseAs: 'text'
     });
 
     // indicate successful save
@@ -62,7 +67,7 @@ export async function saveEvents() {
  * create empty post
  */
 export async function createPost() {
-    await ajax.get('update/create');
+    await get('update/create');
 
     // blank post, let's show this
     document.querySelector('.reddit').innerHTML = '<div class=flex><span class=greyed-out>[empty post]</span></div>';

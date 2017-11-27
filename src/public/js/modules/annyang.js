@@ -1,5 +1,12 @@
-import { addEvent, removeEvent } from './events';
-import { save, saveEvents, createPost } from './reddit';
+import {
+    addEvent,
+    removeEvent
+    } from './events';
+import {
+    save,
+    saveEvents,
+    createPost
+    } from './reddit';
 
 /**
  * provides voice commands conditional on browser support

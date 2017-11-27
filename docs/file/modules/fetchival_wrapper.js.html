@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">modules/messages.js | r-spacex-mission-control</title>
+  <title data-ice="title">modules/fetchival_wrapper.js | r-spacex-mission-control</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -61,67 +61,35 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">modules/messages.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {
-    addEvent
-    } from &apos;./events&apos;;
-import {
-    saveEvents
-    } from &apos;./reddit&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">modules/fetchival_wrapper.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * wrapped around fetchival library in modules directory
+ */
 
 /**
- * emergency messages
- *
- * key: `innerHTML` of element
- *
- * value: what to display as the message
- * @type Map&lt;string, string&gt;
+ * @param {string} url - where are we sending the request?
+ * @param {Object} [data={}] - any data to be sent
+ * @param {Object} [opts={}] - any headers to be sent
+ * @return {Promise} request wrapped in a Promise
  */
-const messages = {
-    &apos;RUD&apos;:   &apos;RUD&apos;,
-    &apos;Hold&apos;:  &apos;Hold&apos;,
-    &apos;Scrub&apos;: &apos;Scrub&apos;
-};
-
-/**
- * messages from emergency panel
- *
- * adds new row at top with preset message (from `messages` variable)
- * @param {HTMLElement} obj - the element that was clicked
- */
-export function emergency(obj) {
-    const children = addEvent().children;
-    const type = obj.innerHTML;
-    let time = document.getElementById(&apos;timer&apos;).innerHTML;  // from countdown timer
-
-    // pause the clock if necessary
-    if([&apos;Hold&apos;, &apos;Scrub&apos;].includes(type))
-        window.hold_scrub = true;
-
-    // get rid of decimal if between T-1m and T+1m
-    if(time.substr(-2, 1) === &apos;.&apos;)
-        time = time.slice(0, -2);
-
-    // non-strict null check
-    if(window.time != null) {
-        children[3].innerHTML = time.slice(0, 2);
-        children[4].value = time.substr(-2, 1) === &apos;.&apos; ? time.slice(2, -2) : time.slice(2);
-    }
-
-    // make it posted, set the value, and post
-    children[1].setAttribute(&apos;data-content&apos;, &apos;Posted&apos;);
-    children[6].innerHTML = messages[type];
-    saveEvents();
+export function get(url, data={}, opts={}) {
+    // send session along with request
+    opts[&apos;mode&apos;] = &apos;cors&apos;;
+    opts[&apos;credentials&apos;] = &apos;include&apos;;
+    return fetchival(url, opts).get(data);
 }
 
 /**
- * messages from standard panel
- *
- * value is what is displayed in the dropdown, unless set as value attribute
+ * @param {string} url - where are we sending the request?
+ * @param {Object} [data={}] - any data to be sent
+ * @param {Object} [opts={}] - any headers to be sent
+ * @return {Promise} request wrapped in a Promise
  */
-export function std_message() {
-    const child = addEvent().children[6];
-    child.innerHTML = document.getElementById(&apos;events-dropdown&apos;).value;
+export function post(url, data={}, opts={}) {
+    // send session along with request
+    opts[&apos;mode&apos;] = &apos;cors&apos;;
+    opts[&apos;credentials&apos;] = &apos;include&apos;;
+    return fetchival(url, opts).post(data);
 }
 </code></pre>
 

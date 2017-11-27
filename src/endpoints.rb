@@ -131,7 +131,12 @@ get '/update/create' do
 end
 
 # recover old post
+# expecting reddit URL posted as JSON
+# 270 & 271 are not official, just being used because we need a 2** code
+# status -> 200 if successful
+#           270 if another user's post
+#           271 if not self post
 post '/recover' do
-  params = Rack::Utils.parse_query request.body.read
-  redirect to '/' if recover_post params['url']
+  params = JSON.parse(request.body.read, symbolize_names: true)
+  status recover_post params[:url]
 end

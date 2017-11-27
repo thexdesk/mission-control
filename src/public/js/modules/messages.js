@@ -1,13 +1,9 @@
-/**
- * messages.js
- * handle adding of preset messages to the events table
- *
- * exports: emergency(node)
- *          std_message()
- */
-
-import { addEvent } from './events';
-import { saveEvents } from './reddit';
+import {
+    addEvent
+    } from './events';
+import {
+    saveEvents
+    } from './reddit';
 
 /**
  * emergency messages

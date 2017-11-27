@@ -5,6 +5,8 @@
     <link rel='icon' type='image/png' href='/images/iss-16.png' sizes='16x16'>
     <link rel='icon' type='image/png' href='/images/iss-32.png' sizes='32x32'>
     <link rel='stylesheet' href='/css/all.css'>
+    <script defer src='js/all-modules.js'></script>
+    <script defer src='js/all-packages.js'></script>
 </head>
 <body class='init'>
     <img src='/images/logo.svg' alt='SpaceX Mission Control'>
@@ -27,11 +29,12 @@
             <button type='submit' class='disableable'>Create</button>
         </form>
 
-        <form method='POST' action='/recovery'>
+        <form id='recovery'>
             Thread Recovery
             <input placeholder='Full reddit URL' required pattern='(https:\/\/)?(www\.)?reddit.com/r/(.*?)/comments/([0-9a-z]{6})(\/.*)?'>
             <button type='submit' class='disableable'>Recover</button>
-        </form
+            <div id='error'></div>
+        </form>
     </section>
 </body>
 </html>

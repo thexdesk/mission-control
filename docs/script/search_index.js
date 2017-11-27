@@ -12,12 +12,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "./ajax~ajax",
-    "variable/index.html#static-variable-ajax",
-    "<span>ajax</span> <span class=\"search-result-import-path\">./ajax</span>",
-    "variable"
-  ],
-  [
     "./reddit~createpost",
     "function/index.html#static-function-createPost",
     "<span>createPost</span> <span class=\"search-result-import-path\">./reddit</span>",
@@ -39,6 +33,12 @@ window.esdocSearchIndex = [
     "./messages~emergency",
     "function/index.html#static-function-emergency",
     "<span>emergency</span> <span class=\"search-result-import-path\">./messages</span>",
+    "function"
+  ],
+  [
+    "./fetchival_wrapper~get",
+    "function/index.html#static-function-get",
+    "<span>get</span> <span class=\"search-result-import-path\">./fetchival_wrapper</span>",
     "function"
   ],
   [
@@ -69,6 +69,12 @@ window.esdocSearchIndex = [
     "./countdown~inserttime",
     "function/index.html#static-function-insertTime",
     "<span>insertTime</span> <span class=\"search-result-import-path\">./countdown</span>",
+    "function"
+  ],
+  [
+    "./fetchival_wrapper~post",
+    "function/index.html#static-function-post",
+    "<span>post</span> <span class=\"search-result-import-path\">./fetchival_wrapper</span>",
     "function"
   ],
   [
@@ -141,6 +147,12 @@ window.esdocSearchIndex = [
     "./messages~std_message",
     "function/index.html#static-function-std_message",
     "<span>std_message</span> <span class=\"search-result-import-path\">./messages</span>",
+    "function"
+  ],
+  [
+    "./captures~submitrecovery",
+    "function/index.html#static-function-submitRecovery",
+    "<span>submitRecovery</span> <span class=\"search-result-import-path\">./captures</span>",
     "function"
   ],
   [
@@ -438,12 +450,6 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "modules/ajax.js",
-    "file/modules/ajax.js.html",
-    "modules/ajax.js",
-    "file"
-  ],
-  [
     "modules/annyang.js",
     "file/modules/annyang.js.html",
     "modules/annyang.js",
@@ -471,6 +477,12 @@ window.esdocSearchIndex = [
     "modules/events.js",
     "file/modules/events.js.html",
     "modules/events.js",
+    "file"
+  ],
+  [
+    "modules/fetchival_wrapper.js",
+    "file/modules/fetchival_wrapper.js.html",
+    "modules/fetchival_wrapper.js",
     "file"
   ],
   [

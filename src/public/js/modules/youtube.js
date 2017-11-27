@@ -1,4 +1,6 @@
-import { ajax } from './ajax';
+import {
+    post
+    } from './fetchival_wrapper';
 
 /**
  * dialog popup, prompting for new YouTube video
@@ -21,7 +23,7 @@ export async function setYoutube() {
 
     document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');
 
-    await ajax.post('update', {
+    await post('update', {
         id: 'video',
         value: id
     });

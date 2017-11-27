@@ -1,4 +1,6 @@
-import { get_hide_info } from './local_storage';
+import {
+    get_hide_info
+    } from './local_storage';
 
 /**
  * show contents of a tab in the interface

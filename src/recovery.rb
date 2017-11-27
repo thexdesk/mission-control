@@ -51,22 +51,22 @@ def parse_vars(text)
 end
 
 # @param url     -> valid URL to reddit post
-# @return        -> boolean if recovery succeeded
+# @return        -> 200 if success, 403 if not own post, 412 if not self post
 # @postcondition -> session variables are set if recovery succeeded
 def recover_post(url)
   id = %r{(?:www).reddit.com/r/(?:.*?)/comments/([0-9a-z]{6})}.match(url)
   post = (request.env['redd.session'].from_ids ["t3_#{id[1]}"].to_ary)[0]
 
   # require self post
-  return false unless post.is_self
+  return 271 unless post.is_self
 
   # require OP to be current user
-  return false unless request.env['redd.session'].me.name != post.author
+  return 270 unless request.env['redd.session'].me.name == post.author.name
 
   # set everything into session variables
   parse_vars post.selftext
   parse_sections post.selftext
   session[:post] = post.id
 
-  true
+  200
 end

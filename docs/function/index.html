@@ -32,6 +32,7 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-speechRecognition">speechRecognition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-saveIfEnter">saveIfEnter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setSign">setSign</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-submitRecovery">submitRecovery</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tabEvent">tabEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-insertTime">insertTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setLaunchTime">setLaunchTime</a></span></span></li>
@@ -39,6 +40,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEvent">addEvent</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addEventIfNeeded">addEventIfNeeded</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeEvent">removeEvent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-post">post</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-hotSwap">hotSwap</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_hide_info">get_hide_info</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get_interface_side">get_interface_side</a></span></span></li>
@@ -54,7 +57,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeLoadingModal">removeLoadingModal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-showTab">showTab</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setYoutube">setYoutube</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ajax">ajax</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -252,6 +254,34 @@
           
           
           
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, opts: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-get_hide_info">get_hide_info</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
@@ -377,6 +407,34 @@ add class to body if necessary</p>
         
         <div data-ice="description"><p>sets T&#xB1; when an input starts with a sign (+ or -)</p>
 </div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-post">post</a></span></span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, opts: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
       </div>
     </td>
     <td>
@@ -745,6 +803,35 @@ the modal and show the interface</p>
       <div>
         <p>
           
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-submitRecovery">submitRecovery</a></span></span><span class="code" data-ice="signature">(e: <span>event</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>prevent submission of recovery form, send as POST instead</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
           
           
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-tabEvent">tabEvent</a></span></span><span class="code" data-ice="signature">(e: <span>event</span>, obj: <span>HTMLElement</span>)</span>
@@ -909,11 +996,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/reddit.js.html#lineNumber64">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/reddit.js.html#lineNumber69">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createPost} from &apos;<span><a href="file/modules/reddit.js.html#lineNumber64">./reddit</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createPost} from &apos;<span><a href="file/modules/reddit.js.html#lineNumber69">./reddit</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>create empty post</p>
@@ -953,11 +1040,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createSortable} from &apos;<span><a href="file/modules/ui.js.html#lineNumber32">./ui</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createSortable} from &apos;<span><a href="file/modules/ui.js.html#lineNumber34">./ui</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>create reorderable events</p>
@@ -997,11 +1084,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber47">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {datetimeSupport} from &apos;<span><a href="file/modules/ui.js.html#lineNumber45">./ui</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {datetimeSupport} from &apos;<span><a href="file/modules/ui.js.html#lineNumber47">./ui</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>feature detection for <code>&lt;input type=&apos;datetime-local&apos;&gt;</code></p>
@@ -1042,11 +1129,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/messages.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/messages.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {emergency} from &apos;<span><a href="file/modules/messages.js.html#lineNumber32">./messages</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {emergency} from &apos;<span><a href="file/modules/messages.js.html#lineNumber28">./messages</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>messages from emergency panel</p>
@@ -1076,6 +1163,95 @@ the modal and show the interface</p>
 </div>
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-get">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">get</span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, opts: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/modules/fetchival_wrapper.js.html#lineNumber11">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {get} from &apos;<span><a href="file/modules/fetchival_wrapper.js.html#lineNumber11">./fetchival_wrapper</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">url</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>where are we sending the request?</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">data</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>any data to be sent</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">opts</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>any headers to be sent</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>request wrapped in a Promise</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -1322,11 +1498,11 @@ add class to body if necessary</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/countdown.js.html#lineNumber102">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/countdown.js.html#lineNumber104">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {insertTime} from &apos;<span><a href="file/modules/countdown.js.html#lineNumber102">./countdown</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {insertTime} from &apos;<span><a href="file/modules/countdown.js.html#lineNumber104">./countdown</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>sets T&#xB1; when an input starts with a sign (+ or -)</p>
@@ -1355,6 +1531,95 @@ add class to body if necessary</p>
 </div>
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-post">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">post</span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, data: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, opts: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/modules/fetchival_wrapper.js.html#lineNumber24">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {post} from &apos;<span><a href="file/modules/fetchival_wrapper.js.html#lineNumber24">./fetchival_wrapper</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">url</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>where are we sending the request?</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">data</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>any data to be sent</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">opts</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: {}</li></ul></td>
+      <td data-ice="description"><p>any headers to be sent</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>request wrapped in a Promise</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -1428,11 +1693,11 @@ will not remove last row</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {removeLoadingModal} from &apos;<span><a href="file/modules/ui.js.html#lineNumber63">./ui</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {removeLoadingModal} from &apos;<span><a href="file/modules/ui.js.html#lineNumber65">./ui</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>when the page is done loading, we can remove
@@ -1473,11 +1738,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/reddit.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/reddit.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {save} from &apos;<span><a href="file/modules/reddit.js.html#lineNumber8">./reddit</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {save} from &apos;<span><a href="file/modules/reddit.js.html#lineNumber11">./reddit</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>save a certain section to reddit</p>
@@ -1518,11 +1783,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/reddit.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/reddit.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {saveEvents} from &apos;<span><a href="file/modules/reddit.js.html#lineNumber25">./reddit</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {saveEvents} from &apos;<span><a href="file/modules/reddit.js.html#lineNumber28">./reddit</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>save events section</p>
@@ -1563,11 +1828,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber12">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {saveIfEnter} from &apos;<span><a href="file/modules/captures.js.html#lineNumber7">./captures</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {saveIfEnter} from &apos;<span><a href="file/modules/captures.js.html#lineNumber12">./captures</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>bound on event inputs</p>
@@ -1624,11 +1889,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/countdown.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/countdown.js.html#lineNumber75">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLaunchTime} from &apos;<span><a href="file/modules/countdown.js.html#lineNumber73">./countdown</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLaunchTime} from &apos;<span><a href="file/modules/countdown.js.html#lineNumber75">./countdown</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>popup to ask for launch time (uses <code>&lt;dialog&gt;</code>)</p>
@@ -1685,11 +1950,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setSign} from &apos;<span><a href="file/modules/captures.js.html#lineNumber32">./captures</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setSign} from &apos;<span><a href="file/modules/captures.js.html#lineNumber37">./captures</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>set sign if input starts with it</p>
@@ -1746,11 +2011,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/youtube.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/youtube.js.html#lineNumber10">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setYoutube} from &apos;<span><a href="file/modules/youtube.js.html#lineNumber8">./youtube</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setYoutube} from &apos;<span><a href="file/modules/youtube.js.html#lineNumber10">./youtube</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>dialog popup, prompting for new YouTube video</p>
@@ -1835,11 +2100,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/ui.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {showTab} from &apos;<span><a href="file/modules/ui.js.html#lineNumber7">./ui</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {showTab} from &apos;<span><a href="file/modules/ui.js.html#lineNumber9">./ui</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>show contents of a tab in the interface</p>
@@ -1896,11 +2161,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/annyang.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/annyang.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {speechRecognition} from &apos;<span><a href="file/modules/annyang.js.html#lineNumber7">./annyang</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {speechRecognition} from &apos;<span><a href="file/modules/annyang.js.html#lineNumber14">./annyang</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>provides voice commands conditional on browser support</p>
@@ -1940,11 +2205,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/messages.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/messages.js.html#lineNumber58">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {std_message} from &apos;<span><a href="file/modules/messages.js.html#lineNumber62">./messages</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {std_message} from &apos;<span><a href="file/modules/messages.js.html#lineNumber58">./messages</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>messages from standard panel</p>
@@ -1974,6 +2239,80 @@ the modal and show the interface</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-submitRecovery">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    
+    <span class="code" data-ice="name">submitRecovery</span><span class="code" data-ice="signature">(e: <span>event</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber51">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {submitRecovery} from &apos;<span><a href="file/modules/captures.js.html#lineNumber51">./captures</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>prevent submission of recovery form, send as POST instead</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">e</td>
+      <td data-ice="type" class="code"><span>event</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>submission event</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>prevent submission of form</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-tabEvent">
     <span class="access" data-ice="access">public</span>
     
@@ -1985,11 +2324,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/captures.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {tabEvent} from &apos;<span><a href="file/modules/captures.js.html#lineNumber19">./captures</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {tabEvent} from &apos;<span><a href="file/modules/captures.js.html#lineNumber24">./captures</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>capture tab event and redirect it to the previous row</p>
@@ -2053,11 +2392,11 @@ the modal and show the interface</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/modules/countdown.js.html#lineNumber6">source</a></span></span>
+      <span data-ice="source"><span><a href="file/modules/countdown.js.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {updateCountdown} from &apos;<span><a href="file/modules/countdown.js.html#lineNumber6">./countdown</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {updateCountdown} from &apos;<span><a href="file/modules/countdown.js.html#lineNumber8">./countdown</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>updates the countdown timer based on launch time</p>

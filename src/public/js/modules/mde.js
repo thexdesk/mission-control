@@ -1,4 +1,6 @@
-import { save } from './reddit';
+import {
+    save
+    } from './reddit';
 
 /**
  * register all `textarea`s with SimpleMDE, creating markdown editors

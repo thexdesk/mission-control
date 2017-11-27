@@ -62,6 +62,7 @@ All packages are located in the [`/src/public/js/packages`](https://github.com/r
 
 - [annyang](https://github.com/TalAter/annyang)
 - [Dialog polyfill](https://github.com/GoogleChrome/dialog-polyfill)
+- [fetchival](https://github.com/typicode/fetchival)
 - [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)
 - [Sortable](https://github.com/RubaXa/Sortable)
 

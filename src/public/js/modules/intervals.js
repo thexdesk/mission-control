@@ -1,4 +1,6 @@
-import { updateCountdown } from './countdown';
+import {
+    updateCountdown
+    } from './countdown';
 
 /**
  * initialize any intervals that are needed

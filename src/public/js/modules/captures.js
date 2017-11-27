@@ -1,4 +1,9 @@
-import { saveEvents } from './reddit';
+import {
+    saveEvents
+    } from './reddit';
+import {
+    post
+    } from './fetchival_wrapper';
 
 /**
  * bound on event inputs
@@ -36,4 +41,40 @@ export function setSign(obj) {
         obj.previousElementSibling.innerHTML = `T${val[0]}`;
         obj.value = val.substr(1);
     }
+}
+
+/**
+ * prevent submission of recovery form, send as POST instead
+ * @param {event} e - submission event
+ * @return {boolean} prevent submission of form
+ */
+export async function submitRecovery(e) {
+    e.preventDefault();
+
+    const url = document.querySelector('#recovery input');
+
+    // not valid, quit now
+    if(!url.checkValidity())
+        return false;
+
+    document.getElementById('error').innerHTML = 'Trying to recover...';
+    const response = await post('/recover', { url: url.value }, { responseAs: 'response' });
+
+    // successful recovery
+    if(response.status === 200)
+        window.location = '/';
+
+    // not own post
+    else if(response.status === 270)
+        document.getElementById('error').innerHTML = 'Error: Post must be your own';
+
+    // not self post
+    else if(response.status === 271)
+        document.getElementById('error').innerHTML = 'Error: Post must be self post';
+
+    // something else went wrong
+    else
+        document.getElementById('error').innerHTML = 'Unknown error';
+
+    return false;
 }
