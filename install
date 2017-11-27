@@ -1,34 +1,82 @@
 #/bin/bash
 
-# install npm
-read -p "Install npm and node? (Y/n) " -n 1 -r; echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt install -y nodejs
+unamestr=$(uname)
+
+# Linux specific install
+if [[ "$unamestr" == 'Linux' ]]; then
+	echo "Detected operating system: Linux"
+
+	# install npm and node
+	read -p "Install npm and node? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+		sudo apt install -y nodejs
+	fi
+
+	# install ruby
+	read -p "Install ruby? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo apt install -y ruby-full
+	fi
+
+	# install gulp packages
+	read -p "Install gulp packages? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		npm install
+	fi
+
+	# install ruby packages
+	read -p "Install ruby packages? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		bundle install
+	fi
+
+	# install Heroku CLI
+	read -p "Install Heroku CLI? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+	fi
 fi
 
-# install ruby
-read -p "Install ruby? (Y/n) " -n 1 -r; echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    sudo apt install -y ruby-full
-fi
+# Mac specific install
+if [[ "$unamestr" == 'Darwin' ]]; then
+	echo "Detected operating system: Mac"
 
-# install gulp packages
-read -p "Install gulp packages? (Y/n) " -n 1 -r; echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    npm install
-fi
+	# install Homebrew
+	read -p "Install Homebrew? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	fi
 
-# install ruby packages
-read -p "Install ruby packages? (Y/n) " -n 1 -r; echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    bundle install
-fi
+	# install npm and node
+	read -p "Install npm and node? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		brew install node # node and npm
+	fi
 
-# install Heroku CLI
-read -p "Install Heroku CLI? (Y/n) " -n 1 -r; echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+	# install ruby
+	read -p "Install ruby? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		brew install ruby
+	fi
+
+	# install gulp packages
+	read -p "Install gulp packages? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		npm install # build initial CSS and JS
+	fi
+
+	# install ruby packages
+	read -p "Install ruby packages? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		bundle install
+	fi
+
+	# install Heroku CLI
+	read -p "Install Heroku CLI? (Y/n) " -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		brew install heroku/brew/heroku # heroku CLI
+	fi
 fi
 
 # create .env file

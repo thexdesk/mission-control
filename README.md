@@ -8,7 +8,7 @@ Mission Control is currently running on two servers: production and testing. The
 
 ## Installation
 
-**NB: The `./install` file is only confirmed to work on Debian-based Linux. It *may* work on OSX, and likely will not work on Windows.**
+**NB: The `./install` file is only confirmed to work on Debian-based Linux. It *should* work on OSX, and will *not* work on Windows.**
 
 To setup Mission Control, run the following commands. This will copy the repo locally and install the requisite packages. You may need to enter your password to authenticate the installation.
 
