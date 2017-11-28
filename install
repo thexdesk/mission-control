@@ -28,6 +28,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
 	# install ruby packages
 	read -p "Install ruby packages? (Y/n) " -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo gem install bundler
 		bundle install
 	fi
 
@@ -69,6 +70,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 	# install ruby packages
 	read -p "Install ruby packages? (Y/n) " -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo gem install bundler
 		bundle install
 	fi
 
@@ -79,8 +81,12 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 	fi
 fi
 
+printf "\nCreate a webapp at https://reddit.com/prefs/apps\n"
+read -p "Client ID (located under \"webapp\"): " -r clientid
+read -p "Secret: " -r secret
+
 # create .env file
-printf "CLIENT_ID=\nLANG='en_US.UTF-8'\nRACK_ENV=development\nREDIRECT_URI='http://localhost:5000/auth/callback'\nSECRET=\nSUBREDDIT=spacextesting" > .env
+printf "CLIENT_ID=%s\nLANG='en_US.UTF-8'\nRACK_ENV=development\nREDIRECT_URI='http://localhost:5000/auth/callback'\nSECRET=%s\nSUBREDDIT=spacextesting" $clientid $secret > .env
 
 # have git ignore deletion of this file
 git update-index --assume-unchanged install
@@ -88,4 +94,4 @@ git update-index --assume-unchanged install
 # delete this file
 rm install
 
-printf "\nInstallation complete. Run 'heroku local' to start the server.\n"
+printf "\nInstallation complete.\nRun 'heroku local' to start the server.\n"

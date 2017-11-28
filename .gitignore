@@ -1,6 +1,6 @@
 .env
-.package-lock.json
 .vscode/
+package-lock.json
 node_modules/
 src/public/css/all.css
 src/public/js/all-modules.js
