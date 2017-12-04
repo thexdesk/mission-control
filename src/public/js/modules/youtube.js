@@ -23,9 +23,11 @@ export async function setYoutube() {
 
     document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');
 
-    await post('update', {
+    post('update', {
         id: 'video',
         value: id
+    }, {
+        responseAs: 'text'
     });
     dialog.close();
 }

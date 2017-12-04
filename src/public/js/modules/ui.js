@@ -10,7 +10,7 @@ export function showTab(tab) {
     const events = document.querySelectorAll('.tab-events');
     const sections = document.querySelectorAll('.tab-section');
 
-    document.querySelectorAll('#tabs > *').forEach(obj => obj.classList.remove('current'));
+    document.querySelectorAll('#tabs > .current').forEach(obj => obj.classList.remove('current'));
     tab.classList.add('current');
 
     // get which tab to show and store it for later
@@ -49,13 +49,9 @@ export function datetimeSupport() {
     const elem = document.createElement('input');
     elem.setAttribute('type', 'datetime-local');
 
-    // supported, don't need to show format
-    if(elem.type === 'datetime-local')
-        document.getElementById('datetime-format').innerHTML = '(in your timezone)';
-
-    // not supported, show format
-    else
-        document.getElementById('datetime-format').innerHTML = 'YYYY-MM-DDTHH:MM:SS<br>(in your timezone)';
+    document.getElementById('datetime-format').innerHTML =
+        `${elem.type !== 'datetime-local' ? 'YYYY-MM-DDTHH:MM:SS<br>' : ''
+        }(in your timezone)`;
 }
 
 /**

@@ -23,32 +23,20 @@ export function updateCountdown() {
     const secs   = diff %    60000 /     1000 | 0;
     const tenths = diff %     1000 /      100 | 0;
 
-    // <1m => 0.1s interval
-    if(diff < 61000 && window.countdown_interval !== 100) {
-        clearInterval(window.countdown);
-        window.countdown = setInterval(updateCountdown, 100);
-        window.countdown_interval = 100;
-    }
+    // [ min_diff, max_diff, expected interval ]
+    const intervals = [
+        [ -Infinity, 61000,    100     ],
+        [ 61000,     3660000,  1000    ],
+        [ 3660000,   90000000, 60000   ],
+        [ 90000000,  Infinity, 3600000 ],
+    ];
 
-    // 1m to 1h => 1s interval
-    else if(61000 <= diff && diff < 3660000 && window.countdown_interval !== 1000) {
-        clearInterval(window.countdown);
-        window.countdown = setInterval(updateCountdown, 1000);
-        window.countdown_interval = 1000;
-    }
-
-    // 1h to 1d => 1m interval
-    else if(3660000 <= diff && diff < 90000000 && window.countdown_interval !== 60000) {
-        clearInterval(window.countdown);
-        window.countdown = setInterval(updateCountdown, 60000);
-        window.countdown_interval = 60000;
-    }
-
-    // >1d => 1h interval
-    else if(diff >= 90000000 && window.countdown_interval !== 3600000) {
-        clearInterval(window.countdown);
-        window.countdown = setInterval(updateCountdown, 3600000);
-        window.countdown_interval = 3600000;
+    for(const [min, max, interval] of intervals) {
+        if(min <= diff && diff < max && window.countdown_interval != interval) {
+            clearInterval(window.countdown);
+            window.countdown = setInterval(updateCountdown, interval);
+            window.countdown_interval = interval;
+        }
     }
 
     let time;  // placed here for scope

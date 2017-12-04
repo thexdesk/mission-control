@@ -74,7 +74,7 @@ export function showTab(tab) {
     const events = document.querySelectorAll(&apos;.tab-events&apos;);
     const sections = document.querySelectorAll(&apos;.tab-section&apos;);
 
-    document.querySelectorAll(&apos;#tabs &gt; *&apos;).forEach(obj =&gt; obj.classList.remove(&apos;current&apos;));
+    document.querySelectorAll(&apos;#tabs &gt; .current&apos;).forEach(obj =&gt; obj.classList.remove(&apos;current&apos;));
     tab.classList.add(&apos;current&apos;);
 
     // get which tab to show and store it for later
@@ -113,13 +113,9 @@ export function datetimeSupport() {
     const elem = document.createElement(&apos;input&apos;);
     elem.setAttribute(&apos;type&apos;, &apos;datetime-local&apos;);
 
-    // supported, don&apos;t need to show format
-    if(elem.type === &apos;datetime-local&apos;)
-        document.getElementById(&apos;datetime-format&apos;).innerHTML = &apos;(in your timezone)&apos;;
-
-    // not supported, show format
-    else
-        document.getElementById(&apos;datetime-format&apos;).innerHTML = &apos;YYYY-MM-DDTHH:MM:SS&lt;br&gt;(in your timezone)&apos;;
+    document.getElementById(&apos;datetime-format&apos;).innerHTML =
+        `${elem.type !== &apos;datetime-local&apos; ? &apos;YYYY-MM-DDTHH:MM:SS&lt;br&gt;&apos; : &apos;&apos;
+        }(in your timezone)`;
 }
 
 /**
