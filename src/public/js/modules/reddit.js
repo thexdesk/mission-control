@@ -67,7 +67,7 @@ export async function saveEvents() {
  * create empty post
  */
 export async function createPost() {
-    await get('update/create');
+    await get('update/create', {}, { responseAs: 'text' });
 
     // blank post, let's show this
     document.querySelector('.reddit').innerHTML = '<div class=flex><span class=greyed-out>[empty post]</span></div>';
