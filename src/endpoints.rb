@@ -5,8 +5,10 @@ $stdout.sync = true
 
 require 'sinatra'
 require 'redd/middleware'
+
 require './src/functions'
 require './src/recovery'
+require './src/websockets'
 
 set :bind, '0.0.0.0' if ARGV[0] == 'production'
 
@@ -28,21 +30,21 @@ use Redd::Middleware,
   via:          '/auth'
 
 # browser support, authentication, main display
+# also handle all websocket requests, regardless of destination
 get '/' do
+  # handle websocket requests
+  return handle_socket request if request.websocket?
+
   # are requisite features supported?
   # automatic check, nearly invisible to user
-  if !session[:support]
-    render_erb 'pages/support_check'
+  return render_erb 'pages/support_check' unless session[:support]
 
   # are we logged in?
   # yes -> show interface
-  elsif request.env['redd.session']
-    render_erb 'pages/mission_control'
+  return render_erb 'pages/mission_control' if request.env['redd.session']
 
   # not logged in -> authentication prompt
-  else
-    render_erb 'pages/authenticate'
-  end
+  render_erb 'pages/authenticate'
 end
 
 # browser support is ok (or override)
@@ -108,8 +110,6 @@ post '/init' do
     session[:video] = params[:video].match(%r{^(?:https?://)?(?:www\.)?
     youtu(?:\.be|be\.com)/(?:watch\?v=)?([\w-]{11,})}x)[1]
   end
-
-  puts params[:take]
 
   # set 'take' if it's passed
   session[:take] = params[:take] if params[:take] != ''

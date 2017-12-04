@@ -76,12 +76,26 @@ window.addEventListener(&apos;load&apos;, () =&gt; {
             element: obj,
             initialValue: obj.getAttribute(&apos;data-initial&apos;) || &apos;&apos;,
             toolbar: [
-                { name: &apos;save&apos;,
-                  action: save,
-                  className: &apos;fa fa-upload&apos;,
-                  title: &apos;Save to reddit&apos;
+                {
+                    name: &apos;save&apos;,
+                    action: save,
+                    className: &apos;fa fa-upload&apos;,
+                    title: &apos;Save to reddit&apos;
                 },
-                &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;strikethrough&apos;, &apos;heading&apos;, &apos;|&apos;, &apos;quote&apos;, &apos;unordered-list&apos;, &apos;ordered-list&apos;, &apos;|&apos;, &apos;link&apos;, &apos;table&apos;, &apos;horizontal-rule&apos;],
+                &apos;|&apos;,
+                &apos;bold&apos;,
+                &apos;italic&apos;,
+                &apos;strikethrough&apos;,
+                &apos;heading&apos;,
+                &apos;|&apos;,
+                &apos;quote&apos;,
+                &apos;unordered-list&apos;,
+                &apos;ordered-list&apos;,
+                &apos;|&apos;,
+                &apos;link&apos;,
+                &apos;table&apos;,
+                &apos;horizontal-rule&apos;
+            ],
             promptURLs: true,
             status: false,
             forceSync: true,
@@ -90,9 +104,10 @@ window.addEventListener(&apos;load&apos;, () =&gt; {
     });
 
     // MDE animation handler
-    document.querySelectorAll(&apos;.fa-upload&apos;).forEach(obj =&gt; obj.animationend = () =&gt; obj.classList.remove(&apos;highlight&apos;));
-});
-</code></pre>
+    document.querySelectorAll(&apos;.fa-upload&apos;).forEach(obj =&gt;
+        obj.animationend = () =&gt; obj.classList.remove(&apos;highlight&apos;)
+    );
+});</code></pre>
 
 </div>
 

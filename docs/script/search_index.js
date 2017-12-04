@@ -528,6 +528,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "modules/websocket.js",
+    "file/modules/websocket.js.html",
+    "modules/websocket.js",
+    "file"
+  ],
+  [
     "modules/youtube.js",
     "file/modules/youtube.js.html",
     "modules/youtube.js",

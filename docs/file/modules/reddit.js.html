@@ -72,16 +72,15 @@
  *
  * triggered when an &quot;upload&quot; button is clicked
  */
-export async function save() {
+export function save() {
     const elem = arguments[0].element;
 
-    const data = await post(&apos;update&apos;, {
+    post(&apos;update&apos;, {
         id: elem.id,
         value: elem.value
+    }, {
+        responseAs: &apos;text&apos;
     });
-
-    document.querySelector(`#${elem.id} + .editor-toolbar &gt; a.fa-upload`).classList.add(&apos;highlight&apos;);
-    document.querySelector(&apos;.reddit&apos;).innerHTML = data;
 }
 
 /**
@@ -89,7 +88,7 @@ export async function save() {
  *
  * needs to be handled differently because it needs parsing
  */
-export async function saveEvents() {
+export function saveEvents() {
     const events = document.getElementById(&apos;events&apos;).children;
 
     let allEvents = [];
@@ -116,25 +115,19 @@ export async function saveEvents() {
     }
 
     // save it!
-    document.querySelector(&apos;.reddit&apos;).innerHTML = await post(&apos;update&apos;, {
+    post(&apos;update&apos;, {
         id: &apos;events&apos;,
         value: allEvents
     }, {
         responseAs: &apos;text&apos;
     });
-
-    // indicate successful save
-    document.querySelector(&apos;.tab-events .fa-upload&apos;).classList.add(&apos;highlight&apos;);
 }
 
 /**
  * create empty post
  */
-export async function createPost() {
-    await get(&apos;update/create&apos;);
-
-    // blank post, let&apos;s show this
-    document.querySelector(&apos;.reddit&apos;).innerHTML = &apos;&lt;div class=flex&gt;&lt;span class=greyed-out&gt;[empty post]&lt;/span&gt;&lt;/div&gt;&apos;;
+export function createPost() {
+    get(&apos;update/create&apos;, {}, { responseAs: &apos;text&apos; });
 }
 </code></pre>
 

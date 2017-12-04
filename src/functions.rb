@@ -3,6 +3,8 @@ require 'erb'
 require 'json'
 require 'rest-client'
 
+require './src/websockets'
+
 # being logged in is unstated precondition for many functions
 
 # @param fname -> valid erb file located in src/ directory
@@ -55,9 +57,9 @@ end
 def post_info(id)
   submission = request.env['redd.session'].from_ids ["t3_#{id}"].to_ary
   {
-    'score' => submission[0].score,
+    'score'        => submission[0].score,
     'num_comments' => submission[0].num_comments,
-    'html' => submission[0].selftext_html
+    'html'         => submission[0].selftext_html
   }
 end
 
@@ -78,6 +80,7 @@ end
 # @param create_only -> are we just creating the post, or do we have content?
 # @postcondition     -> post created if it didn't exist
 # @postcondition     -> content inserted into post if create_only == false
+# @postcondition     -> `post_update` event is sent via websocket
 def update_post(create_only = false)
   title = "r/SpaceX #{session[:launch]} Official Launch Discussion & " \
           "Updates Thread#{", Take #{session[:take]}" if session[:take]}"
@@ -98,7 +101,10 @@ def update_post(create_only = false)
     post[0].edit reddit_post
   end
 
-  post_info(session[:post])['html']
+  emit_message({
+    type: 'post_update',
+    content: post_info(session[:post])['html']
+  }.to_json)
 end
 
 # @param events -> array of all events (is_posted, T± time, message)

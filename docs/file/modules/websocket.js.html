@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | r-spacex-mission-control</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">modules/websocket.js | r-spacex-mission-control</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -61,97 +61,22 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-a-href--https---github-com-r-spacex-mission-control--r-spacex-mission-control--a-"><a href="https://github.com/r-spacex/mission-control">r/SpaceX Mission Control</a></h1><p>JavaScript <img src="https://r-spacex.github.io/mission-control/badge.svg" alt="documentation %"></p>
-<h2 id="servers">Servers</h2><p>Mission Control is currently running on two servers: production and testing. The production server is located at <a href="https://spacex-mission-control.herokuapp.com">spacex-mission-control.herokuapp.com</a>, while the testing server is at <a href="https://spx-mc-testing.herokuapp.com">spx-mc-testing.herokuapp.com</a>. The production server should be stable and (mostly) bug-free, while the testing server may be unstable and (though unlikely) possibly not functional. However, the testing server will likely be a step or two ahead of production, feature-wise.</p>
-<h2 id="installation">Installation</h2><p><strong>NB: The <code>./install</code> file is only confirmed to work on Debian-based Linux. It <em>should</em> work on OSX, and will <em>not</em> work on Windows.</strong></p>
-<p>To setup Mission Control, run the following commands. This will copy the repo locally and install the requisite packages. You may need to enter your password to authenticate the installation.</p>
-<pre><code class="lang-bash"><code class="source-code prettyprint">git clone git@github.com:r-spacex/mission-control.git
-cd mission-control
-./install</code>
-</code></pre>
-<h2 id="environment-variables">Environment variables</h2><p>The following environment variables are expected to be set for ruby. If you supplied this in the <code>./install</code> file, you&apos;re all set.</p>
-<table>
-<thead>
-<tr>
-<th>variable</th>
-<th>example value</th>
-<th>purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CLIENT_ID</td>
-<td><code>LFE3XY450n6cai</code></td>
-<td>authenticates with reddit API</td>
-</tr>
-<tr>
-<td>RACK_ENV</td>
-<td><code>production</code></td>
-<td>allows external connections (disabled by default, use <code>production</code> to enable)</td>
-</tr>
-<tr>
-<td>REDIRECT_URI</td>
-<td><code>https://example.com/auth/callback</code></td>
-<td>callback from reddit authentication</td>
-</tr>
-<tr>
-<td>SECRET</td>
-<td><code>8BhhhFSSBZ9sYg6NZxQS7gsrnaq</code></td>
-<td>authenticates with reddit API</td>
-</tr>
-<tr>
-<td>SUBREDDIT</td>
-<td><code>spacex</code></td>
-<td>subreddit to post to</td>
-</tr>
-</tbody>
-</table>
-<h2 id="running-the-server">Running the server</h2><p>To run the server, go to the repo directory and run <code>heroku local</code>. If you need to run on a specific port, use the <code>-p</code> flag.</p>
-<h2 id="development">Development</h2><h3 id="gulp">gulp</h3><p>To run <a href="https://github.com/r-spacex/mission-control/blob/master/gulpfile.js">gulp</a>, just use the <code>gulp</code> command, no arguments necessary. This will automatically do all of the following.</p>
-<table>
-<thead>
-<tr>
-<th>task name</th>
-<th>what it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>postcss</td>
-<td>transpile and minify all CSS</td>
-</tr>
-<tr>
-<td>rollup-modules</td>
-<td>combine all modules into a single file</td>
-</tr>
-<tr>
-<td>rollup-packages</td>
-<td>combine all packages into a single file</td>
-</tr>
-<tr>
-<td>js-modules</td>
-<td>minify js modules</td>
-</tr>
-<tr>
-<td>watch</td>
-<td>watch directories, calls the proper task when needed</td>
-</tr>
-</tbody>
-</table>
-<h3 id="css">CSS</h3><p>Mission Control uses <a href="http://postcss.org/">PostCSS</a>, which is located in the <a href="https://github.com/r-spacex/mission-control/tree/master/src/public/css"><code>/src/public/css</code></a> directory. All CSS should be split into relevant files, and pulled together in <a href="https://github.com/r-spacex/mission-control/tree/master/src/public/css/all.pcss"><code>all.pcss</code></a>. Documentation for the plugins is avilable in <a href="https://github.com/r-spacex/mission-control/tree/master/CSS.md">CSS.md</a>.</p>
-<h3 id="javascript">JavaScript</h3><h4 id="packages">Packages</h4><p>All packages are located in the <a href="https://github.com/r-spacex/mission-control/tree/master/src/public/js/packages"><code>/src/public/js/packages</code></a> directory. Mission Control currently uses the following packages.</p>
-<ul>
-<li><a href="https://github.com/TalAter/annyang">annyang</a></li>
-<li><a href="https://github.com/GoogleChrome/dialog-polyfill">Dialog polyfill</a></li>
-<li><a href="https://github.com/typicode/fetchival">fetchival</a></li>
-<li><a href="https://github.com/sparksuite/simplemde-markdown-editor">SimpleMDE</a></li>
-<li><a href="https://github.com/RubaXa/Sortable">Sortable</a></li>
-</ul>
-<h4 id="modules">Modules</h4><p>See <a href="https://r-spacex.github.io/mission-control">full documentation</a> for detailed documentation.</p>
-<h2 id="browser-support">Browser support</h2><p>Mission Control should work in the current version of all major browsers. Progressive enhancement exists, with the primary example being voice commands if speech recognition is supported (currently only Chrome). Graceful degredation is minimal, with <code>&lt;input type=&apos;datetime-local&apos;&gt;</code> being a useful example.</p>
-<h2 id="license">License</h2><p><a href="https://github.com/r-spacex/mission-control/blob/master/LICENSE">MIT license</a></p>
-<h2 id="contributing">Contributing</h2><p>Feel free to <a href="https://github.com/r-spacex/mission-control/fork">fork</a> and <a href="https://github.com/r-spacex/mission-control/compare">create a PR</a>. Creating a PR implies you are releasing the code under the <a href="https://github.com/r-spacex/mission-control/blob/master/LICENSE">MIT license</a>.</p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">modules/websocket.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * handle all incoming messages from websockets
+ */
+
+const ws = new WebSocket(`ws://${window.location.host}`);
+
+ws.onmessage = message =&gt; {
+    // API *must* return JSON per spec
+    message = JSON.parse(message.data);
+
+    if(message[&apos;type&apos;] === &apos;post_update&apos;) {
+        document.querySelector(&apos;.reddit&apos;).innerHTML = message[&apos;content&apos;];
+    }
+};</code></pre>
+
 </div>
 
 <footer class="footer">

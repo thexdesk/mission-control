@@ -8,16 +8,15 @@ import {
  *
  * triggered when an "upload" button is clicked
  */
-export async function save() {
+export function save() {
     const elem = arguments[0].element;
 
-    const data = await post('update', {
+    post('update', {
         id: elem.id,
         value: elem.value
+    }, {
+        responseAs: 'text'
     });
-
-    document.querySelector(`#${elem.id} + .editor-toolbar > a.fa-upload`).classList.add('highlight');
-    document.querySelector('.reddit').innerHTML = data;
 }
 
 /**
@@ -25,7 +24,7 @@ export async function save() {
  *
  * needs to be handled differently because it needs parsing
  */
-export async function saveEvents() {
+export function saveEvents() {
     const events = document.getElementById('events').children;
 
     let allEvents = [];
@@ -52,23 +51,17 @@ export async function saveEvents() {
     }
 
     // save it!
-    document.querySelector('.reddit').innerHTML = await post('update', {
+    post('update', {
         id: 'events',
         value: allEvents
     }, {
         responseAs: 'text'
     });
-
-    // indicate successful save
-    document.querySelector('.tab-events .fa-upload').classList.add('highlight');
 }
 
 /**
  * create empty post
  */
-export async function createPost() {
-    await get('update/create', {}, { responseAs: 'text' });
-
-    // blank post, let's show this
-    document.querySelector('.reddit').innerHTML = '<div class=flex><span class=greyed-out>[empty post]</span></div>';
+export function createPost() {
+    get('update/create', {}, { responseAs: 'text' });
 }

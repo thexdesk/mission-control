@@ -47,9 +47,13 @@ import {
     datetimeSupport,
     removeLoadingModal
     } from './modules/ui';
+import './modules/websocket';
 import {
     setYoutube
     } from './modules/youtube';
+
+/* End imports, begin implementation
+/* ========================================================================== */
 
 window.onload = () => {
     // we don't need to do any of this on the initialization page
@@ -75,8 +79,7 @@ document.onreadystatechange = () => {
 
     // initialization page only
     else {
-        if(document.readyState === 'complete') {
+        if(document.readyState === 'complete')
             document.getElementById('recovery').addEventListener('submit', submitRecovery);
-        }
     }
 };
