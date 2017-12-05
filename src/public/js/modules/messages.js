@@ -6,20 +6,6 @@ import {
     } from './reddit';
 
 /**
- * emergency messages
- *
- * key: `innerHTML` of element
- *
- * value: what to display as the message
- * @type Map<string, string>
- */
-const messages = {
-    'RUD':   'RUD',
-    'Hold':  'Hold',
-    'Scrub': 'Scrub'
-};
-
-/**
  * messages from emergency panel
  *
  * adds new row at top with preset message (from `messages` variable)
@@ -27,11 +13,10 @@ const messages = {
  */
 export function emergency(obj) {
     const children = addEvent().children;
-    const type = obj.innerHTML;
     let time = document.getElementById('timer').innerHTML;  // from countdown timer
 
     // pause the clock if necessary
-    if(['Hold', 'Scrub'].includes(type))
+    if(['Hold', 'Scrub'].includes(obj.innerHTML))
         window.hold_scrub = true;
 
     // get rid of decimal if between T-1m and T+1m
@@ -46,7 +31,7 @@ export function emergency(obj) {
 
     // make it posted, set the value, and post
     children[1].setAttribute('data-content', 'Posted');
-    children[6].innerHTML = messages[type];
+    children[6].innerHTML = obj.value;
     saveEvents();
 }
 

@@ -13,6 +13,7 @@ import {
     setLaunchTime,
     insertTime
     } from './modules/countdown';
+import './modules/data_polyfill';
 import {
     addEvent,
     removeEvent,
