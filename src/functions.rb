@@ -101,10 +101,10 @@ def update_post(create_only = false)
     post[0].edit reddit_post
   end
 
-  emit_message({
+  emit_message(
     type: 'post_update',
     content: post_info(session[:post])['html']
-  }.to_json)
+  )
 end
 
 # @param events -> array of all events (is_posted, T± time, message)

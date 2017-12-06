@@ -10,7 +10,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
 	read -p "Install npm and node? (Y/n) " -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-		sudo apt install -y nodejs
+		sudo apt install -y nodejs npm
 	fi
 
 	# install ruby
@@ -52,7 +52,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 	# install npm and node
 	read -p "Install npm and node? (Y/n) " -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		brew install node # node and npm
+		brew install node
+		brew install npm
 	fi
 
 	# install ruby

@@ -474,6 +474,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "modules/data_polyfill.js",
+    "file/modules/data_polyfill.js.html",
+    "modules/data_polyfill.js",
+    "file"
+  ],
+  [
     "modules/events.js",
     "file/modules/events.js.html",
     "modules/events.js",
