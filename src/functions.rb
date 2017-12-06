@@ -139,8 +139,7 @@ def format_unposted_events(events)
   str
 end
 
-# @precondition -> Jake doesn't break the API
-# @return       -> hash of all launches (with time) within the next 7 days
+# @return -> hash of all launches (with time) within the next 7 days
 def upcoming_launches
   d = Date.today
   today = d.to_s
@@ -163,4 +162,10 @@ def upcoming_launches
     launches[payload] = obj['launch_date_unix']
   end
   launches
+
+# this isn't an essential function, so just return nothing if it fails
+# disable linter setting because we want to capture any error
+# rubocop:disable Lint/RescueException
+rescue Exception
+  {}
 end
