@@ -9,6 +9,6 @@ ws.onmessage = message => {
     message = JSON.parse(message.data);
 
     if(message['type'] === 'post_update') {
-        document.querySelector('.reddit').innerHTML = message['content'];
+        document.querySelector('.reddit').innerHTML = `<div class='md'>${message['content']}</div>`;
     }
 };

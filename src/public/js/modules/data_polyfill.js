@@ -4,7 +4,7 @@
  * courtesy Jonathan Neal (used with permission)
  */
 
-if (!window.HTMLDataElement) {
+if(!window.HTMLDataElement) {
     window.HTMLDataElement = window.HTMLUnknownElement;
 
     const valueDescriptor = Object.getOwnPropertyDescriptor(HTMLDataElement.prototype, 'value');

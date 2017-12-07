@@ -1,11 +1,20 @@
 require 'date'
 require 'erb'
 require 'json'
+require 'redcarpet'
 require 'rest-client'
 
 require './src/websockets'
 
-# being logged in is unstated precondition for many functions
+# being logged in is unstated precondition for most functions
+
+# initialize markdown parser with extensions
+$markdown = Redcarpet::Markdown.new( # rubocop:disable Style/GlobalVars
+  Redcarpet::Render::HTML,
+  tables: true,
+  strikethrough: true,
+  superscript: true
+)
 
 # @param fname -> valid erb file located in src/ directory
 # @return      -> rendered HTML from file
@@ -50,6 +59,24 @@ def reddit_post # rubocop:disable MethodLength
   "#{session[:participate]}\n\n" \
   \
   '[](/# MC // section END)'
+end
+
+# generates HTML same was as `reddit_post`, but without metadata
+# @return -> HTML of reddit post
+def post_html
+  $markdown.render( # rubocop:disable Style/GlobalVars
+    "#{session[:intro]}\n\n" \
+    "#{if session[:events]
+         "### Live Updates\n" \
+         "#{format_posted_events session[:events]}"
+       end}\n\n" \
+    "#{session[:viewing]}\n\n" \
+    "#{session[:stats]}\n\n" \
+    "#{session[:mission]}\n\n" \
+    "#{session[:landing]}\n\n" \
+    "#{session[:resources]}\n\n" \
+    "#{session[:participate]}"
+  )
 end
 
 # @param id -> id of reddit post
@@ -103,7 +130,7 @@ def update_post(create_only = false)
 
   emit_message(
     type: 'post_update',
-    content: post_info(session[:post])['html']
+    content: post_html
   )
 end
 
@@ -167,7 +194,6 @@ def upcoming_launches
 
 # this isn't an essential function, so just return nothing if it fails
 # disable linter setting because we want to capture any error
-# rubocop:disable Lint/RescueException
-rescue Exception
+rescue Exception # rubocop:disable Lint/RescueException
   {}
 end

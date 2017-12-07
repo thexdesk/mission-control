@@ -29,6 +29,7 @@ GEM
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
+    redcarpet (3.4.0)
     redd (0.8.8)
       http (~> 2.2)
     rest-client (2.0.2)
@@ -58,10 +59,11 @@ PLATFORMS
 
 DEPENDENCIES
   json (>= 2.1.0)
+  redcarpet (>= 3.4.0)
   redd (>= 0.8.8)
   rest-client (>= 2.0.2)
   sinatra (>= 2.0.0)
   sinatra-websocket (>= 0.3.1)
 
 BUNDLED WITH
-   1.15.1
+   1.16.0

@@ -89,10 +89,10 @@ export function updateCountdown() {
 
     // [ min_diff, max_diff, expected interval ]
     const intervals = [
-        [ -Infinity, 61000,    100     ],
-        [ 61000,     3660000,  1000    ],
-        [ 3660000,   90000000, 60000   ],
-        [ 90000000,  Infinity, 3600000 ],
+        [ -Infinity,    61000,     100 ],
+        [     61000,  3660000,    1000 ],
+        [   3660000, 90000000,   60000 ],
+        [  90000000, Infinity, 3600000 ],
     ];
 
     for(const [min, max, interval] of intervals) {
