@@ -170,14 +170,15 @@ end
 
 # @return -> hash of all launches (with time) within the next 7 days
 def upcoming_launches
-  d = Date.today
-  today = d.to_s
-  one_week = (d + 7).to_s
+  # not production, we don't need an actual list
+  return {} unless ENV['RACK_ENV'] == 'production'
 
+  # everything within one week of today
+  d = Date.today
   params = {
     params: {
-      start: today,
-      final: one_week
+      start: d.to_s,
+      final: (d + 7).to_s
     }
   }
   api_endpoint = 'https://api.spacexdata.com/v2/launches/upcoming'

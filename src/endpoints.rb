@@ -10,7 +10,7 @@ require './src/functions'
 require './src/recovery'
 require './src/websockets'
 
-set :bind, '0.0.0.0' if ARGV[0] == 'production'
+set :bind, '0.0.0.0' if ENV['RACK_ENV'] == 'production'
 
 use Rack::Deflater # gzip assets
 use Rack::Session::Pool, # identifier that points to session data
@@ -25,7 +25,7 @@ use Redd::Middleware,
   user_agent:   'SpaceX Mission Control (via u/theZcuber)',
   client_id:    ENV['CLIENT_ID'],
   secret:       ENV['SECRET'],
-  redirect_uri: ENV['REDIRECT_URI'], # this lets us have production and tetsing
+  redirect_uri: ENV['REDIRECT_URI'], # this lets us have production and testing
   scope:        %w[edit identity read submit],
   via:          '/auth'
 
