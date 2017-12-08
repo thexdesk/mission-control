@@ -1,6 +1,6 @@
 /* copied these values from a post on reddit */
 
-.md {
+section.reddit > section {
   direction: ltr;
   overflow-x: hidden;
   font-size: 13px / 1.4em;
@@ -10,6 +10,10 @@
   color: #222f;
   overflow-wrap: break-word;
   word-wrap: break-word;
+
+  &:empty {
+    padding: 0;
+  }
 
   * {
     margin: * 0;

@@ -1,9 +1,17 @@
 <% reddit = request.env['redd.session'] %>
 
-<% if session[:post] %>
-  <%= post_info(session[:post])['html'] %>
-<% else %>
-  <div class=flex>
+<% %w[intro events viewing stats mission landing resources participate].each do |name| %>
+  <section id=section_<%= name %>><%=
+      if session[name] && name == 'events'
+        $markdown.render "### Live Updates\n#{format_posted_events session[:events]}"
+      elsif session[name]
+        $markdown.render session[name]
+      end
+    %></section>
+<% end %>
+
+<% unless session[:post] %>
+  <div class=flex id=create_empty>
     <a href=# onclick=createPost() class='fa fa-upload' title='Create empty post'></a>
     <a href=# onclick=createPost()><span>Create empty post</span></a>
   </div>

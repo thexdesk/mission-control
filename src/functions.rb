@@ -9,7 +9,7 @@ require './src/websockets'
 # being logged in is unstated precondition for most functions
 
 # initialize markdown parser with extensions
-$markdown = Redcarpet::Markdown.new( # rubocop:disable Style/GlobalVars
+$markdown = Redcarpet::Markdown.new(
   Redcarpet::Render::HTML,
   tables: true,
   strikethrough: true,
@@ -61,24 +61,6 @@ def reddit_post # rubocop:disable MethodLength
   '[](/# MC // section END)'
 end
 
-# generates HTML same as `reddit_post`, but without metadata
-# @return -> HTML of reddit post
-def post_html
-  $markdown.render( # rubocop:disable Style/GlobalVars
-    "#{session[:intro]}\n\n" \
-    "#{if session[:events]
-         "### Live Updates\n" \
-         "#{format_posted_events session[:events]}"
-       end}\n\n" \
-    "#{session[:viewing]}\n\n" \
-    "#{session[:stats]}\n\n" \
-    "#{session[:mission]}\n\n" \
-    "#{session[:landing]}\n\n" \
-    "#{session[:resources]}\n\n" \
-    "#{session[:participate]}"
-  )
-end
-
 # @param id -> id of reddit post
 # @return   -> hash of post score, number of comments, HTML
 def post_info(id)
@@ -104,22 +86,18 @@ def make_post(title, text = '')
 end
 
 # @precondition      -> post exists and is set in session variable
+# @param section     -> which section was updated? (for socket)
 # @param create_only -> are we just creating the post, or do we have content?
 # @postcondition     -> post created if it didn't exist
 # @postcondition     -> content inserted into post if create_only == false
 # @postcondition     -> `post_update` event is sent via websocket
-def update_post(create_only = false)
+def update_post(section, create_only = false)
   title = "r/SpaceX #{session[:launch]} Official Launch Discussion & " \
           "Updates Thread#{", Take #{session[:take]}" if session[:take]}"
 
-  # post doesn't exist, create with no content
-  if create_only && session[:post].nil?
-    post = make_post title
-    session[:post] = post.id
-
-  # post doesn't exist, create with content
-  elsif session[:post].nil?
-    post = make_post title, reddit_post
+  # post doesn't exist
+  if session[:post].nil?
+    post = make_post title, (reddit_post unless create_only)
     session[:post] = post.id
 
   # post exists, update content
@@ -130,7 +108,12 @@ def update_post(create_only = false)
 
   emit_message(
     type: 'post_update',
-    content: post_html
+    section: section,
+    content: if session[section] && section == 'events'
+               $markdown.render format_posted_events session[:events]
+             elsif session[section]
+               $markdown.render session[section]
+             end
   )
 end
 

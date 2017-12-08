@@ -9,6 +9,11 @@ ws.onmessage = message => {
     message = JSON.parse(message.data);
 
     if(message['type'] === 'post_update') {
-        document.querySelector('.reddit').innerHTML = `<div class='md'>${message['content']}</div>`;
+        const create_button = document.getElementById('create_empty');
+        if(create_button)
+            create_button.parentNode.removeChild(create_button);
     }
+
+    if(message['section'])
+        document.getElementById(`section_${message['section']}`).innerHTML = message['content'];
 };

@@ -1,6 +1,7 @@
 GlobalVars:
+  # allow these *only*, as it avoids adding needless complexity
   AllowedVariables:
-    - $message_symbols
+    - $markdown # instead of singleton
 
 Style/AsciiComments:
   Enabled: false
@@ -22,8 +23,13 @@ Layout/AlignParameters:
 Metrics/MethodLength:
   Max: 20
 
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
 AllCops:
   Exclude:
     - 'node_modules/**/*'
-
-
+    - 'docs/**/*'

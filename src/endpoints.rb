@@ -121,7 +121,7 @@ end
 post '/update' do
   params = JSON.parse(request.body.read, symbolize_names: true)
   session[params[:id].to_sym] = params[:value]
-  update_post unless %w[time video].include? params[:id]
+  update_post params[:id] unless %w[time video].include? params[:id]
 
   if %w[time video].include? params[:id]
     emit_message(
@@ -134,7 +134,7 @@ end
 # called only when post doesn't exist
 # creates blank reddit post
 get '/update/create' do
-  update_post true
+  update_post '', true
 end
 
 # recover old post
