@@ -4,7 +4,6 @@ require 'sinatra-websocket'
 set :sockets, []
 
 def emit_message(message)
-  message[:launch] = session[:launch]
   EM.next_tick do
     settings.sockets.each do |socket|
       socket.send message.to_json.to_s

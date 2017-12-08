@@ -121,7 +121,14 @@ end
 post '/update' do
   params = JSON.parse(request.body.read, symbolize_names: true)
   session[params[:id].to_sym] = params[:value]
-  update_post unless %w[time launch video].include? params[:id]
+  update_post unless %w[time video].include? params[:id]
+
+  if %w[time video].include? params[:id]
+    emit_message(
+      type: params[:id],
+      content: params[:value]
+    )
+  end
 end
 
 # called only when post doesn't exist

@@ -18,7 +18,7 @@ export async function setYoutube() {
             if(id)
                 resolve(id[1]);
         };
-        dialog.querySelector('button.clear').onclick = () => resolve('');
+        dialog.querySelector('button.clear').onclick = () => resolve(null);
     });
 
     document.querySelector('.youtube').setAttribute('src', id ? `https://youtube.com/embed/${id}?autoplay=0` : '');

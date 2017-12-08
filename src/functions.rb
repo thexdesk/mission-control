@@ -61,7 +61,7 @@ def reddit_post # rubocop:disable MethodLength
   '[](/# MC // section END)'
 end
 
-# generates HTML same was as `reddit_post`, but without metadata
+# generates HTML same as `reddit_post`, but without metadata
 # @return -> HTML of reddit post
 def post_html
   $markdown.render( # rubocop:disable Style/GlobalVars
