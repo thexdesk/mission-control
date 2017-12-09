@@ -11,7 +11,7 @@ def parse_sections(text)
   ).each do |name, content|
     break if name == 'END'
     # events get parsed later on
-    session[name.downcase.to_sym] = content.strip
+    session[name.downcase.to_sym] = content.strip unless content.strip == ''
   end
 
   parse_events session[:events] if session.key?(:events) \
