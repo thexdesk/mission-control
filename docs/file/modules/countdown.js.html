@@ -124,7 +124,7 @@ export function updateCountdown() {
  * @param {string} launchTime - ISO-formatted string of the updates launch time
  * @see https://en.wikipedia.org/wiki/ISO_8601
  */
-export function setLaunchTime(launchTime) {
+export async function setLaunchTime(launchTime) {
     // non-strict null check
     window.time = launchTime == null ? null : Date.parse(launchTime);
     window.hold_scrub = false;
@@ -140,13 +140,15 @@ export function setLaunchTime(launchTime) {
         updateCountdown();
     }
 
-    document.getElementById(&apos;launchTime&apos;).close();
-
-    // not awaiting anything
-    post(&apos;update&apos;, {
+    // need to do this before `.close()` or we lose the data
+    await post(&apos;update&apos;, {
         id: &apos;time&apos;,
         value: window.time
+    }, {
+        responseAs: &apos;text&apos;
     });
+
+    document.getElementById(&apos;launchTime&apos;).close();
 }
 
 /**

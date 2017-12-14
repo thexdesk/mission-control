@@ -82,7 +82,7 @@ export async function setYoutube() {
             if(id)
                 resolve(id[1]);
         };
-        dialog.querySelector(&apos;button.clear&apos;).onclick = () =&gt; resolve(&apos;&apos;);
+        dialog.querySelector(&apos;button.clear&apos;).onclick = () =&gt; resolve(null);
     });
 
     document.querySelector(&apos;.youtube&apos;).setAttribute(&apos;src&apos;, id ? `https://youtube.com/embed/${id}?autoplay=0` : &apos;&apos;);

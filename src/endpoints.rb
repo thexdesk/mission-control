@@ -29,28 +29,18 @@ use Redd::Middleware,
   scope:        %w[edit identity read submit],
   via:          '/auth'
 
-# browser support, authentication, main display
+# authentication, main display
 # also handle all websocket requests, regardless of destination
 get '/' do
   # handle websocket requests
   return handle_socket request if request.websocket?
 
-  # are requisite features supported?
-  # automatic check, nearly invisible to user
-  return render_erb 'pages/support_check' unless session[:support]
-
   # are we logged in?
+  # no -> authentication prompt
+  return render_erb 'pages/authenticate' unless request.env['redd.session']
+
   # yes -> show interface
-  return render_erb 'pages/mission_control' if request.env['redd.session']
-
-  # not logged in -> authentication prompt
-  render_erb 'pages/authenticate'
-end
-
-# browser support is ok (or override)
-get '/supported' do
-  session[:support] = true
-  redirect to '/'
+  render_erb 'pages/mission_control'
 end
 
 # callback from reddit OAuth

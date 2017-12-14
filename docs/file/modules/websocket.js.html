@@ -73,9 +73,15 @@ ws.onmessage = message =&gt; {
     message = JSON.parse(message.data);
 
     if(message[&apos;type&apos;] === &apos;post_update&apos;) {
-        document.querySelector(&apos;.reddit&apos;).innerHTML = `&lt;div class=&apos;md&apos;&gt;${message[&apos;content&apos;]}&lt;/div&gt;`;
+        const create_button = document.getElementById(&apos;create_empty&apos;);
+        if(create_button)
+            create_button.parentNode.removeChild(create_button);
     }
-};</code></pre>
+
+    if(message[&apos;section&apos;])
+        document.getElementById(`section_${message[&apos;section&apos;]}`).innerHTML = message[&apos;content&apos;];
+};
+</code></pre>
 
 </div>
 
