@@ -27,7 +27,7 @@ def reddit_post # rubocop:disable MethodLength
   '[](/# MC // section events)' \
   "#{if session[:events]
        "#{format_unposted_events session[:events]}\n" \
-       "### Live Updates\n" \
+       "## Timeline\n" \
        "#{format_posted_events session[:events]}"
      end}\n\n" \
   \

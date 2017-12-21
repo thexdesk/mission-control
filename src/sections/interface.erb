@@ -34,7 +34,7 @@
     <div class=headers>
         <h3 class=left>
             <i class='fa fa-upload' title='Save to reddit' onclick='saveEvents()'></i>
-            ### Live Updates
+            ## Timeline
             <i class='fa fa-minus' title='Remove top event' onclick='removeEvent()'></i>
             <i class='fa fa-plus' title='Add event at top' onclick='addEvent()'></i>
         </h3>
@@ -120,7 +120,7 @@
         if session[:viewing]
             session[:viewing].gsub("'", "&apos;")
         else
-            "### Watch the launch live\n" \
+            "## Watch the launch live\n" \
             "| Stream | Courtesy |\n" \
             "| --- | --- |"
             .gsub("'", "&apos;")
@@ -131,7 +131,7 @@
         if session[:stats]
             session[:stats].gsub("'", "&apos;")
         else
-            "### Stats"
+            "## Stats"
             .gsub("'", "&apos;")
         end
     %>'></textarea>
@@ -140,7 +140,7 @@
         if session[:mission]
             session[:mission].gsub("'", "&apos;")
         else
-            "### Primary Mission: Deployment of payload into correct orbit"
+            "## Primary Mission: Deployment of payload into correct orbit"
             .gsub("'", "&apos;")
         end
     %>'></textarea>
@@ -149,7 +149,7 @@
         if session[:landing]
             session[:landing].gsub("'", "&apos;")
         else
-            "### Secondary Mission: Landing Attempt"
+            "## Secondary Mission: Landing Attempt"
             .gsub("'", "&apos;")
         end
     %>'></textarea>
@@ -158,7 +158,7 @@
         if session[:resources]
             session[:resources].gsub("'", "&apos;")
         else
-            "### Resources\n" \
+            "## Resources\n" \
             "| Link | Source |\n" \
             "| --- | --- |\n" \
             "| [Official press kit](https://spacex.com/) | SpaceX |"
@@ -170,7 +170,7 @@
         if session[:participate]
             session[:participate].gsub("'", "&apos;")
         else
-            "### Participate in the discussion!\n" \
+            "## Participate in the discussion!\n" \
             "- First of all, launch threads are party threads! We understand everyone is excited, so we relax the rules in these venues. The most important thing is that everyone enjoy themselves\n" \
             "- Please constrain the launch party to this thread alone. We will remove low effort comments elsewhere!\n" \
             "- Real-time chat on our official Internet Relay Chat (IRC) [#SpaceX on Snoonet](https://kiwiirc.com/client/irc.snoonet.org/?nick=SpaceX_guest%7C?#SpaceX)\n" \
