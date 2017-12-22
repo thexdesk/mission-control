@@ -22,7 +22,7 @@ end
 # @return        -> undefined
 # @postcondition -> session[:events] is set properly
 def parse_events(events)
-  unposted, posted = events.split('### Live Updates', 2)
+  unposted, posted = events.split('## Timeline', 2)
 
   session[:events] = []
 
