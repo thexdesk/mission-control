@@ -22,7 +22,10 @@ const hotSwapVals = {
     ':ok:'        : '️️️✔️',
     ':check:'     : '✔️',
     ':no:'        : '❌',
-    ':x:'         : '❌'
+    ':x:'         : '❌',
+    // prevent showing `<br>` if text is pasted into field
+    '\r'          : '',
+    '\n'          : '',
 };
 
 /**

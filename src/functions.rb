@@ -165,7 +165,6 @@ def upcoming_launches
 
 # this isn't an essential function, so just return nothing if it fails
 # disable linter setting because we want to capture any error
-# rubocop:disable Lint/RescueException
-rescue Exception
+rescue Exception # rubocop:disable Lint/RescueException
   {}
 end
