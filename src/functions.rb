@@ -17,10 +17,6 @@ end
 
 # @return -> fully formatted markdown post
 def reddit_post # rubocop:disable MethodLength
-  "[](/# MC // let time = #{session[:time] || 'null'})\n" \
-  "[](/# MC // let launch = #{session[:launch] || 'null'})\n" \
-  "[](/# MC // let video = #{session[:video] || 'null'})\n\n" \
-  \
   "[](/# MC // section intro)\n" \
   "#{session[:intro]}\n\n" \
   \
@@ -49,7 +45,11 @@ def reddit_post # rubocop:disable MethodLength
   "[](/# MC // section participate)\n" \
   "#{session[:participate]}\n\n" \
   \
-  '[](/# MC // section END)'
+  "[](/# MC // section END)\n\n" \
+  \
+  "[](/# MC // let time = #{session[:time] || 'null'})\n" \
+  "[](/# MC // let launch = #{session[:launch] || 'null'})\n" \
+  "[](/# MC // let video = #{session[:video] || 'null'})"
 end
 
 # @param id -> id of reddit post
