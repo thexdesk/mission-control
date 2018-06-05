@@ -21,8 +21,8 @@ GEM
     mustermann (1.0.2)
     netrc (0.11.0)
     public_suffix (3.0.2)
-    rack (2.0.4)
-    rack-protection (2.0.1)
+    rack (2.0.5)
+    rack-protection (2.0.2)
       rack
     redd (0.8.8)
       http (~> 2.2)
@@ -30,10 +30,10 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    sinatra (2.0.1)
+    sinatra (2.0.2)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.1)
+      rack-protection (= 2.0.2)
       tilt (~> 2.0)
     tilt (2.0.8)
     unf (0.1.4)
@@ -44,10 +44,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  json (>= 2.1.0)
-  redd (>= 0.8.8)
-  rest-client (>= 2.0.2)
-  sinatra (>= 2.0.1)
+  json (~> 2.1.0)
+  redd (~> 0.8.8)
+  rest-client (~> 2.0.2)
+  sinatra (~> 2.0.2)
 
 BUNDLED WITH
    1.16.1
