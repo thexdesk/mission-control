@@ -5,6 +5,7 @@ preserved for historical purposes.**
 # [r/SpaceX Mission Control](https://github.com/r-spacex/mission-control)
 
 JavaScript ![documentation %](https://r-spacex.github.io/mission-control/badge.svg)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fr-spacex%2Fmission-control.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fr-spacex%2Fmission-control?ref=badge_shield)
 
 ## Servers
 
@@ -80,6 +81,9 @@ Mission Control should work in the current version of all major browsers. Progre
 ## License
 
 [MIT license](https://github.com/r-spacex/mission-control/blob/master/LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fr-spacex%2Fmission-control.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fr-spacex%2Fmission-control?ref=badge_large)
 
 ## Contributing
 
