@@ -1,6 +1,7 @@
-**This repository will be deprecated, but maintained for two months after the initial (host) release of Enceladus.
-After that point, the Mission Control repository will be archived and will become read-only,
-preserved for historical purposes.**
+**This repository is currently bug-fixes only, and will be deprecated, but
+maintained for two months after the initial (host) release of Enceladus. After
+that point, the Mission Control repository will be archived and will become
+read-only, preserved for historical purposes.**
 
 # [r/SpaceX Mission Control](https://github.com/r-spacex/mission-control)
 
