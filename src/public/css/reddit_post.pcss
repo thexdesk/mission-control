@@ -5,7 +5,8 @@
   direction: ltr;
   overflow-x: hidden;
   font-size: 13px / 1.4em;
-  size: * * 70em / * / 5px 10px;
+  max-width: 70em;
+  padding: 5px 10px;
   font-weight: 400;
   font-family: Verdana, Geneva, sans-serif;
   color: #222f;
@@ -32,16 +33,19 @@
     font-weight: 600;
     font-style: inherit;
     font-smooth: always;
-    size: * / * / 0 / 0.625em 0;
+    padding: 0;
+    margin: 0.625em 0;
   }
 
   p {
-    size: * / * / 0 / calc(5em/14) 0;
+    padding: 0;
+    margin: calc(5em/14) 0;
     font-size: 1em / calc(10em/7);
   }
 
   table {
-    size: * / * / 0 / calc(5em/14) 0;
+    padding: 0;
+    margin: calc(5em/14) 0;
     border-collapse: collapse;
 
     > :first-child { margin-top:    0; }
@@ -49,7 +53,8 @@
   }
 
   tr {
-    size: * / * / 0 / 0;
+    padding: 0;
+    margin: 0;
   }
 
   td,

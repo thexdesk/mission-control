@@ -1,6 +1,10 @@
 dialog {
   position: absolute * 0;
-  size: fit-content * 35vw / fit-content / 1em / auto;
+  width: fit-content;
+  max-width: 35vw;
+  height: fit-content;
+  padding: 1em;
+  margin: auto;
   border: 1px solid #0004 6px;
   box-shadow: 0 3px 7px #0004;
   color: #000f #ffff;
@@ -53,7 +57,8 @@ dialog.fixed {
   }
 
   &-linenumber {
-    size: * 20px / * / 0 3px 0 5px;
+    min-width: 20px;
+    padding: 0 3px 0 5px;
     text-align: right;
     color: #999f;
     white-space: nowrap;
@@ -196,7 +201,9 @@ dialog.fixed {
 
   &-scroll {
     overflow: scroll !important;
-    size: * / 100% / * * 30px / * -30px -30px *;
+    height: 100%;
+    padding-bottom: 30px;
+    margin: * -30px -30px *;
     outline: 0;
     position: relative;
   }
@@ -247,7 +254,8 @@ dialog.fixed {
     white-space: normal;
     display: inline-block;
     vertical-align: top;
-    size: * / 100% / * / * * -30px;
+    height: 100%;
+    margin-bottom: -30px;
 
     &-wrapper {
       position: absolute;
@@ -322,7 +330,8 @@ dialog.fixed {
 
   &-measure {
     position: absolute;
-    size: 100% / 0;
+    width: 100%;
+    height: 0;
     overflow: hidden;
     visibility: hidden;
   }
@@ -380,7 +389,9 @@ span.CodeMirror-selectedtext {
 
 .CodeMirror {
   border: 1px solid #dddf 0 0 4px 4px;
-  size: * / auto 50px / 10px;
+  height: auto;
+  min-height: 50px;
+  padding: 10px;
   font: inherit;
   z-index: 1;
 
@@ -434,7 +445,9 @@ span.CodeMirror-selectedtext {
 
 .editor-toolbar {
   &.fullscreen {
-    size: 100% / 50px / 10px *;
+    width: 100%;
+    height: 50px;
+    padding: 10px *;
     overflow: auto hidden;
     white-space: nowrap;
     box-sizing: border-box;
@@ -446,7 +459,10 @@ span.CodeMirror-selectedtext {
 
     &::before,
     &::after {
-      size: 20px / 50px / 0 / 0;
+      width: 20px;
+      height: 50px;
+      padding: 0;
+      margin: 0;
     }
 
     &::before {
@@ -465,7 +481,9 @@ span.CodeMirror-selectedtext {
     text-align: center;
     text-decoration: none !important;
     color: #2c3e50ff !important;
-    size: 30px / 30px / * / 0;
+    height: 30px;
+    width: 30px;
+    margin: 0;
     border: 1px solid transparent 3px;
     cursor: pointer;
 
@@ -486,7 +504,8 @@ span.CodeMirror-selectedtext {
     border-right: 1px solid #ffff;
     color: transparent;
     text-indent: -10px;
-    size: 0 / * / * / 0 6px;
+    width: 0;
+    margin: 0 6px;
   }
 
   a {
@@ -520,7 +539,8 @@ span.CodeMirror-selectedtext {
 
   span {
     display: inline-block;
-    size: * 4em / * / * / * * * 1em;
+    min-width: 4em;
+    margin-left: 1em;
   }
 }
 
@@ -543,7 +563,8 @@ span.CodeMirror-selectedtext {
 
 .editor-preview {
   position: absolute 0 * * 0;
-  size: 100%;
+  width: 100%;
+  height: 100%;
   z-index: 7;
 
   &-side {

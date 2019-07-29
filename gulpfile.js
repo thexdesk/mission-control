@@ -41,7 +41,6 @@ const config = {
             'color': false,
             'border': false,
         }),
-        require('postcss-modern-properties'),
         require('postcss-font-magician')({
             'protocol': 'https:',
         }),
@@ -50,7 +49,6 @@ const config = {
         require('postcss-color-hex-alpha'),
         require('postcss-will-change'),
         require('postcss-color-mix'),
-        require('postcss-display-visible'),
         require('autoprefixer')({
             browsers: [
                 'last 2 chrome versions',
