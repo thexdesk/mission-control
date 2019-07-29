@@ -57,11 +57,13 @@
         <input type=datetime-local required pattern='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}' id=datetime step=1> <%# step=1 displays seconds %>
         <button class=disableable onclick='setLaunchTime(document.getElementById("datetime").value)'>Set time</button>
         <button onclick='setLaunchTime(null)'>Clear timer</button>
+        <button onclick="document.getElementById('launchTime').close()">Close</button>
     </dialog>
 
     <dialog id=yt-dialog>
         <h2>Enter YouTube link to webcast</h2>
         <input pattern='(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11,})'>
+        <button onclick="document.getElementById('yt-dialog').close()">Close</button>
         <button class=clear>Clear</button>
         <button class='update disableable'>Update</button>
     </dialog>
